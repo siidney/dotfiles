@@ -18,6 +18,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-scripts/CSApprox'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline'
+Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()
 filetype plugin indent on

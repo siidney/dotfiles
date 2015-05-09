@@ -1,0 +1,24 @@
+# compiled executable
+/main
+
+# compiled object files
+*.o
+
+# compiled dynamic libraries
+/build
+*.so
+
+# logs
+/logs
+*.log
+
+# vim swap files
+*.swo
+*.swp
+
+# vim extended undo files
+*.un~
+/include
+*.un~
+/src
+*.un~

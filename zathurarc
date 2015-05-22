@@ -1,0 +1,33 @@
+# zathurarc
+
+# base settings
+set pages-per-row 1
+set render-loading true
+set window-title-page true
+#set recolor true
+
+# key bindings
+map [normal]        <F11> toggle_fullscreen
+map [fullscreen]    <F11> toggle_fullscreen
+map [normal]        + zoom in
+map [fullscreen]    + zoom in
+map [normal]        - zoom out
+map [fullscreen]    - zoom out
+map [normal]        = zoom best-fit
+map [fullscreen]    = zoom best-fit
+map [normal]        f zoom width
+map [fullscreen]    f zoom width
+
+# colours
+
+set default-bg "#707070"
+set default-fg "#93A1A1"
+
+set statusbar-bg "#002B36"
+set statusbar-fg "#93A1A1"
+
+set inputbar-bg "#707070"
+set inputbar-fg "#93A1A1"
+
+set recolor-darkcolor "#FFFFFF"
+set recolor-lightcolor "#333333"

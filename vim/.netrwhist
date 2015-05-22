@@ -1,4 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/siid/Work/OpenGL/GLFW/Prototype/include/prototype'
-let g:netrw_dirhist_2='/home/siid/Work/OpenGL/GLFW/Prototype'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/siid/Work/OpenGL/GLFW/ZombieGame/src/engine'
+let g:netrw_dirhist_2='/home/siid/Work/OpenGL/GLFW/ZombieGame/include'
+let g:netrw_dirhist_3='/home/siid/Work/OpenGL/GLFW/ZombieGame/include/engine'
+let g:netrw_dirhist_4='/home/siid'
+let g:netrw_dirhist_5='/home/siid/.i3'
+let g:netrw_dirhist_6='/home/siid/.i3/conky'

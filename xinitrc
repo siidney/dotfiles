@@ -15,6 +15,8 @@ fi
 
 # enable numlock on startup
 numlockx &
+mpd &
+feh --bg-scale ~/.i3/backgrounds/i3-background.png &
 
 # exec gnome-session
 # exec startkde
@@ -24,7 +26,7 @@ numlockx &
 # exec xterm
 # exec $1
 # exec tdm
- exec dbus-launch awesome
+# exec dbus-launch awesome
 # exec dwm
-# exec i3
+ exec i3
 # exec enlightenment_start

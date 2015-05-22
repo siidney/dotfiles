@@ -462,8 +462,10 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Gimp" },
       properties = { floating = true, tag = tags[1][8] }},
-	{ rule = { instance = "Plugin-container" },
-      properties = { floating = true } },
+    { rule = { instance = "plugin-container" },
+      properties = { floating = true, focus = yes }},
+    { rule = { instance = "gpicview" },
+      properties = { floating = true, focus = yes }},
     -- Set program mapping
 	{ rule = { class = "Gedit" },
 	  properties = { tag = tags[1][1] } },

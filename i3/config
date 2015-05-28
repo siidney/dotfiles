@@ -164,16 +164,22 @@ bindsym $mod+r mode "resize"
 
 # multimedia keys
 # volume
-bindsym XF86AudioRaiseVolume exec amixer -c 0 set Master 1dB+
-bindsym XF86AudioLowerVolume exec amixer -c 0 set Master 1dB-
-bindsym XF86AudioMute exec amixer set Master toggle
+bindsym $mod+F1 exec amixer -c 0 set Master 1dB-
+bindsym $mod+F2 exec amixer -c 0 set Master 1dB+
+bindsym $mod+F3 exec amixer set Master toggle
 # mpc keybinding
-bindsym XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec mpc prev
+bindsym XF86Messenger exec mpc next
+bindsym XF86Favorites exec mpc prev
 bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioStop exec mpc stop
 # email
-bindsym XF86Mail exec thunderbird
+bindsym XF86Mail exec ~/.i3/scripts/runorraise.sh thunderbird Thunderbird
+# firefox
+bindsym XF86WWW exec ~/.i3/scripts/runorraise.sh firefox Firefox
+
+#bindsym XF86Launch1 exec qalculate
+#bindsym XF86LaunchA exec gsimplecal
+
 # printscreen
 bindsym $mod+Print exec --no-startup-id scrot -e 'mv $f ~/screenshots/ 2>/dev/null/'
 
@@ -189,21 +195,26 @@ for_window [class="^URxvt$" instance="urxvt_dropdown"] floating enable
 for_window [class="^Gimp$"] floating enable
 for_window [class="^Qalculate$"] floating enable
 for_window [class="^Gsimplecal$"] floating enable
+for_window [class="^Lxappearance$"] floating enable
+for_window [class="^OpenGLTest$"] floating enable focus
 
 # ncmpc
 bindsym $mod+Control+c exec --no-startup-id urxvt -name scratchpad -e ncmpc
 # qalculate
-bindsym $mod+c exec --no-startup-id qalculate
+bindsym $mod+c exec --no-startup-id ~/.i3/scripts/runorraise.sh qalculate Qalculate
 # gsimplecal
-bindsym $mod+g exec --no-startup-id gsimplecal
+bindsym $mod+g exec --no-startup-id ~/.i3/scripts/runorraise.sh gsimplecal Gsimplecal
 # vim
 bindsym $mod+Control+v exec urxvt -e vim
 # urxvt
 #bindsym $mod+Return exec --no-startup-id urxvt -name scratchpad
 bindsym $mod+Return exec urxvt -name urxvt_dropdown
 
+# notification of keybindings
+bindsym $mod+Shift+i exec --no-startup-id ~/.i3/scripts/notify-info.sh
+
 # remove titlebars
-new_window pixel 1
+new_window 1pixel
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -234,7 +245,6 @@ bar {
 
     # strip workspace numbers
     strip_workspace_numbers yes
-
 }
 
 # start clients on specific workspaces
@@ -252,7 +262,6 @@ assign [class="^Spacefm$"] $tag7
 assign [class="^Vlc$"] $tag8
 assign [class="^Steam$"] $tag8
 assign [class="^Gimp$"] $tag8
-
 
 # autostart programs
 #exec conky

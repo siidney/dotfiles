@@ -27,6 +27,9 @@ override_utf8_locale no
 # 1 disables averaging
 cpu_avg_samples 2
 
+# increase buffer size (potential fix for crashing i3 bar)
+text_buffer_size 512
+
 #everything after TEXT to be formatted to screen
 TEXT
 
@@ -72,6 +75,24 @@ TEXT
 },
 # DISK USAGE
 {
+    "full_text":"ROOT",
+    "color":"\#949494",
+    "separator":false,
+    "separator_block_width":5
+},
+{
+    "full_text":
+        "${fs_free_perc /}% ${fs_free /} /${fs_size /}",
+    "color":
+        ${if_match ${fs_free_perc /}<25}"\#FF9933"
+        ${else}${if_match ${fs_free_perc /}<50}"\#F0DC64"
+        ${else}${if_match ${fs_free_perc /}<75}"\#AAF096"
+        ${else}"\#CC9393"
+        ${endif}${endif}${endif},
+    "separator":false,
+    "separator_block_width":11
+},
+{
     "full_text":"HOME",
     "color":"\#949494",
     "separator":false,
@@ -81,9 +102,9 @@ TEXT
     "full_text":
        "${fs_free_perc /home}% ${fs_free /home} /${fs_size /home}",
     "color":
-        ${if_match ${fs_free_perc cpu0}<25}"\#FF9933"
-        ${else}${if_match ${fs_free_perc cpu0}<50}"\#F0DC64"
-        ${else}${if_match ${fs_free_perc cpu0}<75}"\#AAF096"
+        ${if_match ${fs_free_perc /home}<25}"\#FF9933"
+        ${else}${if_match ${fs_free_perc /home}<50}"\#F0DC64"
+        ${else}${if_match ${fs_free_perc /home}<75}"\#AAF096"
         ${else}"\#CC9393"
         ${endif}${endif}${endif},
     "separator":false,

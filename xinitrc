@@ -28,5 +28,5 @@ feh --bg-scale ~/.i3/backgrounds/i3-background.png &
 # exec tdm
 # exec dbus-launch awesome
 # exec dwm
- exec i3
+ exec dbus-launch i3
 # exec enlightenment_start

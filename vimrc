@@ -19,6 +19,7 @@ Plugin 'vim-scripts/CSApprox'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline'
 Plugin 'tikhomirov/vim-glsl'
+Plugin 'elzr/vim-json'
 
 call vundle#end()
 filetype plugin indent on
@@ -155,3 +156,8 @@ nnoremap <C-H> <C-W><C-H>
 let g:airline#extensions#tabline#enabled = 1
 " show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+" ----------------------------
+"  FILETYPE SETS
+"  ---------------------------
+" autocmd BufNewFile,Bufread *.json set ft=javascript

@@ -20,6 +20,7 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'elzr/vim-json'
+Plugin 'othree/xml.vim'
 
 call vundle#end()
 filetype plugin indent on

@@ -1,11 +1,11 @@
 # simple bash countdown timer
-#/bin/zsh
+#/bin/sh
 
 # play the alarm
 sound_alarm(){
     COUNTER=0
         # alert status of countdown
-        notify-send -i starred COUNTDOWN_COMPLETE "$strtotal"
+        notify-send -i starred COUNTDOWN_COMPLETE "$strTotal"
     while [ $COUNTER -lt 3 ]; do
         # sound the alarm
         mpg123 -q /home/siid/Sounds/Woop-Woop-SoundBible.com-198943467.mp3
@@ -42,35 +42,87 @@ redraw(){
     tput cup $((height / 2)) $(((width / 2) - (length / 2)))
     echo -ne "\E[0,36m"$str \\r
 }
+# validate input (check seconds and minutes not greater than 59)
+validate(){
+    # convert to base ten ( prevent leading octal error )
+    hours=$((10#$hours))
+    minutes=$((10#$minutes))
+    seconds=$((10#$seconds))
 
-echo -e "\E[0,36mPlease input the countdown time in minutes and seconds: "
+    # seconds
+    if [ $seconds -gt 59 ]
+    then
+        while [ $seconds -ge 60 ]; do
+            let minutes++
+            seconds=$((seconds-60))
+        done
+    fi
+
+    # minutes
+    if [ $minutes -gt 59 ]
+    then
+        while [ $minutes -ge 60 ]; do
+            let hours++
+            minutes=$((minutes-60))
+        done
+    fi
+}
+# string formatting spacers
+get_spacer_minutes(){
+    if [ $minutes -lt 10 ] && [ ${#minutes} -lt 2 ]
+    then
+        spacer1=":0"
+    else
+        spacer1=":"
+    fi
+}
+get_spacer_seconds(){
+    if [ $seconds -lt 10 ] && [ ${#seconds} -lt 2 ]
+    then
+        spacer2=":0"
+    else
+        spacer2=":"
+    fi
+}
+echo -e "\E[0,36mPlease input the countdown time in (hh mm ss): "
 tput sgr0
-read minutes seconds
+read hours minutes seconds
 
 # save the screen
 tput smcup
 
-total=$((minutes * 60 + seconds))
+validate hours minutes seconds
 
-strtotal="$minutes\m $seconds\s"
+# get total time in seconds
+# total number of minutes * 60 + seconds
+total=$(($((minutes + (hours * 60))) * 60 + seconds))
+
+get_spacer_minutes
+get_spacer_seconds
+
+strTotal="$hours$spacer1$minutes$spacer2$seconds"
 
 while [ $total -gt 0 ]; do
-    if [ $seconds -lt 10 ] && [ $seconds -ne 00 ]
+
+    get_spacer_minutes
+    get_spacer_seconds
+
+    redraw $hours$spacer1$minutes$spacer2$seconds
+    #redraw $total
+
+    if [ $minutes -eq 0 ] && [ $hours -gt 0 ] && [ $seconds -eq 0 ]
     then
-        spacer=":0"
-    else
-        spacer=":"
+        let hours--
+        minutes=60
     fi
 
-    redraw $minutes$spacer$seconds
-
-    if [ $seconds -eq 0 ]
+    if [ $seconds -eq 0 ] && [ $minutes -gt 0 ]
     then
         let minutes--
         seconds=60
     fi
 
-    if [ $minutes -eq 0 ] && [ $seconds -le 3 ]
+    if [ $hours -eq 0 ] && [ $minutes -eq 0 ] && [ $seconds -le 3 ]
     then
         echo -ne "\a" \\r
     fi
@@ -86,6 +138,6 @@ tput sgr0
 # restore screen
 tput rmcup
 
-echo "COUNTDOWN FINISHED: $strtotal"
+echo "COUNTDOWN FINISHED: $strTotal"
 
 mpc_status

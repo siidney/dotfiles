@@ -258,6 +258,8 @@ assign [class="^Chromium$"] $tag2
 
 assign [class="^Thunderbird$"] $tag3
 
+assign [class="^libreoffice-startcenter$"] $tag5
+
 assign [class="^Qbittorrent$"] $tag6
 
 assign [class="^Spacefm$"] $tag7

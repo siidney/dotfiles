@@ -5,7 +5,7 @@
 sound_alarm(){
     COUNTER=0
         # alert status of countdown
-        notify-send -i starred COUNTDOWN_COMPLETE "$strTotal"
+        notify-send -i starred COUNTDOWN_COMPLETE "$timer $strTotal"
     while [ $COUNTER -lt 3 ]; do
         # sound the alarm
         mpg123 -q /home/siid/Sounds/Woop-Woop-SoundBible.com-198943467.mp3
@@ -32,15 +32,15 @@ mpc_status(){
 redraw(){
     local str width height length
 
-    str=$1
     width=$(tput cols)
     height=$(tput lines)
-    length=${#str}
 
     # clear the screen
     clear
-    tput cup $((height / 2)) $(((width / 2) - (length / 2)))
-    echo -ne "\E[0,36m"$str \\r
+    tput cup $(((height -1) / 2)) $(((width / 2) - (${#timer} / 2)))
+    echo -ne "\E[0.36m" $timer \\r
+    tput cup $((height/ 2)) $(((width / 2) - (${#1} / 2)))
+    echo -ne "\E[0,36m" $1 \\r
 }
 # validate input (check seconds and minutes not greater than 59)
 validate(){
@@ -102,6 +102,13 @@ get_spacer_seconds
 
 strTotal="$hours$spacer1$minutes$spacer2$seconds"
 
+timer="COUNTDOWN"
+
+if [ $# -gt 0 ]
+then
+    timer=$1
+fi
+
 while [ $total -gt 0 ]; do
 
     get_spacer_minutes
@@ -138,6 +145,6 @@ tput sgr0
 # restore screen
 tput rmcup
 
-echo "COUNTDOWN FINISHED: $strTotal"
+echo "$timer FINISHED: $strTotal"
 
 mpc_status

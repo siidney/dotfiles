@@ -20,8 +20,6 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'elzr/vim-json'
-Plugin 'msanders/snipmate.vim'
-Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()
 filetype plugin indent on
@@ -57,7 +55,7 @@ set fileencoding=utf-8
 " set unix line endings
 set fileformat=unix
 " when reading new files try unix line endings, then dos. use unix for new buffers
-set fileformats=unix,dos
+" set fileformats=unix,dos
 " indentation
 set expandtab " use spaces instead of tab
 set autoindent " autoindent based on line above
@@ -66,7 +64,7 @@ set shiftwidth=4 " when reading, tabs are 4 spaces
 set softtabstop=4 " in insert mode, tabs are 4 spaces
 " limit line width to 80 and highlight col 80
 set textwidth=80
-if(exists('+colorcolumn'))
+if(exists('++colorcolumn'))
     set colorcolumn=81
     highlight ColorColumn ctermbg=8
 endif
@@ -79,6 +77,7 @@ let mapleader=","
 " -----------------------------
 "  COLOURS
 " -----------------------------
+
 " color scheme
 set background=dark
 set t_Co=256        " set 256 colour mode
@@ -90,6 +89,7 @@ colorscheme Sunburst
 " -----------------------------
 "  SEARCHING
 " -----------------------------
+
 set wildmenu        " visual autocomplete for cmd menu
 set showmatch       " highlight matching [{()}]
 set incsearch       " search as characters are entered
@@ -151,7 +151,9 @@ nnoremap <C-H> <C-W><C-H>
 " -----------------------------
 "  PLUGINS
 " -----------------------------
+
 " vim-airline
+"
 " enable list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " show just the filename
@@ -159,27 +161,5 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " ----------------------------
 "  FILETYPE SETS
-" ----------------------------
+"  ---------------------------
 " autocmd BufNewFile,Bufread *.json set ft=javascript
-
-" ----------------------------
-"  TEMPLATE FILES
-" ----------------------------
-"  static
-"au BufNewFile *.cpp 0r ~/.vim/templates/skel.cpp
-
-function! Template()
-    " read in template files
-    let filepath = '~/.vim/templates/skel.'.expand("%:e")
-    " ensure file exists
-    if filereadable(expand(filepath))
-        silent! execute '0r ~/.vim/templates/skel.'.expand("<afile>:e")
-        " parse special text in templates after read
-        %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
-        " go to end of description line and enter insert mode
-        execute "normal! gg/Description:\<cr>"
-        execute ":startinsert!"
-    endif
-endfunction
-
-autocmd BufNewfile * call Template()

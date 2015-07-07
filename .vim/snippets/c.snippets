@@ -65,22 +65,29 @@ snippet wh
 	}
 # For Loop
 snippet for
-	for(${2:i} = 0; $2 < ${1:count}; $2${3:++}){
-		${4:/* code */}
+	for(int ${2:i}=0; $2<${1:count}; $2${3:++}){
+		${4:}
 	}
 # Custom For Loop
 snippet forr
-	for(${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}){
-		${5:/* code */}
+	for(int ${1:i}=${2:0}; ${3:$1<10}; $1${4:++}){
+		${5:}
+	}
+# Unsigned int For Loop
+snippet foru
+	for(unsigned int ${2:i}=0; $2<${1:count}; $2${3:++}){
+		${4:}
 	}
 # Function
 snippet fun
 	${1:void} ${2:function_name}(${3}){
-		${4:/* code */}
+		${4:}
 	}
+	${5}
 # Function Declaration
 snippet fund
-	${1:void} ${2:function_name}(${3});${4}
+	${1:void} ${2:function_name}(${3});
+	${4}
 # Typedef
 snippet td
 	typedef ${1:int} ${2:MyCustomType};${3}
@@ -108,5 +115,5 @@ snippet pr
 snippet fpr
 	fprintf(${1:stderr}, "${2:%s}\n"${3});${4}
 # This is kind of convenient
-snippet .
-	[${1}]${2}
+#snippet .
+#	[${1}]${2}

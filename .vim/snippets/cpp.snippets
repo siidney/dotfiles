@@ -31,3 +31,22 @@ snippet fori
 	for(int ${2:i} = 0; $2 < ${1:count}; $2${3:++}){
 		${4:/* code */}
 	}
+# Constructor
+snippet const
+	${1:`Filename('$1', 'name')`}::$1(){
+		${2}
+	}
+# Destructor
+snippet dest
+	${1:`Filename('$1', 'name')`}::~$1(){
+		${2}
+	}
+# Constructor and Destructor
+snippet ctdt
+	${1:`Filename('$1', 'name')`}::$1(){
+		${2}
+	}
+	$1::~$1(){
+		${3}
+	}
+	${4}

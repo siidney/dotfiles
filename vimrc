@@ -178,6 +178,7 @@ function! Template()
         %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
         " go to end of description line and enter insert mode
         execute "normal! gg/Description:\<cr>"
+        execute "normal! :nohlsearch<cr>"
         execute ":startinsert!"
     endif
 endfunction

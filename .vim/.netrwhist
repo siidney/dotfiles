@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/siid/Work/OpenGL/GLFW/Poing'
-let g:netrw_dirhist_2='/home/siid/Work/OpenGL/GLFW/Poing/include'
-let g:netrw_dirhist_3='/home/siid/Work/OpenGL/GLFW/Poing/include/poing'
-let g:netrw_dirhist_4='/home/siid/Work/OpenGL/GLFW/Poing/src'
-let g:netrw_dirhist_5='/home/siid/Work/OpenGL/GLFW/Poing/src/poing'

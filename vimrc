@@ -183,6 +183,9 @@ function! Template()
             execute "normal! gg/Description:\<cr>"
             execute "normal! :nohlsearch<cr>"
             execute ":startinsert!"
+        else
+            execute "normal! G"
+            execute ":startinsert!"
         endif
     endif
 endfunction

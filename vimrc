@@ -22,6 +22,7 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'elzr/vim-json'
 Plugin 'msanders/snipmate.vim'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'vim-scripts/Vim-R-plugin'
 
 call vundle#end()
 filetype plugin indent on
@@ -177,9 +178,12 @@ function! Template()
         " parse special text in templates after read
         %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
         " go to end of description line and enter insert mode
-        execute "normal! gg/Description:\<cr>"
-        execute "normal! :nohlsearch<cr>"
-        execute ":startinsert!"
+        execute "normal! gg"
+        if search("Description")
+            execute "normal! gg/Description:\<cr>"
+            execute "normal! :nohlsearch<cr>"
+            execute ":startinsert!"
+        endif
     endif
 endfunction
 

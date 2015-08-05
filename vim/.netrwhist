@@ -1,3 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/home/siid/Downloads/test/graphicsStuff'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/siid/Downloads/Programming.Game.AI.By.Example.Source'
+let g:netrw_dirhist_2='/home/siid/Downloads/Programming.Game.AI.By.Example.Source/VS2010/Buckland_Chapter2-State Machines'
+let g:netrw_dirhist_3='/home/siid/Downloads/Programming.Game.AI.By.Example.Source/VS2010/Buckland_Chapter2-State Machines/WestWorld1'
+let g:netrw_dirhist_4='/home/siid/Downloads/Programming.Game.AI.By.Example.Source/VS2010/Buckland_Chapter2-State Machines/WestWorldWithWoman'
+let g:netrw_dirhist_5='/home/siid/.dotfiles'
+let g:netrw_dirhist_6='/home/siid/.dotfiles/i3'

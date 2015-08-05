@@ -208,7 +208,7 @@ bindsym $mod+c exec --no-startup-id ~/.i3/scripts/runorraise.sh qalculate Qalcul
 # gsimplecal
 bindsym $mod+g exec --no-startup-id ~/.i3/scripts/runorraise.sh gsimplecal Gsimplecal
 # vim
-bindsym $mod+Control+v exec urxvt -e vim
+bindsym $mod+Control+v exec urxvt
 # urxvt
 #bindsym $mod+Return exec --no-startup-id urxvt -name scratchpad
 bindsym $mod+Return exec urxvt -name urxvt_dropdown

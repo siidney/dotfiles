@@ -1,6 +1,5 @@
 snippet main
-	public static void main (String [] args)
-	{
+	public static void main(String[] args){
 		${1:/* code */}
 	}
 snippet pu
@@ -25,7 +24,7 @@ snippet de
 snippet ca
 	catch(${1:Exception} ${2:e}) ${3}
 snippet th
-	throw 
+	throw
 snippet sy
 	synchronized
 snippet im
@@ -33,7 +32,7 @@ snippet im
 snippet imp
 	implements
 snippet ext
-	extends 
+	extends
 snippet j.u
 	java.util
 snippet j.i
@@ -45,23 +44,33 @@ snippet j.n
 snippet j.m
 	java.math.
 snippet if
-	if (${1}) ${2}
+	if(${1}){
+		${2}
+	}
 snippet el
-	else 
+	else{
+		${1}
+	}
 snippet elif
-	else if (${1}) ${2}
+	else if(${1}){
+		${2}
+	}
 snippet wh
 	while (${1}) ${2}
 snippet for
-	for (${1}; ${2}; ${3}) ${4}
+	for(${1}; ${2}; ${3}) ${4}
 snippet fore
-	for (${1} : ${2}) ${3}
+	for(${1} : ${2}) ${3}
 snippet sw
 	switch (${1}) ${2}
 snippet cs
 	case ${1}:
 		${2}
 	${3}
+snippet pc
+	public class ${1:`Filename()`}{
+		${2:}
+	}
 snippet tc
 	public class ${1:`Filename()`} extends ${2:TestCase}
 snippet t
@@ -93,3 +102,5 @@ snippet tryf
 	}
 snippet rst
 	ResultSet ${1:rst}${2: = null}${3};${4}
+snippet println
+	System.out.println("${1:}");

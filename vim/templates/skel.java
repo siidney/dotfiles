@@ -3,11 +3,11 @@
  *
  *    Description:  
  *
- *         reated:  [:VIM_EVAL:]strftime('%d/%m/%y %T')[:END_EVAL:]
+ *        Created:  [:VIM_EVAL:]strftime('%d/%m/%y %T')[:END_EVAL:]
  *       Revision:  none
  *
  *        @Author:  Siidney Watson - siidney.watson@gmail.com
- *        @Version:  1.0
+ *       @Version:  1.0
  *
  * =====================================================================================
  */

@@ -55,10 +55,25 @@ snippet elif
 	else if(${1}){
 		${2}
 	}
-snippet wh
-	while (${1}) ${2}
+snippet while
+	while(${1}){
+		${2}
+	}
+# for loop
 snippet for
-	for(${1}; ${2}; ${3}) ${4}
+	for(${1}; ${2}; ${3}){
+		${4}
+	}
+# for int loop
+snippet fori
+	for(int ${2:i} = 0; $2 < ${1:count}; $2${3:++}){
+		${4:/* code */}
+	}
+# for unsigned int loop
+snippet foru
+	for(unsigned int ${2:i}=0; $2<${1:count}; $2${3:++}){
+		${4:}
+	}
 snippet fore
 	for(${1} : ${2}) ${3}
 snippet sw
@@ -67,6 +82,7 @@ snippet cs
 	case ${1}:
 		${2}
 	${3}
+# public class
 snippet pc
 	public class ${1:`Filename()`}{
 		${2:}
@@ -102,5 +118,17 @@ snippet tryf
 	}
 snippet rst
 	ResultSet ${1:rst}${2: = null}${3};${4}
+# print
+snippet print
+	System.out.print(${1:});
+# println
 snippet println
-	System.out.println("${1:}");
+	System.out.println(${1:});
+# printf
+snippet printf
+	System.out.printf("${1:}");
+# Do While Loop
+snippet do
+	do{
+		${2:/* code */}
+	}while(${1:/* condition */});

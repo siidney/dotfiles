@@ -1,4 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/siid/Downloads/Car Intro/+libs'
-let g:netrw_dirhist_2='/home/siid/Downloads/Car Intro'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/siid/Work/R/edx'
+let g:netrw_dirhist_2='/home/siid/Work/R/edx/Module 6'
+let g:netrw_dirhist_3='/home/siid/Work/R/edx'
+let g:netrw_dirhist_4='/home/siid/Work/R/edx/Module 7'
+let g:netrw_dirhist_5='/home/siid/Work/R/edx'
+let g:netrw_dirhist_6='/home/siid/Work/Python/Learn Python The Hard Way'

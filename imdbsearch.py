@@ -24,6 +24,7 @@
 #
 
 import urllib.request
+import urllib.parse
 import json
 
 prompt = "> "
@@ -54,8 +55,9 @@ def getMovieTv():
 
     year = input(title.title() + " year (if known): ")
 
-    # format IMDBAPI url (add '+' between title spaces)
-    url = "http://www.omdbapi.com/?t=" + title.replace(" ", "+") + "&y=" + year + "&plot=long&r=json"
+    # format IMDBAPI url (add '+' between title spaces, make url safe if
+    # title contains non ASCII chars)
+    url = "http://www.omdbapi.com/?t=" + urllib.parse.quote_plus(title)  + "&y=" + year + "&plot=long&r=json"
 
     # assign create dict of json object
     jobject = serialiseResponse(url)
@@ -68,7 +70,7 @@ def getMovieTv():
         plot = "\n" + jobject["Plot"]
         link = "\n\tIMDB link: http://www.imdb.com/title/" + jobject["imdbID"]
 
-        print("\n" + title + "\n" + language + rating + plot + link)
+        print ("\n" + title + "\n" + language + rating + plot + link)
 
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':
@@ -89,8 +91,9 @@ def searchMovieTv():
 
     year = input(title.title() + " year (if known): ")
 
-    # format IMDBAPI url (add '+' between title spaces)
-    url = "http://www.omdbapi.com/?s=" + title.replace(" ", "+") + "&y=" + year + "&r=json"
+    # format IMDBAPI url (add '+' between title spaces, make url safe if
+    # contains non ASCII chars)
+    url = "http://www.omdbapi.com/?s=" + urllib.parse.quote_plus(title) + "&y=" + year + "&r=json"
 
     # assign create dict of json object
     jobject = serialiseResponse(url)
@@ -104,7 +107,7 @@ def searchMovieTv():
             year = res["Year"]
             link = "\n\tIMDB link: http://www.imdb.com/title/" + res["imdbID"]
 
-            print(mediaType + title + " [" + year + "]" + link)
+            print (mediaType + title + " [" + year + "]" + link)
 
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':
@@ -116,13 +119,26 @@ def searchMovieTv():
 # string and then re-serialising to a python object before use.
 #
 def serialiseResponse(url):
-    response = urllib.request.urlopen(url)
+    # check for active internet connection
+    try:
+        response = urllib.request.urlopen(url)
+    except urllib.error.URLError as e:
+        print ("\n****************************")
+        if hasattr(e, 'reason'):
+            print ("Connection error: Are you connected to the internet?")
+            print ("Reason: ", str(e.reason))
+        elif hasattr(e, 'code'):
+            print ("The server couldn't fulfill the request.")
+            print ("Error code: " + e.code )
+        print ("\n****************************")
 
-    # serialise to json formatted string
-    jstring = json.dumps(json.loads(response.readall().decode('utf-8')), sort_keys=True, indent=4)
+        return
+    else:
+        # serialise to json formatted string
+        jstring = json.dumps(json.loads(response.readall().decode('utf-8')), sort_keys=True, indent=4)
 
-    # deserialise into a python object (dict)
-    return json.loads(jstring)
+        # deserialise into a python object (dict)
+        return json.loads(jstring)
 
 #
 # Check response code
@@ -130,11 +146,16 @@ def serialiseResponse(url):
 # 'Error' value.
 #
 def checkResponse(jobject):
-    # check for existence if 'Error' key
-    if 'Error' in jobject:
-        print("\nError: " + jobject["Error"] + "\nMaybe search again with/without specific year")
+    # ensure a proper response received (internet connection)
+    if jobject == None:
+        return False
     else:
-        return True
+        # check for existence of 'Error' key
+        if 'Error' in jobject:
+            print ("\nError: " + jobject["Error"] + "\n")
+            print ("Check your spelling and/or try searching again with/without specific year.")
+        else:
+            return True
 
 #
 # MAIN

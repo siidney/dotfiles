@@ -1,5 +1,28 @@
 #! /usr/bin/env python
 
+#   Filename:       imdbSearch.py
+#   Created:        27/08/2015
+#   Revision:       None
+#   Version:        1.0
+#   Author:         Siidney Watson
+#   Description:
+#
+#   A simple Python script to query the imdbAPI and output a python useable
+#   serialised version of the returned json.
+#
+#   Requires an active internet connection to connect to the imdb servers.
+#
+#   Written (in spite of the fact that the author is not a Python fan) as
+#   opening a new tab, going to imdb, clicking the search box and typing in
+#   the request is just too much effort.
+#
+#   LINUX USERS:
+#
+#   Symlink a copy of this (and any other script you regularly use) into
+#   /usr/local/bin/ to run from anywhere and the command line need not be left.
+#   A logout/in is needed for autocomplete to work.
+#
+
 import urllib.request
 import json
 
@@ -18,17 +41,18 @@ def mainMenu():
     print ("\n################################\n")
 
 #
-# get known movie/tv info
+# Get known movie/tv info
+# Returns a single search result. Useful if the exact title is known.
 #
 def getMovieTv():
     print ("\n************************************")
-    print ("\nGet Movie/Tv information: \n")
+    print ("\nGet Movie/Tv show information: \n")
 
     title = input(titlePrompt)
     while(title == ""):
         title = input(titlePrompt)
 
-    year = input(title.capitalize() + " year (if known): ")
+    year = input(title.title() + " year (if known): ")
 
     # format IMDBAPI url (add '+' between title spaces)
     url = "http://www.omdbapi.com/?t=" + title.replace(" ", "+") + "&y=" + year + "&plot=long&r=json"
@@ -52,18 +76,19 @@ def getMovieTv():
         getMovieTv()
 
 #
-# do a movie/tv search
+# Do a movie/tv search
+# Uses the search flag in the url to return a list of search results.
+# TODO: display sorted by year
 #
 def searchMovieTv():
     print ("\n************************************")
     print ("\nSearch Movie/Tv info: \n")
 
-    title = input(titlePrompt + "\n" + prompt)
+    title = input(titlePrompt)
     while(title == ""):
         title = input(titlePrompt + "\n" + prompt)
 
-    print (title + " year (if known): ")
-    year = input(prompt)
+    year = input(title.title() + " year (if known): ")
 
     # format IMDBAPI url (add '+' between title spaces)
     url = "http://www.omdbapi.com/?s=" + title.replace(" ", "+") + "&y=" + year + "&r=json"
@@ -71,10 +96,7 @@ def searchMovieTv():
     # assign create dict of json object
     jobject = serialiseResponse(url)
 
-    # error check result
-    if 'Error' in jobject:
-        print ("Error: " + title + " not found!")
-    else:
+    if checkResponse(jobject) == True:
         # iterate through and print required information
         for res in jobject["Search"]:
 
@@ -90,22 +112,27 @@ def searchMovieTv():
         searchMovieTv()
 
 #
-# serialise the json into dict
+# Serialise the json into dict
+# The response recieved from imdb is in binary format so needs serialising to a
+# string and then re-serialising to a python object before use.
 #
 def serialiseResponse(url):
     response = urllib.request.urlopen(url)
 
+    # serialise to json formatted string
     jstring = json.dumps(json.loads(response.readall().decode('utf-8')), sort_keys=True, indent=4)
 
-    #print(jstring)
+    # deserialise into a python object (dict)
     return json.loads(jstring)
 
 #
-# check response code
+# Check response code
+# Checks to see if the 'Error' key exists in the jobject. If so prints the
+# 'Error' value.
 #
 def checkResponse(jobject):
-    # check for existence of movie name
-    if jobject["Response"] == 'False':
+    # check for existence if 'Error' key
+    if 'Error' in jobject:
         print("\nError: " + jobject["Error"] + "\nMaybe search again with/without specific year")
     else:
         return True

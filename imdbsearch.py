@@ -72,7 +72,9 @@ def getMovieTv():
         plot = "\n" + jobject["Plot"]
         link = "\n\tIMDB link: http://www.imdb.com/title/" + jobject["imdbID"]
 
+        print ("\n************************************")
         print ("\n" + title + "\n" + meta + language + rating + plot + link)
+        print ("\n************************************")
 
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':
@@ -99,6 +101,7 @@ def searchMovieTv():
     # assign create dict of json object
     jobject = serialiseResponse(url)
 
+    print ("\n************************************\n")
     if checkResponse(jobject) == True:
         # sort by year and print required information
         indices = sortResults(jobject["Search"])
@@ -111,6 +114,7 @@ def searchMovieTv():
 
             print (mediaType + title + " [" + year + "]" + link)
 
+    print ("\n************************************")
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':
         searchMovieTv()

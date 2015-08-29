@@ -65,13 +65,14 @@ def getMovieTv():
 
     if checkResponse(jobject) == True:
 
-        title = jobject["Title"] + " [" + jobject["Year"] + "]" + " - " + jobject["Genre"]
+        title = jobject["Title"] + " [" + jobject["Year"] + "]"
+        meta = jobject["Rated"] + " | " + jobject["Runtime"] + " | " + jobject["Genre"] + " | " + jobject["Released"] + "\n"
         language = "Language: " + jobject["Language"] + "\n"
-        rating = "Rating: " + jobject["imdbRating"] + "\n"
+        rating = "IMDBRating: " + jobject["imdbRating"] + "\n"
         plot = "\n" + jobject["Plot"]
         link = "\n\tIMDB link: http://www.imdb.com/title/" + jobject["imdbID"]
 
-        print ("\n" + title + "\n" + language + rating + plot + link)
+        print ("\n" + title + "\n" + meta + language + rating + plot + link)
 
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':

@@ -26,6 +26,7 @@
 import urllib.request
 import urllib.parse
 import json
+import operator
 
 prompt = "> "
 titlePrompt = "Enter Movie/TV Show Title: "
@@ -37,7 +38,7 @@ typePrompt = "Enter media type to search for (movie/series/episode): "
 def mainMenu():
     print ("\n################################\n")
     print ("1. Get Movie/TV information (Known title/year)")
-    print ("2. Search for Movie/TV information")
+    print ("2. Search for Movie/TV information (Sorted by year)")
     print ("0. Quit")
     print ("\n################################\n")
 
@@ -79,7 +80,6 @@ def getMovieTv():
 #
 # Do a movie/tv search
 # Uses the search flag in the url to return a list of search results.
-# TODO: display sorted by year
 #
 def searchMovieTv():
     print ("\n************************************")
@@ -99,13 +99,14 @@ def searchMovieTv():
     jobject = serialiseResponse(url)
 
     if checkResponse(jobject) == True:
-        # iterate through and print required information
-        for res in jobject["Search"]:
-
-            mediaType = res["Type"].capitalize() + ": "
-            title = res["Title"]
-            year = res["Year"]
-            link = "\n\tIMDB link: http://www.imdb.com/title/" + res["imdbID"]
+        # sort by year and print required information
+        indices = sortResults(jobject["Search"])
+        # select year ordered elements from the indices generated above
+        for i in indices:
+            mediaType = jobject["Search"][i]["Type"].capitalize() + ": "
+            title = jobject["Search"][i]["Title"]
+            year = jobject["Search"][i]["Year"]
+            link = "\n\tIMDB link: http://www.imdb.com/title/" + jobject["Search"][i]["imdbID"]
 
             print (mediaType + title + " [" + year + "]" + link)
 
@@ -115,7 +116,7 @@ def searchMovieTv():
 
 #
 # Serialise the json into dict
-# The response recieved from imdb is in binary format so needs serialising to a
+# The response received from imdb is in binary format so needs serialising to a
 # string and then re-serialising to a python object before use.
 #
 def serialiseResponse(url):
@@ -156,6 +157,33 @@ def checkResponse(jobject):
             print ("Check your spelling and/or try searching again with/without specific year.")
         else:
             return True
+
+#
+# returns a tuple of dict indices sorted by year
+# iterates through the jobject and adds the index and year to a new list
+# sorts the list by year, keeping the indices with their original year
+# creates a new list of just the newly sorted indices
+# returns the indice list a tuple to ensure it cannot be changed
+#
+def sortResults(jobject):
+    resLength = len(jobject)
+
+    years = []
+    indices = []
+    # create list of indices and years
+    for i in range (0, resLength):
+        # only get beginning for year to account for ranges (xxxx-xxxx)
+        years.append((i, jobject[i]["Year"][:4]))
+
+    # sort the items by year keeping the original indices linked to each year
+    years.sort(key=operator.itemgetter(1))
+
+    # create a list of the indices
+    for i in range (0, len(years)):
+        indices.extend([years[i][0]])
+
+    # return a tuple of indices (immutable)
+    return tuple(indices)
 
 #
 # MAIN

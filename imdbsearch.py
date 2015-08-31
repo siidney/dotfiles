@@ -31,6 +31,7 @@ import operator
 prompt = "> "
 titlePrompt = "Enter Movie/TV Show Title: "
 typePrompt = "Enter media type to search for (movie/series/episode): "
+separator = "\n************************************"
 
 #
 # main menu
@@ -47,7 +48,7 @@ def mainMenu():
 # Returns a single search result. Useful if the exact title is known.
 #
 def getMovieTv():
-    print ("\n************************************")
+    print (separator)
     print ("\nGet Movie/Tv show information: \n")
 
     title = input(titlePrompt)
@@ -67,14 +68,15 @@ def getMovieTv():
 
         title = jobject["Title"] + " [" + jobject["Year"] + "]"
         meta = jobject["Rated"] + " | " + jobject["Runtime"] + " | " + jobject["Genre"] + " | " + jobject["Released"] + "\n"
+        actors = "Stars: " + jobject["Actors"] + "\n"
         language = "Language: " + jobject["Language"] + "\n"
         rating = "IMDBRating: " + jobject["imdbRating"] + "\n"
         plot = "\n" + jobject["Plot"]
         link = "\n\tIMDB link: http://www.imdb.com/title/" + jobject["imdbID"]
 
-        print ("\n************************************")
-        print ("\n" + title + "\n" + meta + language + rating + plot + link)
-        print ("\n************************************")
+        print (separator)
+        print ("\n" + title + "\n" + meta + actors + language + rating + plot + link)
+        print (separator)
 
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':
@@ -85,7 +87,7 @@ def getMovieTv():
 # Uses the search flag in the url to return a list of search results.
 #
 def searchMovieTv():
-    print ("\n************************************")
+    print (separator)
     print ("\nSearch Movie/Tv info: \n")
 
     title = input(titlePrompt)
@@ -101,7 +103,7 @@ def searchMovieTv():
     # assign create dict of json object
     jobject = serialiseResponse(url)
 
-    print ("\n************************************\n")
+    print (separator)
     if checkResponse(jobject) == True:
         # sort by year and print required information
         indices = sortResults(jobject["Search"])
@@ -114,7 +116,7 @@ def searchMovieTv():
 
             print (mediaType + title + " [" + year + "]" + link)
 
-    print ("\n************************************")
+    print (separator)
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':
         searchMovieTv()
@@ -129,14 +131,14 @@ def serialiseResponse(url):
     try:
         response = urllib.request.urlopen(url)
     except urllib.error.URLError as e:
-        print ("\n****************************")
+        print (separator)
         if hasattr(e, 'reason'):
             print ("Connection error: Are you connected to the internet?")
             print ("Reason: ", str(e.reason))
         elif hasattr(e, 'code'):
             print ("The server couldn't fulfill the request.")
             print ("Error code: " + e.code )
-        print ("\n****************************")
+        print (separator)
 
         return
     else:

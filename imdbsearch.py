@@ -37,8 +37,9 @@ separator = "\n************************************"
 # main menu
 #
 def main_menu():
-    """ Prints the main menu. """
-
+    """
+        Prints the main menu
+    """
     print ("\n################################\n")
     print ("1. Get Movie/TV information (Known title/year)")
     print ("2. Search for Movie/TV information (Sorted by year)")
@@ -50,7 +51,9 @@ def main_menu():
 # Returns a single search result. Useful if the exact title is known.
 #
 def get_movie_tv():
-    """ Prints a single move/tv result from imdb. """
+    """
+        Prints a single move/tv result from imdb
+    """
 
     print (separator)
     print ("\nGet Movie/Tv show information: \n")
@@ -91,7 +94,9 @@ def get_movie_tv():
 # Uses the search flag in the url to return a list of search results.
 #
 def search_movie_tv():
-    """ Prints 10 movie/tv search results from imdb in ascending order by year. """
+    """
+        Prints 10 movie/tv search results from imdb in ascending order by year
+    """
 
     print (separator)
     print ("\nSearch Movie/Tv info: \n")
@@ -133,9 +138,10 @@ def search_movie_tv():
 # string and then re-serialising to a python object before use.
 #
 def serialise_response(url):
-    """ Returns a serialised json response from imdb as a dict.
+    """
+        Returns a serialised json response from imdb as a dict
 
-        url ---  formatted imdbapi search address.
+        url ---  formatted imdbapi search address
     """
 
     # check for active internet connection
@@ -165,9 +171,10 @@ def serialise_response(url):
 # 'Error' value.
 #
 def check_response(jobject):
-    """ Checks if a valid JSON object exists, and deals with any error codes.
+    """
+        Checks if a valid JSON object exists, and deals with any error codes
 
-        jobject --- serialised json fetched from imdbapi.
+        jobject --- serialised json fetched from imdbapi
     """
 
     # ensure a proper response received (internet connection)
@@ -189,10 +196,11 @@ def check_response(jobject):
 # returns the indice list a tuple to ensure it cannot be changed
 #
 def sort_results(jobject):
-    """ Sorts serialised imdb results by ascending year and returns tuple of
+    """
+        Sorts serialised imdb results by ascending year and returns tuple of
         indices.
 
-        jobject --- serialised json fetched from imdbapi.
+        jobject --- serialised json fetched from imdbapi
     """
 
     resLength = len(jobject)
@@ -218,7 +226,9 @@ def sort_results(jobject):
 # MAIN
 #
 def main():
-    """ Program entry point. """
+    """
+        Program entry point
+    """
 
     menuOptions = {
         '1':get_movie_tv,

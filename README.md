@@ -3,11 +3,13 @@
 Various system config files and 'useful' scripts.
 
 ## Folders
+> - **rTorrent** - rTorrent scripts and config files
 > - **i3** - i3 config files
 > - **scripts** - i3 scripts
 > - **vim** - vim config files
 
 ## Scripts
+> - **.tmux.conf** - tmux config
 > - **countdown-timer.sh** - simple bash countdown timer
 > - **imdbsearch.py** - command line imdbapi search. Can return single results or
 multiples sorted by year.

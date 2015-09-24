@@ -85,5 +85,4 @@ use_udp_trackers = yes
 
 # Notify of Torrent completion
 #
-system.method.set_key
-=event.download.finished,notify_me,"execute=~/.dotfiles/rTorrent/.rtorrent/rtorrent_notify.sh,finished,$d.get_name="
+system.method.set_key=event.download.finished,notify_me,"execute=~/.dotfiles/rTorrent/.rtorrent/rtorrent_notify.sh,finished,$d.get_name="

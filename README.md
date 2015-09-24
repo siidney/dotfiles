@@ -12,8 +12,9 @@ Various system config files and 'useful' scripts.
 > - **.tmux.conf** - tmux config
 > - **countdown-timer.sh** - simple bash countdown timer
 > - **imdbsearch.py** - command line imdbapi search. Can return single results or
-multiples sorted by year.
+multiples sorted by year
 > - **rc.lua** - awesome config
+> - **rename-movie.sh** - bash movie title formatting script
 > - **slideShow.sh** - bash slideshow script using feh
 > - **vimrc** - main vim config
 > - **xinitrc** - X11 config. Mainly to get a background image in i3

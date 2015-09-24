@@ -14,9 +14,7 @@
 
 # rtorrent session/watch folders
 /rTorrent/.rtorrent/session
-*
 /rTorrent/.rtorrent/watch
-*
 
 # vim swap files
 *.swo

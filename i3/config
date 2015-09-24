@@ -207,14 +207,10 @@ bindsym $mod+Control+c exec --no-startup-id urxvt -name scratchpad -e ncmpc
 bindsym $mod+c exec --no-startup-id ~/.i3/scripts/runorraise.sh qalculate Qalculate
 # gsimplecal
 bindsym $mod+g exec --no-startup-id ~/.i3/scripts/runorraise.sh gsimplecal Gsimplecal
-# vim
-bindsym $mod+Control+v exec urxvt
+# tmux
+bindsym $mod+Control+t exec urxvt -e tmux
 # urxvt
-#bindsym $mod+Return exec --no-startup-id urxvt -name scratchpad
 bindsym $mod+Return exec urxvt -name urxvt_dropdown
-
-# notification of keybindings
-bindsym $mod+Shift+i exec --no-startup-id ~/.i3/scripts/notify-info.sh
 
 # remove titlebars
 new_window 1pixel
@@ -272,4 +268,4 @@ assign [class="^Gimp$"] $tag8
 #exec conky
 exec firefox
 exec thunderbird
-exec urxvt -name sys_info -e htop
+exec urxvt -name sys_info -e $HOME/.dotfiles/tmux-startup.sh

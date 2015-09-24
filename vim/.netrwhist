@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/siid/Work/Electronics/Arduino/SainSmart UNO Starter Kits Tutorials/chapters'
 let g:netrw_dirhist_2='/home/siid/Work/Electronics/Arduino/SainSmart UNO Starter Kits Tutorials/chapters/chapter-2-blink'
 let g:netrw_dirhist_3='/home/siid/Work/Electronics/Arduino/SainSmart UNO Starter Kits Tutorials/chapters'
 let g:netrw_dirhist_4='/home/siid/Work/Electronics/Arduino/SainSmart UNO Starter Kits Tutorials/chapters/chapter-3-helloworld'
 let g:netrw_dirhist_5='/home/siid/Work/CS/cs61a'
 let g:netrw_dirhist_6='/home/siid/Work/CS/cs61a/hw01'
+let g:netrw_dirhist_7='/home/siid/.dotfiles/.newsbeuter'

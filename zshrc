@@ -3,6 +3,7 @@ zstyle :compinstall filename '/home/siid/.zshrc'
 
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
+export BROWSER=/usr/bin/firefox
 
 autoload -Uz compinit
 compinit

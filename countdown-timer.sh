@@ -1,11 +1,11 @@
 # simple bash countdown timer
-#/bin/sh
+#!/bin/sh
 
 # play the alarm
 sound_alarm(){
     COUNTER=0
         # alert status of countdown
-        notify-send -i starred COUNTDOWN_COMPLETE "$timer $strTotal"
+        notify-send -u critical COUNTDOWN_COMPLETE "$timer $strTotal"
     while [ $COUNTER -lt 3 ]; do
         # sound the alarm
         mpg123 -q /home/siid/Sounds/Woop-Woop-SoundBible.com-198943467.mp3

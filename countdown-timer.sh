@@ -8,7 +8,7 @@ sound_alarm(){
         notify-send -u critical COUNTDOWN_COMPLETE "$timer $strTotal"
     while [ $COUNTER -lt 3 ]; do
         # sound the alarm
-        mpg123 -q /home/siid/Sounds/Woop-Woop-SoundBible.com-198943467.mp3
+        mpg123 -q ~/Sounds/Woop-Woop-SoundBible.com-198943467.mp3
         let COUNTER++
     done
 }

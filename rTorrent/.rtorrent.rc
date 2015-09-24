@@ -27,7 +27,7 @@ session = ~/.rtorrent/session
 
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = watch_directory,5,5,load_start=/home/siid/.rtorrent/watch/*.torrent
+schedule = watch_directory,5,5,load_start=~/.rtorrent/watch/*.torrent
 #schedule = untied_directory,5,5,stop_untied=
 
 # Close torrents when diskspace is low.
@@ -85,4 +85,5 @@ use_udp_trackers = yes
 
 # Notify of Torrent completion
 #
-system.method.set_key =event.download.finished,notify_me,"execute=~/.dotfiles/.rtorrent/rtorrent_notify.sh,finished,$d.get_name="
+system.method.set_key
+=event.download.finished,notify_me,"execute=~/.dotfiles/rTorrent/.rtorrent/rtorrent_notify.sh,finished,$d.get_name="

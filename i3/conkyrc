@@ -113,7 +113,7 @@ TEXT
 # UP/DOWN SPEED
 {
     "full_text":
-        ${if_up enp3s0}"${execi 65535 wget -O - http://ip.tupeux.com | tail}"
+        ${if_up enp3s0}"${execi 65535 wget -O - http://ip.tupeux.com}"
         ${else}"No network"
         ${endif},
     "color":"\#AAF096",

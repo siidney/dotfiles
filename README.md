@@ -3,20 +3,18 @@
 Various system config files and 'useful' scripts.
 
 ## Folders
-> - **rTorrent** - rTorrent scripts and config files
+> - **configFiles** - System config files
+> - **rTorrent** - rTorrent scripts
 > - **i3** - i3 config files
-> - **scripts** - i3 scripts
+> - **scripts** - various useful (to me) system scripts
 > - **vim** - vim config files
 
 ## Scripts
-> - **.tmux.conf** - tmux config
+> - **conky-i3bar** - enables conky output on the i3 bar
 > - **countdown-timer.sh** - simple bash countdown timer
 > - **imdbsearch.py** - command line imdbapi search. Can return single results or
 multiples sorted by year
-> - **rc.lua** - awesome config
 > - **rename-movie.sh** - bash movie title formatting script
 > - **slideShow.sh** - bash slideshow script using feh
-> - **vimrc** - main vim config
-> - **xinitrc** - X11 config. Mainly to get a background image in i3
-> - **zathurarc** - Zathura config
-> - **zshrc** - zsh (bash alternative) config
+> - **tmux-startup.sh** - basic tmux session start script
+> - **vol.sh** - outputs alsa master volume %

@@ -67,7 +67,7 @@ TEXT
     "separator_block_width":5
 },
 {
-    "full_text":"${exec $HOME/.i3/scripts/vol.sh}",
+    "full_text":"${exec $HOME/.dotfiles/scripts/vol.sh}",
     "color":"\#AAF096",
     "min_width":"100%",
     "separator":false,

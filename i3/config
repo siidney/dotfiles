@@ -173,9 +173,9 @@ bindsym XF86Favorites exec mpc prev
 bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioStop exec mpc stop
 # email
-bindsym XF86Mail exec ~/.i3/scripts/runorraise.sh thunderbird Thunderbird
+bindsym XF86Mail exec $HOME/.dotfiles/scripts/runorraise.sh thunderbird Thunderbird
 # firefox
-bindsym XF86WWW exec ~/.i3/scripts/runorraise.sh firefox Firefox
+bindsym XF86WWW exec $HOME/.dotfiles/scripts/runorraise.sh firefox Firefox
 
 #bindsym XF86Launch1 exec qalculate
 #bindsym XF86LaunchA exec gsimplecal
@@ -204,9 +204,9 @@ for_window [class="^Main$"] floating enable border normal focus
 # ncmpc
 bindsym $mod+Control+c exec --no-startup-id urxvt -name scratchpad -e ncmpc
 # qalculate
-bindsym $mod+c exec --no-startup-id ~/.i3/scripts/runorraise.sh qalculate Qalculate
+bindsym $mod+c exec --no-startup-id $HOME/.dotfiles/scripts/runorraise.sh qalculate Qalculate
 # gsimplecal
-bindsym $mod+g exec --no-startup-id ~/.i3/scripts/runorraise.sh gsimplecal Gsimplecal
+bindsym $mod+g exec --no-startup-id $HOME/.dotfiles/scripts/runorraise.sh gsimplecal Gsimplecal
 # tmux
 bindsym $mod+Control+t exec urxvt -e tmux
 # urxvt
@@ -268,4 +268,4 @@ assign [class="^Gimp$"] $tag8
 #exec conky
 exec firefox
 exec thunderbird
-exec urxvt -name sys_info -e $HOME/.dotfiles/tmux-startup.sh
+exec urxvt -name sys_info -e $HOME/.dotfiles/scripts/tmux-startup.sh

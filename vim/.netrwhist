@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/siid/Work/Java/Java-How-To-Program/Chapter3/GradeBook'
 let g:netrw_dirhist_2='/home/siid/Work/Java/Java-How-To-Program/Chapter4/Analysis'
 let g:netrw_dirhist_3='/home/siid/.dotfiles/i3'
 let g:netrw_dirhist_4='/home/siid/Work/Java/Java-How-To-Program/Chapter4/GasMileage'
 let g:netrw_dirhist_5='/home/siid/Work/Java/Java-How-To-Program/Chapter4/PrintSquare'
+let g:netrw_dirhist_6='/home/siid/.dotfiles/i3/conky'

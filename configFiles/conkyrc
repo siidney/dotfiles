@@ -86,7 +86,7 @@ TEXT
     "color":
         ${if_match ${fs_free_perc /}<25}"\#FF9933"
         ${else}${if_match ${fs_free_perc /}<50}"\#F0DC64"
-        ${else}${if_match ${fs_free_perc /}<75}"\#AAF096"
+        ${else}${if_match ${fs_free_perc /}>75}"\#AAF096"
         ${else}"\#CC9393"
         ${endif}${endif}${endif},
     "separator":false,
@@ -104,7 +104,7 @@ TEXT
     "color":
         ${if_match ${fs_free_perc /home}<25}"\#FF9933"
         ${else}${if_match ${fs_free_perc /home}<50}"\#F0DC64"
-        ${else}${if_match ${fs_free_perc /home}<75}"\#AAF096"
+        ${else}${if_match ${fs_free_perc /home}>75}"\#AAF096"
         ${else}"\#CC9393"
         ${endif}${endif}${endif},
     "separator":false,

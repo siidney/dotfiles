@@ -15,6 +15,8 @@ Various system config files and 'useful' scripts.
 > - **imdbsearch.py** - command line imdbapi search. Can return single results or
 multiples sorted by year
 > - **rename-movie.sh** - bash movie title formatting script
+> - **rmshit.py** - cleanup home
+> - **runorraise.sh** - run or raise applications
 > - **slideShow.sh** - bash slideshow script using feh
 > - **tmux-startup.sh** - basic tmux session start script
 > - **vol.sh** - outputs alsa master volume %

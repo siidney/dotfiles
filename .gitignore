@@ -16,6 +16,9 @@
 /rTorrent/.rtorrent/session
 /rTorrent/.rtorrent/watch
 
+# backup files
+*.*~
+
 # vim swap files
 *.swo
 *.swp
@@ -26,3 +29,6 @@
 *.un~
 /src
 *.un~
+
+# vim bundles
+**/bundle

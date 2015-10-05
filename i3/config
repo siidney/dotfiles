@@ -202,7 +202,7 @@ for_window [class="^OpenGLTest$"] floating enable focus
 for_window [class="^Main$"] floating enable border normal focus
 
 # ncmpc
-bindsym $mod+Control+c exec --no-startup-id urxvt -name scratchpad -e ncmpc
+bindsym $mod+Control+c exec --no-startup-id urxvt -name scratchpad -e ncmpcpp
 # qalculate
 bindsym $mod+c exec --no-startup-id $HOME/.dotfiles/scripts/runorraise.sh qalculate Qalculate
 # gsimplecal

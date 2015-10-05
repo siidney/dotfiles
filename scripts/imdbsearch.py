@@ -23,7 +23,7 @@
 #   A logout/in is needed for autocomplete to work.
 #
 
-import urllib.request
+import requests
 import urllib.parse
 import json
 import operator
@@ -143,27 +143,25 @@ def serialise_response(url):
 
         url ---  formatted imdbapi search address
     """
-
     # check for active internet connection
     try:
-        response = urllib.request.urlopen(url)
-    except urllib.error.URLError as e:
+        response = requests.get(url)
+    except requests.exceptions.ConnectionError as e:
         print (separator)
-        if hasattr(e, 'reason'):
-            print ("Connection error: Are you connected to the internet?")
-            print ("Reason: ", str(e.reason))
-        elif hasattr(e, 'code'):
-            print ("The server couldn't fulfill the request.")
-            print ("Error code: " + e.code )
+        print ("The domain name does not exist.")
+        return
+    except requests.exceptions.HTTPError as e:
         print (separator)
-
+        print ("HTTPError: ", e.message)
         return
     else:
-        # serialise to json formatted string
-        jstring = json.dumps(json.loads(response.readall().decode('utf-8')), sort_keys=True, indent=4)
+        # no connection issues ensure reponse body is JSON
+        try:
+            obj = response.json()
+        except ValueError:
+            raise WrongContent(response=response)
 
-        # deserialise into a python object (dict)
-        return json.loads(jstring)
+        return obj
 
 #
 # Check response code

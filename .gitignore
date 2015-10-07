@@ -29,6 +29,7 @@
 *.un~
 /src
 *.un~
+.netrwhist
 
 # vim bundles
 **/bundle

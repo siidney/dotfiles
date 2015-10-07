@@ -66,7 +66,7 @@ snippet for
 	}
 # for int loop
 snippet fori
-	for(int ${2:i}=0; $2<${1:count}; $2${3:++}){
+	for(int ${1:i}=0; $1<${2:count}; $1${3:++}){
 		${4:/* code */}
 	}
 # for unsigned int loop
@@ -77,11 +77,13 @@ snippet foru
 snippet fore
 	for(${1} : ${2}) ${3}
 snippet sw
-	switch (${1}) ${2}
+	switch(${1}){
+		${2}
+	}
 snippet cs
 	case ${1}:
 		${2}
-	${3}
+		break;
 # public class
 snippet pc
 	public class ${1:`Filename()`}{
@@ -89,8 +91,8 @@ snippet pc
 	}
 # public void
 snippet pv
-	public void ${1:}(){
-		${2:}
+	public void ${1:}(${2:}){
+		${3:}
 	}
 snippet tc
 	public class ${1:`Filename()`} extends ${2:TestCase}

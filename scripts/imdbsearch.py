@@ -2,8 +2,8 @@
 
 #   Filename:       imdbSearch.py
 #   Created:        27/08/2015
-#   Revision:       None
-#   Version:        1.0
+#   Revision:       05/10/2015
+#   Version:        1.01
 #   Author:         Siidney Watson
 #   Description:
 #

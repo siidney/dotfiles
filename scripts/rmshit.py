@@ -27,7 +27,6 @@ shittyfiles = [
     '~/.dropbox-dist',
     '~/.cache/mpd.log',     # MPD log file
     '~/.parallel',
-    '~/.thumbnails',
 ]
 
 

@@ -36,18 +36,18 @@
 
 ! COLOURS
 URxvt*background:  rgb:00/00/00
-URxvt*foreground:  rgb:a8/a8/a8
+URxvt*foreground:  rgb:b8/b8/b8
 ! Black
 URxvt*color0:      rgb:00/00/00
 URxvt*color8:      rgb:54/50/54
 ! Red
-URxvt*color1:      rgb:a8/00/00
+URxvt*color1:      rgb:ff/00/00
 URxvt*color9:      rgb:a8/00/00
 ! Green
 URxvt*color2:      rgb:00/a8/00
 URxvt*color10:     rgb:50/fc/50
 ! Yellow
-URxvt*color3:      rgb:f8/fc/50
+URxvt*color3:      rgb:ff/ff/00
 URxvt*color11:     rgb:f8/fc/50
 ! Blue
 URxvt*color4:      rgb:00/00/a8

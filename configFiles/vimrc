@@ -137,6 +137,10 @@ nnoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" <F9> insert timestamp (normal and insert mode)
+nnoremap <F9> "=strftime("%d/%m/%y %H:%M:%S")<CR>P
+inoremap <F9> <C-R>=strftime("%d/%m/%y %H:%M:%S")<CR>
+
 " -----------------------------
 "  WINDOW SPLITS
 " -----------------------------

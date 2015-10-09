@@ -196,7 +196,7 @@ for_window [class="^Gimp$"] floating enable
 for_window [class="^Qalculate$"] floating enable
 for_window [class="^Gsimplecal$"] floating enable
 for_window [class="^Lxappearance$"] floating enable
-for_window [class="Scudcloud"] floating enable
+for_window [class="Scudcloud$"] floating enable
 
 # make OpenGL and GTK test application floating
 for_window [class="^OpenGLTest$"] floating enable focus

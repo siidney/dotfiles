@@ -5,6 +5,9 @@ export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export BROWSER=/usr/bin/firefox
 
+# wine 32bit alias
+alias wine32="WINEPREFIX='/home/siid/.wine32'"
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall

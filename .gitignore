@@ -33,3 +33,6 @@
 
 # vim bundles
 **/bundle
+
+# pkglist file
+pkglist.txt

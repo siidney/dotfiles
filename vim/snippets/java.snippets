@@ -44,17 +44,14 @@ snippet j.n
 snippet j.m
 	java.math.
 snippet if
-	if(${1}){
+	if(${1})
 		${2}
-	}
 snippet el
-	else{
+	else
 		${1}
-	}
 snippet elif
-	else if(${1}){
+	else if(${1})
 		${2}
-	}
 snippet while
 	while(${1}){
 		${2}
@@ -94,8 +91,8 @@ snippet pv
 	}
 # public static
 snippet ps
-	public static ${1:void} ${2:}(${3:}){
-		${4:}
+	public static ${1:void} ${2:}(${3:})${4}{
+		${5:}
 	}
 snippet tc
 	public class ${1:`Filename()`} extends ${2:TestCase}
@@ -119,25 +116,33 @@ snippet try
 	try{
 		${1}
 	}catch(${2:Exception} ${3:e}){
+		${4}
 	}
 snippet tryf
 	try{
 		${1}
 	}catch(${2:Exception} ${3:e}){
-	}finally{
 		${4}
+	}finally{
+		${5}
 	}
 snippet rst
 	ResultSet ${1:rst}${2: = null}${3};${4}
 # print
 snippet print
 	System.out.print(${1:});
+snippet printe
+	System.err.print(${1:});
 # println
 snippet println
 	System.out.println(${1:});
+snippet printlne
+	System.err.println(${1:});
 # printf
 snippet printf
 	System.out.printf("${1:}");
+snippet printfe
+	System.err.printf("${1:}")
 # Do While Loop
 snippet do
 	do{

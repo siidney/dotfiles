@@ -177,9 +177,6 @@ bindsym XF86Mail exec $HOME/.dotfiles/scripts/runorraise.sh thunderbird Thunderb
 # firefox
 bindsym XF86WWW exec $HOME/.dotfiles/scripts/runorraise.sh firefox Firefox
 
-#bindsym XF86Launch1 exec qalculate
-#bindsym XF86LaunchA exec gsimplecal
-
 # printscreen
 bindsym $mod+Print exec --no-startup-id scrot -e 'mv $f ~/screenshots/ 2>/dev/null/'
 
@@ -189,8 +186,7 @@ for_window [instance="scratchpad"] move window to scratchpad, scratchpad show
 
 # floating windows by default
 for_window [class="^Gpicview$"] floating enable
-for_window [class="^MPlayer$"] floating enable
-for_window [class="^Vlc$"] floating enable
+for_window [class="^mpv$"] floating enable
 for_window [class="^URxvt$" instance="urxvt_dropdown"] floating enable
 for_window [class="^Gimp$"] floating enable
 for_window [class="^Qalculate$"] floating enable
@@ -250,23 +246,20 @@ bar {
 # start clients on specific workspaces
 assign [instance="^sys_info$"] $tag1
 
-assign [class="^Firefox$"] $tag2
+assign [class="^Firefox$"]  $tag2
 assign [class="^Chromium$"] $tag2
 
 assign [class="^Thunderbird$"] $tag3
 
 assign [class="^libreoffice-startcenter$"] $tag5
 
-assign [class="^Qbittorrent$"] $tag6
-
 assign [class="^Spacefm$"] $tag7
 
-assign [class="^Vlc$"] $tag8
 assign [class="^Steam$"] $tag8
-assign [class="^Gimp$"] $tag8
+assign [class="^Gimp$"]  $tag8
 
 # autostart programs
 #exec conky
 exec firefox
-exec thunderbird
+exec firejail --caps thunderbird
 exec urxvt -name sys_info -e $HOME/.dotfiles/scripts/tmux-startup.sh

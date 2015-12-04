@@ -1,4 +1,4 @@
- URxv*termName:                       rxvt-unicode
+! URxvt*termName:                       rxvt-unicode
 ! URxvt*geometry:                       geometry
 ! URxvt*chdir:                          string
 ! URxvt*reverseVideo:                   boolean
@@ -35,32 +35,33 @@
 ! URxvt*pointerBlank:                   boolean
 
 ! COLOURS
-URxvt*background:  rgb:00/00/00
-URxvt*foreground:  rgb:b8/b8/b8
+!URxvt*background:  rgb:00/00/00
+!URxvt*foreground:  rgb:b8/b8/b8
 ! Black
-URxvt*color0:      rgb:00/00/00
-URxvt*color8:      rgb:54/50/54
+!URxvt*color0:      rgb:00/00/00
+!URxvt*color8:      rgb:54/50/54
 ! Red
-URxvt*color1:      rgb:ff/00/00
-URxvt*color9:      rgb:a8/00/00
+!URxvt*color1:      rgb:ff/00/00
+!URxvt*color9:      rgb:a8/00/00
 ! Green
-URxvt*color2:      rgb:00/a8/00
-URxvt*color10:     rgb:50/fc/50
+!URxvt*color2:      rgb:00/a8/00
+!URxvt*color10:     rgb:50/fc/50
 ! Yellow
-URxvt*color3:      rgb:ff/ff/00
-URxvt*color11:     rgb:f8/fc/50
+!URxvt*color3:      rgb:ff/ff/00
+!URxvt*color11:     rgb:f8/fc/50
 ! Blue
-URxvt*color4:      rgb:00/00/a8
-URxvt*color12:     rgb:50/54/f8
+!URxvt*color4:      rgb:00/00/a8
+!URxvt*color12:     rgb:50/54/f8
 ! Magneta
-URxvt*color5:      rgb:a8/00/a8
-URxvt*color13:     rgb:f8/54/f8
+!URxvt*color5:      rgb:a8/00/a8
+!URxvt*color13:     rgb:f8/54/f8
 ! Cyan
-URxvt*color6:      rgb:00/a8/a8
-URxvt*color14:     rgb:50/fc/f8
+!URxvt*color6:      rgb:00/a8/a8
+!URxvt*color14:     rgb:50/fc/f8
 ! White
-URxvt*color7:      rgb:ff/ff/ff
-URxvt*color15:     rgb:f8/fc/f8
+!URxvt*color7:      rgb:ff/ff/ff
+!URxvt*color15:     rgb:f8/fc/f8
+
 ! URxvt*colorBD:                        color
 ! URxvt*colorIT:                        color
 ! URxvt*colorUL:                        color
@@ -148,3 +149,53 @@ URxvt.colorUL: #4682B4
 ! URxvt.tabbed.tabbar-bg: 0
 ! URxvt.tabbed.tab-fg: 3
 ! URxvt.tabbed.tab-bg: 0
+! Base16 Default
+! Scheme: Chris Kempson (http://chriskempson.com)
+
+! black     - 0 8
+! red       - 1 9
+! green     - 2 10
+! yellow    - 3 11
+! blue      - 4 12
+! magenta   - 5 13
+! cyan      - 6 14
+! white     - 7 15
+
+#define base00 #000000
+#define base01 #282828
+#define base02 #383838
+#define base03 #585858
+#define base04 #b8b8b8
+#define base05 #d8d8d8
+#define base06 #e8e8e8
+#define base07 #f8f8f8
+#define base08 #cc3333
+#define base09 #dc9656
+#define base0A #f7ca88
+#define base0B #a1b56c
+#define base0C #00a8a8
+#define base0D #5054f8
+#define base0E #ba8baf
+#define base0F #a16946
+
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base09
+*.color10:      base01
+*.color11:      base02
+*.color12:      base04
+*.color13:      base06
+*.color14:      base0F
+*.color15:      base07

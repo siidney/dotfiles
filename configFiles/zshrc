@@ -15,6 +15,7 @@ compinit
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+setopt HIST_IGNORE_DUPS
 # End of lines configured by zsh-newuser-install
 #
 # allows prompt edits
@@ -27,6 +28,7 @@ autoload -U run-help
 autoload run-help-git
 autoload run-help-svn
 autoload run-help-svk
+autoload run-help-vim
 alias help=run-help
 #
 # Keybindings

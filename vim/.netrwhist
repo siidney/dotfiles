@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/siid/Work/Java/Java-How-To-Program/Chapter8/exercises/Rational'
 let g:netrw_dirhist_2='/home/siid/Work/Java/Java-How-To-Program/Chapter10/examples'
 let g:netrw_dirhist_3='/home/siid/Work/Java/Java-How-To-Program/Chapter11/examples'
+let g:netrw_dirhist_4='/home/siid/.ncmpcpp'
+let g:netrw_dirhist_5='/home/siid'

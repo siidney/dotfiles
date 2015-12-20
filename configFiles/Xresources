@@ -1,4 +1,4 @@
-! URxvt*termName:                       rxvt-unicode
+! URxvt*termName:                       screen-256
 ! URxvt*geometry:                       geometry
 ! URxvt*chdir:                          string
 ! URxvt*reverseVideo:                   boolean
@@ -162,14 +162,14 @@ URxvt.colorUL: #4682B4
 ! white     - 7 15
 
 #define base00 #000000
-#define base01 #282828
+#define base01 #94e26b
 #define base02 #383838
 #define base03 #585858
 #define base04 #b8b8b8
 #define base05 #d8d8d8
 #define base06 #e8e8e8
 #define base07 #f8f8f8
-#define base08 #cc3333
+#define base08 #94e76b
 #define base09 #dc9656
 #define base0A #f7ca88
 #define base0B #a1b56c

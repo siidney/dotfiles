@@ -84,9 +84,19 @@ snippet pc
 	public class ${1:`Filename()`}{
 		${2:}
 	}
+# public class extends
+snippet pce
+	public class ${1:`Filename()`} extends ${2:Test Case}{
+		${3:}
+	}
 # public void
 snippet pv
-	public ${1:}${2:}(${3:}){
+	public ${1:void} ${2:}(${3:}){
+		${4:}
+	}
+# private void
+snippet prv
+	private ${1:void} ${2:}(${3:}){
 		${4:}
 	}
 # public static
@@ -94,8 +104,11 @@ snippet ps
 	public static ${1:void} ${2:}(${3:})${4}{
 		${5:}
 	}
-snippet tc
-	public class ${1:`Filename()`} extends ${2:TestCase}
+# private static
+snippet prs
+	private static ${1:void} ${2:}(${3:})${4}{
+		${5:}
+	}
 snippet t
 	public void test${1:Name}() throws Exception ${2}
 snippet cl
@@ -153,3 +166,8 @@ snippet ct
 	public ${1:`Filename()`}(${2:}){
 	    ${3}
 	}
+# IMPORTS
+snippet imaw
+	import java.awt.
+snippet imsw
+	import javax.swing.

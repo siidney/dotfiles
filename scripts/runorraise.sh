@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 count=`ps aux | grep -c $1`
 
 if [ "$(pidof $1)" ]

@@ -1,0 +1,8 @@
+# random select single file
+mpv "$(ls | shuf -n1)"
+
+# Create dir and subdirs
+mkdir -p fn{fn,fn,fn}/fn{fn,fn,fn}
+
+# remove all files wihout extensions
+find . -type f ! -name "*.?*" -delete

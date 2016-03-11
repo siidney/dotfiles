@@ -82,7 +82,6 @@ let mapleader=","
 " -----------------------------
 " color scheme
 set background=dark
-set t_Co=256        " set 256 colour mode
 colorscheme Sunburst
 
 " -----------------------------

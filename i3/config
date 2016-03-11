@@ -173,9 +173,9 @@ bindsym XF86Favorites exec mpc prev
 bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioStop exec mpc stop
 # email
-bindsym XF86Mail exec $HOME/.dotfiles/scripts/runorraise.sh thunderbird Thunderbird
-# firefox
-bindsym XF86WWW exec $HOME/.dotfiles/scripts/runorraise.sh firefox Firefox
+#bindsym XF86Mail exec $HOME/.dotfiles/scripts/runorraise.sh thunderbird Thunderbird
+# Chromium
+bindsym XF86WWW exec $HOME/.dotfiles/scripts/runorraise.sh chromium chromium
 
 # printscreen
 bindsym $mod+Print exec --no-startup-id scrot -e 'mv $f ~/screenshots/ 2>/dev/null/'
@@ -183,6 +183,7 @@ bindsym $mod+Print exec --no-startup-id scrot -e 'mv $f ~/screenshots/ 2>/dev/nu
 # create instance value of "scratchpad"
 # opens applications in a floating scratchpad
 for_window [instance="scratchpad"] move window to scratchpad, scratchpad show
+for_window [title="mutt-attachment"] floating enable
 
 # floating windows by default
 for_window [class="^Gpicview$"] floating enable
@@ -245,11 +246,9 @@ bar {
 
 # start clients on specific workspaces
 assign [instance="^sys_info$"] $tag1
+assign [instance="^comm$"] $tag3
 
-assign [class="^Firefox$"]  $tag2
-assign [class="^Chromium$"] $tag2
-
-assign [class="^Thunderbird$"] $tag3
+assign [class="^chromium$"] $tag2
 
 assign [class="^libreoffice-startcenter$"] $tag5
 
@@ -260,6 +259,7 @@ assign [class="^Gimp$"]  $tag8
 
 # autostart programs
 #exec conky
-exec firefox
-exec firejail --caps thunderbird
-exec urxvt -name sys_info -e $HOME/.dotfiles/scripts/tmux-startup.sh
+#exec firefox
+#exec firejail --caps thunderbird
+exec $HOME/.dotfiles/scripts/tmux-system.sh
+exec $HOME/.dotfiles/scripts/tmux-communication.sh

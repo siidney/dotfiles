@@ -1,7 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/siid/Work/Java/Java-How-To-Program/Chapter8/exercises/Rational'
-let g:netrw_dirhist_2='/home/siid/Work/Java/Java-How-To-Program/Chapter10/examples'
-let g:netrw_dirhist_3='/home/siid/Work/Java/Java-How-To-Program/Chapter11/examples'
-let g:netrw_dirhist_4='/home/siid/.ncmpcpp'
-let g:netrw_dirhist_5='/home/siid'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/etc/systemd/system/getty.target.wants'
+let g:netrw_dirhist_2='/home/siid/.config/luakit/plugins'
+let g:netrw_dirhist_3='/home/siid/Work/Python/Dive into Python 5.4/py/kgp'
+let g:netrw_dirhist_4='/home/siid/.config/luakit/plugins/adblock'
+let g:netrw_dirhist_5='/home/siid/Work/Java/Java-How-To-Program/Chapter14/exercises/GuessTheNumberGame'
+let g:netrw_dirhist_6='/home/siid/Work/R/DataCamp'
+let g:netrw_dirhist_7='/home/siid/Work/C++/Cpp-How-To-Program/Chapter02/exercises'

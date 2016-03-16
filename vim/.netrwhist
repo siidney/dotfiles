@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/etc/systemd/system/getty.target.wants'
 let g:netrw_dirhist_2='/home/siid/.config/luakit/plugins'
 let g:netrw_dirhist_3='/home/siid/Work/Python/Dive into Python 5.4/py/kgp'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/siid/.config/luakit/plugins/adblock'
 let g:netrw_dirhist_5='/home/siid/Work/Java/Java-How-To-Program/Chapter14/exercises/GuessTheNumberGame'
 let g:netrw_dirhist_6='/home/siid/Work/R/DataCamp'
 let g:netrw_dirhist_7='/home/siid/Work/C++/Cpp-How-To-Program/Chapter02/exercises'
+let g:netrw_dirhist_8='/home/siid/public_html/archive/SpringtimEvents/public/css'

@@ -175,7 +175,9 @@ bindsym XF86AudioStop exec mpc stop
 # email
 #bindsym XF86Mail exec $HOME/.dotfiles/scripts/runorraise.sh thunderbird Thunderbird
 # Chromium
-bindsym XF86WWW exec $HOME/.dotfiles/scripts/runorraise.sh chromium chromium
+#bindsym XF86WWW exec $HOME/.dotfiles/scripts/runorraise.sh chromium chromium
+# Firefox
+bindsym XF86WWW exec $HOME/.dotfiles/scripts/runorraise.sh firefox Firefox
 
 # printscreen
 bindsym $mod+Print exec --no-startup-id scrot -e 'mv $f ~/screenshots/ 2>/dev/null/'
@@ -249,6 +251,7 @@ assign [instance="^sys_info$"] $tag1
 assign [instance="^comm$"] $tag3
 
 assign [class="^chromium$"] $tag2
+assign [class="^Firefox$"] $tag2
 
 assign [class="^libreoffice-startcenter$"] $tag5
 

@@ -4,12 +4,19 @@ zstyle :compinstall filename '/home/siid/.zshrc'
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export BROWSER=/usr/bin/luakit
+export TERMCMD="urxvt"
+export TERMINAL="urxvt -e"
 export GPG_TTY=$(tty)
 export GPG_AGENT_INFO=""
 #export http_proxy="http://localhost:8118"
 
-# wine 32bit alias
+# WINE ALIASES
+# wine 32bit
 alias wine32="WINEPREFIX='/home/siid/.wine32'"
+# Skyrim
+alias skyrim="WINEPREFIX='/home/siid/.TESV'"
+# Fallout New Vegas
+alias fnv="WINEPREFIX='/home/siid/.FNV'"
 
 autoload -Uz compinit
 compinit

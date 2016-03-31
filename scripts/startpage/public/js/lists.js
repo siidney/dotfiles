@@ -10,7 +10,9 @@ var searchEngines = {
     "wikipedia" : [{"url": "https://en.wikipedia.org/wiki/Special:Search?search="}],
     "archwiki"  : [{"url": "https://wiki.archlinux.org/index.php/Special:Search?fulltext=Search&search="}],
     "youtube"   : [{"url": "https://youtube.com/results?search_query="}],
-    "reddit"    : [{"url": "https://www.reddit.com/search?q="}]
+    "reddit"    : [{"url": "https://www.reddit.com/search?q="}],
+    "rarbg"     : [{"url": "https://rarbg.to/torrents.php?search="}],
+    "tpd"       : [{"url": "https://thepiratebay.se/search/"}]
 };
 /*
  * BOOKMARKED SITES

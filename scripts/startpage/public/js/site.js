@@ -107,7 +107,7 @@ document.getElementById("searchEngineList").addEventListener("mouseover", functi
     }
 });
 document.getElementById("searchEngineList").addEventListener("mouseleave", function(e){
-    if(document.searchForm.q === document.activeElement){
+    if(document.searchForm.q == document.activeElement){
         return;
     }else{
         document.searchForm.q.value = "";

@@ -32,4 +32,4 @@ and access the knowledge of the world.
 ## Configuring Bookmarks and Search Engines
 
 Search engine and bookmark preferences are easily customisable and updateable.
-All you need to do is edit [lists.js](https://github.com/siidney/dotfiles/scripts/startpage/public/js/site.js) to include *your* favourite site or search engine.
+All you need to do is edit [lists.js](https://github.com/siidney/dotfiles/blob/master/scripts/startpage/public/js/lists.js) to include *your* favourite site or search engine.

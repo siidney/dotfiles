@@ -1,6 +1,6 @@
 /*
  * TIME AND DATE
-*/
+ */
 function getTime(){
     var currentTime = new Date();
     var hour    = currentTime.getHours();
@@ -12,10 +12,9 @@ function getTime(){
 
     document.getElementById("time").innerHTML = time;
 }
-
 /*
  * SEARCH BOX
-*/
+ */
 function searchForm(){
     var res = document.searchForm.q.value.split(":");
 
@@ -34,8 +33,10 @@ function searchForm(){
         }else{
             // iterate through searchEngines and check for correct site tag
             // if none found use first
-            for(var i=0; i<Object.keys(searchEngines).length; i++){
-                if(res[0] == Object.keys(searchEngines)[i]){
+            var name = Object.keys(searchEngines);
+
+            for(var i=0; i<name.length; i++){
+                if(res[0] == name[i]){
                     window.location=searchEngines[res[0]][0].url + res[1];
                     return;
                 }
@@ -54,11 +55,14 @@ function searchForm(){
 function populateSearchList(){
     var list = document.getElementById("searchEngineList");
 
+    var name = Object.keys(searchEngines);
+
     // iterate over list and add names to list
-    for(var i=1; i<Object.keys(searchEngines).length; i++){
+    for(var i=1; i<name.length; i++){
         var linode = document.createElement("LI");
         var anode = document.createElement("A");
-        var textnode = document.createTextNode(Object.keys(searchEngines)[i]);
+        var textnode = document.createTextNode(name[i]);
+
         anode.appendChild(textnode);
         linode.appendChild(anode);
         list.appendChild(linode);
@@ -66,36 +70,35 @@ function populateSearchList(){
 }
 /*
  * SEARCH ENGINE LIST
-*/
+ */
 // show or hide search engine list
 document.getElementById("list-search").addEventListener("click", function(e){
     var searchEngineList = document.getElementById("searchEngineList");
 
     if(searchEngineList.classList.contains("hide")){
-        showList();
+        showHideList("show");
     }else{
-        hideList();
+        showHideList("hide");
     }
 });
-
-function showList(){
+function showHideList(action){
     var searchEngineList = document.getElementById("searchEngineList");
-    searchEngineList.classList.remove("hide");
-    searchEngineList.classList.add("show");
-}
-function hideList(){
-    var searchEngineList = document.getElementById("searchEngineList");
-    searchEngineList.classList.remove("show");
-    searchEngineList.classList.add("hide");
+    if(action == "show"){
+        searchEngineList.classList.remove("hide");
+        searchEngineList.classList.add("show");
+    }else{
+        searchEngineList.classList.remove("show");
+        searchEngineList.classList.add("hide");
+    }
 }
 /*
  * EVENT LISTENERS
-*/
+ */
 document.getElementById("searchEngineList").addEventListener("click", function(e){
     if(e.target.tagName == "A"){
         document.searchForm.q.value = e.target.innerHTML + ":";
         document.searchForm.q.focus();
-        hideList();
+        showHideList("hide");
     }
 });
 document.getElementById("searchEngineList").addEventListener("mouseover", function(e){
@@ -108,13 +111,12 @@ document.getElementById("searchEngineList").addEventListener("mouseleave", funct
         return;
     }else{
         document.searchForm.q.value = "";
-        hideList();
+        showHideList("hide");
     }
 });
-
 /*
  * BOOKMARKS LISTS
-*/
+ */
 // create the lists
 function populateBookmarkList(){
     var container = document.getElementById("bookmarks");
@@ -144,8 +146,8 @@ function populateBookmarkList(){
     }
 }
 
-
-getTime();
-setInterval(getTime, 1000);
 populateSearchList();
 populateBookmarkList();
+// get time once so as to avoid 1s delay
+getTime();
+setInterval(getTime, 1000);

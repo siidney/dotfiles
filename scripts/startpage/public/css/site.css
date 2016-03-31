@@ -1,5 +1,5 @@
 body{
-    background-color:#29323C;
+    background-color:#222;
     color:#FCF5E7;
 }
 .margin-240-top{
@@ -20,7 +20,7 @@ body{
     font-size:1.1rem;
     padding:.4rem;
     border:none;
-    background:#3F4A57;
+    background:#404040;
     color:#FCF5E7;
 }
 /*
@@ -28,11 +28,9 @@ body{
 */
 #searchEngineList{
     width:60%;
-    position:fixed;
-    margin:0;
     padding:15px;
     list-style-type:none;
-    background:rgba(63,74,87,0.5);
+    background:rgba(64,64,64,0.5);
     -moz-columns:2;
     -moz-column-rule-style:solid;
 }
@@ -62,8 +60,9 @@ footer{
 #bookmarks ul li{
     padding:5px 0;
 }
-.vertical-center{
-    position:relative;
-    top:50%;
-    //transform:translateY(-50%);
+#bookmarks ul li a{
+    font-weight:normal;
+}
+#bookmarks ul li a:hover{
+    text-shadow: 1px 0 #FCF5E7;
 }

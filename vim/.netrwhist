@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/etc/systemd/system/getty.target.wants'
 let g:netrw_dirhist_2='/home/siid/.config/luakit/plugins'
 let g:netrw_dirhist_3='/home/siid/Work/Python/Dive into Python 5.4/py/kgp'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/siid/Work/Java/Java-How-To-Program/Chapter14/exerci
 let g:netrw_dirhist_6='/home/siid/Work/R/DataCamp'
 let g:netrw_dirhist_7='/home/siid/Work/C++/Cpp-How-To-Program/Chapter02/exercises'
 let g:netrw_dirhist_8='/home/siid/public_html/archive/SpringtimEvents/public/css'
+let g:netrw_dirhist_9='/home/siid/.local/share/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data'

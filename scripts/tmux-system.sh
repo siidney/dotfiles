@@ -12,13 +12,17 @@ if [ $? != 0 ]; then
     tmux new-session -s $session_system -d -n 'Htop'
     tmux new-window -t $session_system -n 'IOtop'
     tmux new-window -t $session_system -n 'Rss/Torrent'
+    # 3rd window splits
     tmux split-window -h -t $session_system
+    tmux select-pane -t $session_system:2.0
+    tmux split-window -v -t $session_system
 
     # start applications on each window
     tmux send-keys -t $session_system:0 'htop' C-m
     tmux send-keys -t $session_system:1 'iotop -o' C-m
     tmux send-keys -t $session_system:2.0 'rtorrent' C-m
-    tmux send-keys -t $session_system:2.1 'newsbeuter' C-m
+    tmux send-keys -t $session_system:2.1 'cd Ktorrent/Aria2' C-m
+    tmux send-keys -t $session_system:2.2 'newsbeuter' C-m
 
     # select first window
     tmux select-window -t $session_system:0

@@ -117,11 +117,7 @@ snippet head
 snippet title
 	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
 snippet script
-	<script type="text/javascript" charset="utf-8">
-		${1}
-	</script>${2}
-snippet scriptsrc
-	<script src="${1}.js" type="text/javascript" charset="utf-8"></script>${2}
+	<script type="text/javascript" src="${1}.js"></script>
 snippet style
 	<style type="text/css" media="${1:screen}">
 		${2}
@@ -130,10 +126,17 @@ snippet base
 	<base href="${1}" target="${2}"`Close()`>
 snippet r
 	<br`Close()[1:]`>
+# div id
 snippet div
 	<div id="${1:name}">
 		${2}
 	</div>
+# div class
+snippet divc
+	<div class="${1:name}">${2}</div>
+# comment
+snippet cmt
+	<!-- ${1} -->
 # Embed QT Movie
 snippet movie
 	<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
@@ -188,3 +191,6 @@ snippet table
 	</table>${4}
 snippet textarea
 	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
+# empty pair of tags
+snippet <<
+	<${1:tag}>${2:contents}</$1>

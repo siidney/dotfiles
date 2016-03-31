@@ -27,7 +27,13 @@ the correct tag.
 Find the one you want and click on it to be taken to search box
 and access the knowledge of the world.
 
+If you don't specify a search tag never fear as it will fallback to a default
+search engine (which is configurable see below).
+
 ![Screenshot1](/scripts/startpage/public/img/screenshots/2016-03-31-093044_1920x1080_scrot.png?raw=true "Search Engines DropDown")
+
+The search box can even recognise urls so rather than searching for the url it
+will take you directly to the site.
 
 ## Configuring Bookmarks and Search Engines
 

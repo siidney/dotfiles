@@ -2,17 +2,39 @@
  * SEARCH ENGINES
 */
 var searchEngines = {
-    "default"   : [{"url": "https://www.google.com/search?q="}],
-    "google"    : [{"url": "https://www.google.com/search?q="}],
-    "duckduckgo": [{"url": "https://www.duckduckgo.com/?q="}],
-    "github"    : [{"url": "https://github.com/search?q="}],
-    "imdb"      : [{"url": "https://www.imdb.com/find?s=all&q="}],
-    "wikipedia" : [{"url": "https://en.wikipedia.org/wiki/Special:Search?search="}],
-    "archwiki"  : [{"url": "https://wiki.archlinux.org/index.php/Special:Search?fulltext=Search&search="}],
-    "youtube"   : [{"url": "https://youtube.com/results?search_query="}],
-    "reddit"    : [{"url": "https://www.reddit.com/search?q="}],
-    "rarbg"     : [{"url": "https://rarbg.to/torrents.php?search="}],
-    "tpd"       : [{"url": "https://thepiratebay.se/search/"}]
+    "Google" : [
+    {"tag": "google",   "url": "https://www.google.com/search?q=",  "default": "true"}
+    ],
+    "DuckDuckGo": [
+    {"tag": "ddg",      "url": "https://duckduckgo.com/?q=",        "default": "false"}
+    ],
+    "GitHub": [
+    {"tag": "gh",       "url": "https://github.com/search?q=",      "default": "false"}
+    ],
+    "IMDB": [
+    {"tag": "imdb",     "url": "https://www.imdb.com/find?s=all&q=", "default": "false"}
+    ],
+    "Wikipedia": [
+    {"tag": "wiki",     "url": "https://en.wikipedia.org/wiki/Special:Search?search=", "default": "false"}
+    ],
+    "ArchWiki": [
+    {"tag": "archwiki", "url": "https://wiki.archlinux.org/index.php/Special:Search?fulltext=Search&search=", "default": "false"}
+    ],
+    "YouTube": [
+    {"tag": "yt",       "url": "https://youtube.com/results?search?search_query?q=", "default": "false"}
+    ],
+    "Reddit": [
+    {"tag": "rdt",      "url": "https://www.reddit.com/search?q=", "default": "false"}
+    ],
+    "StackOverflow": [
+    {"tag": "so",       "url": "https://www.stackoverflow.com/search?q=", "default": "false"}
+    ],
+    "RARBG" : [
+    {"tag": "rarbg",    "url": "https://rarbg.to/torrents.php?search=", "default": "false"}
+    ],
+    "The Pirate Bay": [
+    {"tag": "tpb",      "url": "https://thepiratebay.se/search/", "default": "false"}
+    ]
 };
 /*
  * BOOKMARKED SITES
@@ -37,3 +59,10 @@ var bookmarks = {
     {"sitename": "Reddit",              "url": "https://www.reddit.com"}
     ]
 };
+
+/*
+ * DO NOT REMOVE OR EDIT THESE LINES
+ * Unless you want to break everything.
+ */
+var searchKeys = Object.keys(searchEngines);
+var bookmarkkeys = Object.keys(bookmarks);

@@ -16,52 +16,89 @@ function getTime(){
  * SEARCH BOX
  */
 function searchForm(){
-    var res = document.searchForm.q.value.split(":");
+    var query = document.searchForm.q.value.split(":");
 
-    if(res[0] != ""){
+    if(query[0] != ""){
         // if no search engine specified search with default
-        if(res.length == 1){
+        if(query.length == 1){
             // check if query is valid url
-            var domain = /^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$/.test(res[0]);
+            var domain = /^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$/.test(query[0]);
 
             if(domain){
-                window.location="https://www." + res[0];
+                window.location="https://www." + query[0];
             }else{
-                defaultSearch(res[0]);
+                defaultSearch(query[0]);
             }
         // search array for engine and redirect to url
         }else{
+            // check if firefox about page
+            if(query.length == 2 && query[0] == "about"){
+                var ffQuery = query[0] + ":" + query[1];
+                if(ffAboutPage.indexOf(ffQuery) > -1){
+                    alert("Firefox about pages can only be accessed directly from the url bar.");
+                    return;
+                }
+            }
             // iterate through searchEngines and check for correct site tag
             // if none found use first
-            var name = Object.keys(searchEngines);
-
-            for(var i=0; i<name.length; i++){
-                if(res[0] == name[i]){
-                    window.location=searchEngines[res[0]][0].url + res[1];
+            for(var i=0; i<searchKeys.length; i++){
+                if(query[0] == searchEngines[searchKeys[i]][0].tag ||
+                        query[0].toLowerCase() == searchKeys[i].toLowerCase()){
+                    // rebuild query is needed
+                    if(query.length > 2){
+                        query = rebuildSearchQuery();
+                    }
+                    window.location=searchEngines[searchKeys[i]][0].url + encodeURIComponent(query[1]);
                     return;
                 }
             };
-            // Not in list use default
-            defaultSearch(res[1]);
+            defaultSearch(query);
         }
     }
     // search with default engine
-    function defaultSearch(query){
-        window.location=searchEngines.default[0].url + query;
-        return;
+    function defaultSearch(q){
+        for(var i=0; i<searchKeys.length; i++){
+            if(searchEngines[searchKeys[i]][0].default == "true"){
+                // rebuild query if needed
+                if(query.length > 1){
+                    q = rebuildSearchQuery(true);
+                }
+                window.location=searchEngines[searchKeys[i]][0].url + encodeURIComponent(q);
+                return;
+            }
+        }
+        alert("ERROR: No default search engine set.\nPlease edit lists.js to set.");
+    }
+    // if query.length > 2 mean there are : character's in search string
+    // build a new query from query components, replace : chars and add to
+    // query[1]
+    function rebuildSearchQuery(defaultSearch = false){
+        var tmp = "";
+        var separator = ":";
+        var sArr = [];
+
+        for(var i=query.length -1; i>=1; i--){
+            sArr[i] = (i > 1) ? (separator + query[i]) : query[i];
+            query.pop();
+        }
+        if(defaultSearch){
+            sArr[0] = query[0] + separator;
+            return sArr.join("");
+        }
+        tmp = sArr.join("");
+        query[1] = tmp;
+        return query;
     }
 }
 // create search engine list
 function populateSearchList(){
     var list = document.getElementById("searchEngineList");
 
-    var name = Object.keys(searchEngines);
-
     // iterate over list and add names to list
-    for(var i=1; i<name.length; i++){
+    for(var i=0; i<searchKeys.length; i++){
         var linode = document.createElement("LI");
         var anode = document.createElement("A");
-        var textnode = document.createTextNode(name[i]);
+        var textnode = document.createTextNode(searchKeys[i]);
 
         anode.appendChild(textnode);
         linode.appendChild(anode);
@@ -71,7 +108,7 @@ function populateSearchList(){
 /*
  * SEARCH ENGINE LIST
  */
-// show or hide search engine list
+// show or hide search engine list from button
 document.getElementById("list-search").addEventListener("click", function(e){
     var searchEngineList = document.getElementById("searchEngineList");
 
@@ -96,14 +133,14 @@ function showHideList(action){
  */
 document.getElementById("searchEngineList").addEventListener("click", function(e){
     if(e.target.tagName == "A"){
-        document.searchForm.q.value = e.target.innerHTML + ":";
+        document.searchForm.q.value = searchEngines[searchKeys[searchKeys.indexOf(e.target.innerHTML)]][0].tag + ":";
         document.searchForm.q.focus();
         showHideList("hide");
     }
 });
 document.getElementById("searchEngineList").addEventListener("mouseover", function(e){
     if(e.target.tagName == "A"){
-        document.searchForm.q.value = e.target.innerHTML + ":";
+        document.searchForm.q.value = searchEngines[searchKeys[searchKeys.indexOf(e.target.innerHTML)]][0].tag + ":";
     }
 });
 document.getElementById("searchEngineList").addEventListener("mouseleave", function(e){
@@ -121,22 +158,20 @@ document.getElementById("searchEngineList").addEventListener("mouseleave", funct
 function populateBookmarkList(){
     var container = document.getElementById("bookmarks");
 
-    var name = Object.keys(bookmarks);
-
     // iterate over list and add items as list to container
-    for(var i=0; i<name.length; i++){
+    for(var i=0; i<bookmarkkeys.length; i++){
         var ulnode = document.createElement("UL");
         var linode = document.createElement("LI");
-        var textnode = document.createTextNode(name[i]);
+        var textnode = document.createTextNode(bookmarkkeys[i]);
 
         linode.appendChild(textnode);
         ulnode.appendChild(linode);
 
-        for(var j=0; j<bookmarks[name[i]].length; j++){
+        for(var j=0; j<bookmarks[bookmarkkeys[i]].length; j++){
             linode = document.createElement("LI");
             var anode = document.createElement("A");
-            anode.setAttribute("href", bookmarks[name[i]][j].url);
-            textnode = document.createTextNode(bookmarks[name[i]][j].sitename);
+            anode.setAttribute("href", bookmarks[bookmarkkeys[i]][j].url);
+            textnode = document.createTextNode(bookmarks[bookmarkkeys[i]][j].sitename);
 
             anode.appendChild(textnode);
             linode.appendChild(anode);

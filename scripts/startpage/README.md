@@ -36,26 +36,28 @@ and access the knowledge of the world.
 If you don't specify a search tag not to worry as it will fallback to a default
 user configurable search engine *see below*.
 
-**Update** The search box is now smart enough to recognise the site name you
+**Update**: The search box is now smart enough to recognise the site name you
 configured if you don't want to remember the tag; *and* it's case insensitive.
 
-![Screenshot4](/scripts/startpage/public/img/screenshots/2016-04-01-140601_1920x1080_scrot.png?raw=true "Search Engines DropDown2")
+![Screenshot4](/scripts/startpage/public/img/screenshots/2016-04-01-140601_1920x1080_scrot.png?raw=true "Search Box Site Name")
 
 The search box can even recognise urls so rather than searching for the url it
 will take you directly to the site.
+
+![Screenshot5](/scripts/startpage/public/img/screenshots/2016-04-01-153146_1920x1080_scrot.png?raw=true "Search Box URL")
 
 The search strings will be fully url encoded *AND* if you need to search for
 something using the *:* delimiter you can rest easy in the knowledge that your
 query will be sent as you intended.
 
-![Screenshot5](/scripts/startpage/public/img/screenshots/2016-04-01-135222_1920x1080_scrot.png?raw=true "Search Box Tomfoolery")
+![Screenshot6](/scripts/startpage/public/img/screenshots/2016-04-01-135222_1920x1080_scrot.png?raw=true "Search Box Tomfoolery")
 
 ## Configuring Bookmarks and Search Engines
 
 Search engine and bookmark preferences are easily customisable and updateable.
 All you need to do is edit [lists.js](https://github.com/siidney/dotfiles/blob/master/scripts/startpage/public/js/lists.js) to include *your* favourite site or search engine.
 
-**Update** The way search engines are stored has been redesigned for your
+**Update**: The way search engines are stored has been redesigned for your
 convenience so as now to include custom tags and a title for the link.
 
 ## Known Issues

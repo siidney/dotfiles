@@ -58,7 +58,8 @@ Search engine and bookmark preferences are easily customisable and updateable.
 All you need to do is edit [lists.js](https://github.com/siidney/dotfiles/blob/master/scripts/startpage/public/js/lists.js) to include *your* favourite site or search engine.
 
 **Update**: The way search engines are stored has been redesigned for your
-convenience so as now to include custom tags and a title for the link.
+convenience so as now to include custom tags, a title for the link and to
+more easily specify a default search.
 
 ## Known Issues
 

@@ -81,6 +81,8 @@ function searchForm(){
             sArr[i] = (i > 1) ? (separator + query[i]) : query[i];
             query.pop();
         }
+        // if no search engine specified query[0] is part of the query and
+        // should not be ignored
         if(defaultSearch){
             sArr[0] = query[0] + separator;
             return sArr.join("");

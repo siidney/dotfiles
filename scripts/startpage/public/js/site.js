@@ -21,9 +21,13 @@ function searchForm(){
     if(query[0] != ""){
         // if no search engine specified search with default
         if(query.length == 1){
+<<<<<<< HEAD
             var domain = /^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$/.test(query[0]);
 
             if(domain && isURL(query[0])){
+=======
+            if(isURL(query[0])){
+>>>>>>> 4b2e56c63c62764b33ecce92b0f3f8276b5f7703
                 window.location="https://" + query[0];
             }else{
                 defaultSearch(query[0]);

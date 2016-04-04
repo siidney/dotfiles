@@ -21,11 +21,10 @@ function searchForm(){
     if(query[0] != ""){
         // if no search engine specified search with default
         if(query.length == 1){
-            // check if query is valid url
             var domain = /^((?!-))(xn--)?[a-z0-9][a-z0-9-_]{0,61}[a-z0-9]{0,1}\.(xn--)?([a-z0-9\-]{1,61}|[a-z0-9-]{1,30}\.[a-z]{2,})$/.test(query[0]);
 
-            if(domain){
-                window.location="https://www." + query[0];
+            if(domain && isURL(query[0])){
+                window.location="https://" + query[0];
             }else{
                 defaultSearch(query[0]);
             }
@@ -55,6 +54,16 @@ function searchForm(){
             defaultSearch(query);
         }
     }
+    // check if string is valid urla
+    function isURL(q){
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+                '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return pattern.test(q);
+    }
     // search with default engine
     function defaultSearch(q){
         for(var i=0; i<searchKeys.length; i++){
@@ -70,8 +79,8 @@ function searchForm(){
         alert("ERROR: No default search engine set.\nPlease edit lists.js to set.");
     }
     // if query.length > 2 mean there are : character's in search string
-    // build a new query from query components, replace : chars and add to
-    // query[1]
+    // build a new query from query components, replace : chars and rebuild
+    // query
     function rebuildSearchQuery(defaultSearch = false){
         var tmp = "";
         var separator = ":";

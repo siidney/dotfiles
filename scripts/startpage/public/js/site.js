@@ -83,7 +83,7 @@ function searchForm(){
     // check if query is 192.168.x.x
     // TODO: Add other local ip addresses
     function isLocalHost(q){
-        return query[0].indexOf("192." > -1);
+        return query[0].indexOf("192.") > -1;
     }
     // search with default engine
     function defaultSearch(q){

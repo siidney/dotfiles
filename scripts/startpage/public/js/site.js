@@ -18,12 +18,24 @@ function getTime(){
 function searchForm(){
     var query = document.searchForm.q.value.split(":");
 
-    if(query[0] != ""){
+    if(isQuery(query[0])){
         // if no search engine specified search with default
-        if(query.length == 1){
+        if(query.length == 1 || isLocalHost(query[0])){
             // check if query contains . if so check if is url
-            if((query[0].indexOf('.') > -1) && isURL(query[0])){
-                window.location="https://" + query[0];
+            if(query[0].indexOf('.') > -1){
+                // local url
+                if(isLocalHost(query[0])){
+                    var url = "http://" + query[0];
+
+                    // check for port on local url
+                    if(query[1]){
+                        url += ':' + query[1];
+                    }
+                    window.location=url;
+                // external url
+                }else if(isURL(query[0])){
+                    window.location="https://" + query[0];
+                }
             }else{
                 defaultSearch(query[0]);
             }
@@ -38,7 +50,6 @@ function searchForm(){
                 }
             }
             // iterate through searchEngines and check for correct site tag
-            // if none found use first
             for(var i=0; i<searchKeys.length; i++){
                 if(query[0] == searchEngines[searchKeys[i]][0].tag ||
                         query[0].toLowerCase() == searchKeys[i].toLowerCase()){
@@ -50,10 +61,16 @@ function searchForm(){
                     return;
                 }
             };
+            // query[0] not correct tag
             defaultSearch(query);
         }
     }
-    // check if string is valid urla
+    // ensure query is valid
+    // exists && contains more than just whitespace && has length > 0
+    function isQuery(q){
+        return (q && (/\S/.test(q) && q.length > 0));
+    }
+    // check if string is valid url
     function isURL(q){
         var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
                 '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
@@ -62,6 +79,11 @@ function searchForm(){
                 '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
                 '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
         return pattern.test(q);
+    }
+    // check if query is 192.168.x.x
+    // TODO: Add other local ip addresses
+    function isLocalHost(q){
+        return query[0].indexOf("192." > -1);
     }
     // search with default engine
     function defaultSearch(q){
@@ -75,7 +97,7 @@ function searchForm(){
                 return;
             }
         }
-        alert("ERROR: No default search engine set.\nPlease edit lists.js to set.");
+        alert("ERROR: No default search engine set.\nPlease edit public/js/lists.js to set.");
     }
     // if query.length > 2 mean there are : character's in search string
     // build a new query from query components, replace : chars and rebuild

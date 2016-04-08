@@ -21,21 +21,18 @@ function searchForm(){
     if(isQuery(query[0])){
         // if no search engine specified search with default
         if(query.length == 1 || isLocalHost(query[0])){
-            // check if query contains . if so check if is url
-            if(query[0].indexOf('.') > -1){
-                // local url
-                if(isLocalHost(query[0])){
-                    var url = "http://" + query[0];
+            // local url
+            if(query[0].indexOf(".") > -1 && isLocalHost(query[0])){
+                var url = "http://" + query[0];
 
-                    // check for port on local url
-                    if(query[1]){
-                        url += ':' + query[1];
-                    }
-                    window.location=url;
-                // external url
-                }else if(isURL(query[0])){
-                    window.location="https://" + query[0];
+                // check for port on local url
+                if(query[1]){
+                    url += ':' + query[1];
                 }
+                window.location=url;
+            // external url
+            }else if(isURL(query[0])){
+                window.location="https://" + query[0];
             }else{
                 defaultSearch(query[0]);
             }

@@ -19,10 +19,10 @@ function searchForm(){
     var query = document.searchForm.q.value.split(":");
 
     if(isQuery(query[0])){
-        // if no search engine specified search with default
+        // check if is just search term or local address
         if(query.length == 1 || isLocalHost(query[0])){
             // local url
-            if(query[0].indexOf(".") > -1 && isLocalHost(query[0])){
+            if(isLocalHost(query[0])){
                 var url = "http://" + query[0];
 
                 // check for port on local url
@@ -30,12 +30,14 @@ function searchForm(){
                     url += ':' + query[1];
                 }
                 window.location=url;
-            // external url
-            }else if(isURL(query[0])){
-                window.location="https://" + query[0];
-            }else{
-                defaultSearch(query[0]);
+                return;
             }
+            // external url
+            if(isURL(query[0])){
+                window.location="https://" + query[0];
+                return
+            }
+            defaultSearch(query[0]);
         // search array for engine and redirect to url
         }else{
             // check if firefox about page
@@ -69,6 +71,9 @@ function searchForm(){
     }
     // check if string is valid url
     function isURL(q){
+        if(q.indexOf(".") == -1){
+            return false;
+        }
         var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
                 '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
                 '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
@@ -80,6 +85,9 @@ function searchForm(){
     // check if query is 192.168.x.x
     // TODO: Add other local ip addresses
     function isLocalHost(q){
+        if(q.indexOf(".") == -1){
+            return false;
+        }
         return query[0].indexOf("192.") > -1;
     }
     // search with default engine

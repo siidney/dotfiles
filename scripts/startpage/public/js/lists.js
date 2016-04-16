@@ -21,7 +21,7 @@ var searchEngines = {
     {"tag": "archwiki", "url": "https://wiki.archlinux.org/index.php/Special:Search?fulltext=Search&search=", "default": "false"}
     ],
     "YouTube": [
-    {"tag": "yt",       "url": "https://youtube.com/results?search?search_query?q=", "default": "false"}
+    {"tag": "yt",       "url": "https://youtube.com/results?search_query=", "default": "false"}
     ],
     "Reddit": [
     {"tag": "rdt",      "url": "https://www.reddit.com/search?q=", "default": "false"}
@@ -34,6 +34,9 @@ var searchEngines = {
     ],
     "The Pirate Bay": [
     {"tag": "tpb",      "url": "https://thepiratebay.se/search/", "default": "false"}
+    ],
+    "KickAss Torrents": [
+    {"tag": "kat",      "url": "https://kat.cr/usearch/", "default": "false"}
     ]
 };
 /*
@@ -43,11 +46,13 @@ var bookmarks = {
     "Torrents" : [
     {"sitename": "RARBG",               "url": "https://rarbg.to"},
     {"sitename": "The Pirate Bay",      "url": "https://thepiratebay.se"},
-    {"sitename": "Skidrow Reloaded",    "url": "https://www.skidrowreloaded.com"}
+    {"sitename": "Skidrow Reloaded",    "url": "https://www.skidrowreloaded.com"},
+    {"sitename": "KickAss Torrents",    "url": "https://kat.cr"}
     ],
     "Linux" : [
     {"sitename": "Github",              "url": "https://www.github.com"},
-    {"sitename": "ArchWiki",            "url": "https://wiki.archlinux.org"}
+    {"sitename": "ArchWiki",            "url": "https://wiki.archlinux.org"},
+    {"sitename": "Opensource.com",      "url": "https://opensource.com"}
     ],
     "Resources" : [
     {"sitename": "Wolfram Alpha",       "url": "https://www.wolframalpha.com"},

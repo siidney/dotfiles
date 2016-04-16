@@ -41,7 +41,7 @@ snippet once
 
 	#endif /* end of include guard: $1 */
 # If Condition
-snippet if
+snippet if{
 	if(${1:/* condition */}){
 		${2:/* code */}
 	}
@@ -49,6 +49,9 @@ snippet el
 	else{
 		${1}
 	}
+snippet if
+	if(${1:/* condition */})
+		${2:/* code */}
 # Ternary conditional
 snippet t
 	${1:/* condition */} ? ${2:a} : ${3:b}
@@ -56,7 +59,7 @@ snippet t
 snippet do
 	do{
 		${2:/* code */}
-	} while (${1:/* condition */});
+	}while(${1:/* condition */});
 # While Loop
 snippet wh
 	while(${1:/* condition */}){
@@ -64,17 +67,17 @@ snippet wh
 	}
 # For Loop
 snippet for
-	for(int ${2:i}=0; $2<${1:count}; $2${3:++}){
+	for(int ${2:i}=0; $2<${1:count}; ${3:++}$2){
 		${4:}
 	}
 # Custom For Loop
 snippet forr
-	for(int ${1:i}=${2:0}; ${3:$1<10}; $1${4:++}){
+	for(int ${1:i}=${2:0}; ${3:$1<10}; ${4:++}$1){
 		${5:}
 	}
 # Unsigned int For Loop
 snippet foru
-	for(unsigned int ${2:i}=0; $2<${1:count}; $2${3:++}){
+	for(unsigned int ${2:i}=0; $2<${1:count}; ${3:++}$2){
 		${4:}
 	}
 # Function

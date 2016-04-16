@@ -29,7 +29,7 @@ snippet cl
 		    ~$1();
 	};
 snippet fori
-	for(int ${2:i} = 0; $2 < ${1:count}; $2${3:++}){
+	for(int ${2:i}=0; $2<${1:count}; ${3:++}$2){
 		${4:/* code */}
 	}
 # Constructor
@@ -64,6 +64,9 @@ snippet cin
 # std::endl
 snippet endl
 	<< std::endl;
+# std::cout << std::endl
+snippet cendl
+	std::cout << std::endl;
 # insert filename
 snippet fname
 	${1:`Filename('$1', 'name')`}${2}

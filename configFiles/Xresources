@@ -82,8 +82,8 @@ Xft.dpi: 96
 ! URxvt*perl-eval:                      perl-eval
 ! URxvt*perl-ext-common:                string
 ! URxvt*perl-ext:                       string
-! URxvt*iso14755:                       boolean
-! URxvt*iso14755_52:                    boolean
+ URxvt*iso14755:                       true
+ URxvt*iso14755_52:                    false
 ! URxvt*xrm:                            string
 ! URxvt*keysym.sym:                     keysym
 ! URxvt*background.border:              boolean

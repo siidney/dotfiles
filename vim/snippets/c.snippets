@@ -49,7 +49,8 @@ snippet el
 	else{
 		${1}
 	}
-snippet if
+# single line if
+snippet iff
 	if(${1:/* condition */})
 		${2:/* code */}
 # Ternary conditional
@@ -67,18 +68,18 @@ snippet wh
 	}
 # For Loop
 snippet for
-	for(int ${2:i}=0; $2<${1:count}; ${3:++}$2){
-		${4:}
+	for(int ${1:i}=${2:0}; $1${3:<count}; ${4:++}$1){
+		${5:/* code */}
 	}
 # Custom For Loop
 snippet forr
-	for(int ${1:i}=${2:0}; ${3:$1<10}; ${4:++}$1){
-		${5:}
+	for(${1:int} ${2:i}=${3:0}; $2${4:<count}; ${5:++}$2){
+		${6:/* code */}
 	}
 # Unsigned int For Loop
 snippet foru
-	for(unsigned int ${2:i}=0; $2<${1:count}; ${3:++}$2){
-		${4:}
+	for(unsigned int ${1:i}=${2:0}; $1${3:<count}; ${4:++}$1){
+		${5:/* code */}
 	}
 # Function
 snippet fun

@@ -12,7 +12,7 @@ snippet map
 	std::map<${1:key}, ${2:value}> map${3};
 # std::vector
 snippet vector
-	std::vector<${1:char}> v${2};
+	std::vector<${1:char}> ${2:v};
 # Namespace
 snippet ns
 	namespace ${1:`Filename('', 'my')`}{
@@ -29,8 +29,8 @@ snippet cl
 		    ~$1();
 	};
 snippet fori
-	for(int ${2:i}=0; $2<${1:count}; ${3:++}$2){
-		${4:/* code */}
+	for(int ${1:i}=${2:0}; $1${3:<count}; ${4:++}$1){
+		${5:/* code */}
 	}
 # Constructor
 snippet const
@@ -67,9 +67,20 @@ snippet endl
 # std::cout << std::endl
 snippet cendl
 	std::cout << std::endl;
+# std::setw()
+snippet setw
+	std::setw(${1}) ${2}
+# std::setprecision()
+snippet setprecision
+	std::setprecision(${1}) ${2}
 # insert filename
 snippet fname
 	${1:`Filename('$1', 'name')`}${2}
 # std::string
 snippet string
 	std::string
+# Function with class name
+snippet funcl
+	${1:void} `Filename()`::${2:function}(${3}){
+		${4:}
+	}

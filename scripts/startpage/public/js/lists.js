@@ -57,7 +57,10 @@ var bookmarks = {
     "Resources" : [
     {"sitename": "Wolfram Alpha",       "url": "https://www.wolframalpha.com"},
     {"sitename": "DZone",               "url": "https://www.dzone.com"},
-    {"sitename": "Rosetta Code",        "url": "https://rosettacode.org"}
+    {"sitename": "Rosetta Code",        "url": "https://rosettacode.org"},
+    {"sitename": "Khan Academy",        "url": "https://www.khanacademy.org"},
+    {"sitename": "WikiBooks Algorithms","url": "https://en.wikibooks.org/wiki/Algorithm_Implementation"},
+    {"sitename": "Geeks For Geeks",       "url": "http://www.geeksforgeeks.org"}
     ],
     "Social Media" : [
     {"sitename": "Facebook",            "url": "https://www.facebook.com"},

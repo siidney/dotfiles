@@ -20,6 +20,9 @@ var searchEngines = {
     "ArchWiki": [
     {"tag": "archwiki", "url": "https://wiki.archlinux.org/index.php/Special:Search?fulltext=Search&search=", "default": "false"}
     ],
+    "AUR": [
+    {"tag": "aur",      "url": "https://aur.archlinux.org/packages/?O=0&K=", "default": "false"}
+    ],
     "YouTube": [
     {"tag": "yt",       "url": "https://youtube.com/results?search_query=", "default": "false"}
     ],
@@ -60,7 +63,7 @@ var bookmarks = {
     {"sitename": "Rosetta Code",        "url": "https://rosettacode.org"},
     {"sitename": "Khan Academy",        "url": "https://www.khanacademy.org"},
     {"sitename": "WikiBooks Algorithms","url": "https://en.wikibooks.org/wiki/Algorithm_Implementation"},
-    {"sitename": "Geeks For Geeks",       "url": "http://www.geeksforgeeks.org"}
+    {"sitename": "Geeks For Geeks",     "url": "http://www.geeksforgeeks.org"}
     ],
     "Social Media" : [
     {"sitename": "Facebook",            "url": "https://www.facebook.com"},

@@ -34,7 +34,7 @@ function searchForm(){
             }
             // external url
             if(isURL(query[0])){
-                window.location="https://" + query[0];
+                window.location="http://" + query[0];
                 return
             }
             defaultSearch(query[0]);

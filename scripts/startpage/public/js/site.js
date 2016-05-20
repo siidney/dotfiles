@@ -32,6 +32,14 @@ function searchForm(){
                 window.location=url;
                 return;
             }
+            // search engine url
+            for(var i=0; i<searchKeys.length; ++i){
+                if(query[0] == searchEngines[searchKeys[i]][0].tag ||
+                        query[0].toLowerCase() == searchKeys[i].toLowerCase()){
+                    window.location=searchEngines[searchKeys[i]][0].url;
+                    return;
+                }
+            }
             // external url
             if(isURL(query[0])){
                 window.location="http://" + query[0];

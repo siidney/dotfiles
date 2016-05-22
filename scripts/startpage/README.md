@@ -39,6 +39,9 @@ user configurable search engine *see below*.
 **Update**: The search box is now smart enough to recognise the site name you
 configured if you don't want to remember the tag; *and* it's case insensitive.
 
+**Update**: The search box will also take you to the homepage of a configured
+search engine using just the tag or sitename. No need to enter the full url.
+
 ![Screenshot4](/scripts/startpage/public/img/screenshots/2016-04-01-140601_1920x1080_scrot.png?raw=true "Search Box Site Name")
 
 The search box can even recognise urls so rather than searching for the url it

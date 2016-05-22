@@ -36,7 +36,11 @@ function searchForm(){
             for(var i=0; i<searchKeys.length; ++i){
                 if(query[0] == searchEngines[searchKeys[i]][0].tag ||
                         query[0].toLowerCase() == searchKeys[i].toLowerCase()){
-                    window.location=searchEngines[searchKeys[i]][0].url;
+
+                    var url = document.createElement("a");
+                    url.href = searchEngines[searchKeys[i]][0].url;
+
+                    window.location = url.protocol + "//" + url.host;
                     return;
                 }
             }

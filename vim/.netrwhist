@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/siid/Work/MOOC/edx/ITBombayX-CS101.2/Topic2-PointersAndStructures/Session3-UseOfPointersInC++Programs'
-let g:netrw_dirhist_2='/home/siid/Work/MOOC/edx/ITBombayX-CS101.2'
-let g:netrw_dirhist_3='/home/siid/Work/MOOC/edx/ITBombayX-CS101.2/Topic2-PointersAndStructures'
-let g:netrw_dirhist_4='/home/siid/Work/MOOC/edx/ITBombayX-CS101.2/Topic2-PointersAndStructures/Session3-UseOfPointersInC++Programs'
-let g:netrw_dirhist_5='/home/siid/Work/MOOC/edx'
-let g:netrw_dirhist_6='/home/siid/Work/C++/Cpp-How-To-Program/Chapter06/examples/6.29'
-let g:netrw_dirhist_7='/home/siid/Work/C++/Cpp-How-To-Program/Chapter06/exercises/6.49'
-let g:netrw_dirhist_8='/home/siid/Work/C++/Cpp-How-To-Program/Chapter06/exercises/6.35'
-let g:netrw_dirhist_9='/home/siid/Work/C++/Cpp-How-To-Program/Chapter07/exercises/7.31'
+let g:netrw_dirhist_cnt =0

@@ -1,2 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/siid/.dotfiles/i3'
+let g:netrw_dirhist_2='/home/siid/.dotfiles'
+let g:netrw_dirhist_3='/home/siid'
+let g:netrw_dirhist_4='/home/siid/.config'
+let g:netrw_dirhist_5='/home/siid/.config/conky'
+let g:netrw_dirhist_6='/home/siid/.dotfiles/i3'
+let g:netrw_dirhist_7='/home/siid/.dotfiles/i3/i3blocks'

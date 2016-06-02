@@ -1,0 +1,11 @@
+# Display up/down speed
+#!/bin/sh
+
+bandwidth(){
+
+}
+
+if [[ -n $BLOCK_INSTANCE ]]
+then
+    bandwidth()
+fi

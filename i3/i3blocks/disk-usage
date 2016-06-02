@@ -1,0 +1,48 @@
+# Display disk usage information
+#!/bin/sh
+
+root(){
+    df -h / | grep '/' | awk '{
+        freeperc=100-$5
+
+        print freeperc "%" " " $4 "/" $2
+        print freeperc "%" " " $4 "/" $2
+
+        if(freeperc < 25)
+            print "#FF9933"
+        else if(freeperc < 50)
+            print "#F0DC64"
+        else if(freeperc > 75)
+            print "#AAF096"
+        else
+            print "#CC9393"
+        }'
+}
+home(){
+    df -h /home | grep '/home' | awk '{
+        freeperc=100-$5
+
+        print freeperc "%" " " $4 "/" $2
+        print freeperc "%" " " $4 "/" $2
+
+        if(freeperc < 25)
+            print "#FF9933"
+        else if(freeperc < 50)
+            print "#F0DC64"
+        else if(freeperc > 75)
+            print "#AAF096"
+        else
+            print "#CC9393"
+        }'
+}
+
+if [[ -n $BLOCK_INSTANCE ]]
+then
+    if [ $BLOCK_INSTANCE == "root" ]
+    then
+        root
+    elif [ $BLOCK_INSTANCE == "home" ]
+    then
+        home
+    fi
+fi

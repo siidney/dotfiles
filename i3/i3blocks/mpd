@@ -1,0 +1,31 @@
+# Display current MPD information
+#!/bin/sh
+
+# check status of mpd
+mpc_status(){
+    for i in $( mpc --format "" ); do
+        local a=$i
+        break
+    done
+
+    echo "$a"
+}
+
+status=$(mpc_status)
+
+if [ $status = "[playing]" ]
+then
+    mpc current
+    echo
+    echo \#AAF096
+elif [ $status = "[paused]" ]
+then
+    mpc current
+    echo
+    echo \#F0DC64
+else
+    echo "No Media"
+    echo 
+    echo \#FFFFFF
+fi
+

@@ -39,9 +39,6 @@ set $tag6 "6: Torrent"
 set $tag7 "7: Files"
 set $tag8 "8: Multimedia"
 
-# start a terminal
-#bindsym $mod+Return exec urxvt
-
 # kill focused window
 bindsym $mod+Shift+c kill
 
@@ -220,6 +217,9 @@ new_window 1pixel
 bar {
     mode dock
     font pango:Amble regular 9
+    position top
+    tray_output DVI-I-0
+    strip_workspace_numbers yes
 
     colors {
         # whole color settings
@@ -234,16 +234,10 @@ bar {
         urgent_workspace    #222222 #222222     #FF9933
     }
 
-    position top
     #status_command i3status -c ~/.i3/i3status.conf
-    status_command $HOME/.i3/conky/conky-i3bar
-    #status_command i3blocks
+    #status_command $HOME/.i3/conky/conky-i3bar
+    status_command i3blocks -c $HOME/.i3//i3blocks/i3blocks.conf
 
-    # system tray
-    tray_output DVI-I-0
-
-    # strip workspace numbers
-    strip_workspace_numbers yes
 }
 
 # start clients on specific workspaces

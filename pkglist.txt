@@ -21,7 +21,6 @@ chrpath
 clamav
 clang
 cmake
-conky
 coreutils
 cryptsetup
 cups
@@ -43,6 +42,7 @@ dvd+rw-tools
 e2fsprogs
 elementary-icon-theme
 elinks
+encfs
 evtest
 expac
 extundelete
@@ -66,7 +66,7 @@ gdb
 gettext
 gimp
 git
-glfw
+glfw-x11
 glibc
 glm
 gnome-icon-theme

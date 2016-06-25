@@ -23,23 +23,21 @@ snippet cl
 	class ${1:`Filename('$1', 'name')`}{
 	    public:
 		    $1(${2:});
-		    ~$1();
-		    ${3:}
+		    ~$1();${3:}
 
-	    private:
-		    ${4:}
+	    private:${4:}
 	};
 snippet fori
 	for(int ${1:i}=${2:0}; $1${3:<count}; ${4:++}$1){
 		${5:/* code */}
 	}
 # Constructor
-snippet const
-	${1:`Filename('$1', 'name')`}::$1(${2}){
-		${3}
+snippet ct
+	${1:`Filename('$1', 'name')`}::$1(${2})${3}{
+		${4}
 	}
 # Destructor
-snippet dest
+snippet dt
 	${1:`Filename('$1', 'name')`}::~$1(){
 		${2}
 	}
@@ -82,6 +80,6 @@ snippet string
 	std::string
 # Function with class name
 snippet funcl
-	${1:void} `Filename()`::${2:function}(${3}){
-		${4:}
+	${1:void} `Filename()`::${2:function}(${3})${4}{
+		${5:}
 	}

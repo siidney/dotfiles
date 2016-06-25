@@ -7,7 +7,6 @@ Various system config files and 'useful' scripts.
 > - [i3](https://github.com/siidney/dotfiles/tree/master/i3) - i3 config files
 > - [rTorrent](https://github.com/siidney/dotfiles/tree/master/rTorrent) - rTorrent scripts
 > - [scripts](https://github.com/siidney/dotfiles/tree/master/scripts) - Various useful (to me) system scripts
-> - [scripts/startpage](https://github.com/siidney/dotfiles/tree/master/scripts/startpage) - Custom start page for Firefox
 > - [vim](https://github.com/siidney/dotfiles/tree/master/vim) - Vim config files
 
 ## Scripts

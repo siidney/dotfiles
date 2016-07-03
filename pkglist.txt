@@ -38,16 +38,11 @@ dos2unix
 dosfstools
 doxygen
 dunst
-dvd+rw-tools
 e2fsprogs
-elementary-icon-theme
 elinks
 encfs
-evtest
 expac
 extundelete
-faenza-icon-theme
-faience-icon-theme
 fakeroot
 feh
 ffmpeg0.10
@@ -69,9 +64,6 @@ git
 glfw-x11
 glibc
 glm
-gnome-icon-theme
-gnome-icon-theme-extras
-gnome-icon-theme-symbolic
 gnome-themes-standard
 gobject-introspection
 gpicview
@@ -101,7 +93,6 @@ gzip
 hdparm
 heimdall
 htop
-human-icon-theme
 hunspell-en
 hwinfo
 hyphen-en
@@ -174,13 +165,10 @@ lua51
 lua52
 luakit
 lvm2
-lxappearance
-lxde-icon-theme
 m4
 man-db
 man-pages
 mariadb
-mate-icon-theme
 mate-icon-theme-faenza
 mdadm
 mediainfo
@@ -239,7 +227,6 @@ python2-pexpect
 python2-pyqt4
 python2-reportlab
 qalculate-gtk
-qtcurve-utils
 r
 reflector
 reiserfsprogs
@@ -267,7 +254,6 @@ swt
 sysfsutils
 sysstat
 systemd-sysvcompat
-tangerine-icon-theme
 tar
 tcl
 tcpdump
@@ -297,7 +283,6 @@ which
 winetricks
 words
 xclip
-xcursor-themes
 xf86-input-mouse
 xfsprogs
 xorg-server

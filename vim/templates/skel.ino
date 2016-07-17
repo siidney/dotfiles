@@ -10,7 +10,7 @@
          Created:  [:VIM_EVAL:]strftime('%d/%m/%y %T')[:END_EVAL:]
         Modified:  none
 
-          Author:  Siidney Watson - siidney.watson@gmail.com
+          Author:  Siidney Watson - siidney.watson.work@gmail.com
 */
 
 // Initialisation

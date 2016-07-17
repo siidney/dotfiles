@@ -10,8 +10,6 @@ Various system config files and 'useful' scripts.
 > - [vim](https://github.com/siidney/dotfiles/tree/master/vim) - Vim config files
 
 ## Scripts
-> -
-> [conky-i3bar](https://github.com/siidney/dotfiles/blob/master/scripts/conky-i3bar) - Enables conky output on the i3 bar
 > - [countdown-timer.sh](https://github.com/siidney/dotfiles/blob/master/scripts/countdown-timer.sh) - Simple bash countdown timer
 > - [imdbsearch.py](https://github.com/siidney/dotfiles/blob/master/scripts/imdbsearch.py) - Command line imdb search. Can return single results or multiples sorted by year
 > - [mutt-mailto.sh](https://github.com/siidney/dotfiles/blob/master/scripts/mutt-mailto.sh) - Mailto script for mutt.

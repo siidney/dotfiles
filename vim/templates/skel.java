@@ -6,7 +6,7 @@
  *        Created:  [:VIM_EVAL:]strftime('%d/%m/%y %T')[:END_EVAL:]
  *       Revision:  none
  *
- *        @Author:  Siidney Watson - siidney.watson@gmail.com
+ *        @Author:  Siidney Watson - siidney.watson.work@gmail.com
  *       @Version:  1.0
  *
  * =====================================================================================

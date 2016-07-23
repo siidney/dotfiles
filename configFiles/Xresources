@@ -39,9 +39,9 @@ Xft.lcdfilter: lcddefault
 Xft.antialias: true
 Xft.autohint: 0
 Xft.hinting: true
-Xft.hintstyle: hintslight
+Xft.hintstyle: hintfull
 Xft.rgba: rgb
-Xft.dpi: 96
+Xft.dpi: 101
 
  URxvt*font:                            xft:bitstream vera sans mono:size=10:antialias=true
  URxvt*boldFont:                        xft:bitstream vera sans mono:bold:size=10:antialias=true
@@ -129,7 +129,7 @@ URxvt.colorUL: #4682B4
 ! white     - 7 15
 
 *.foreground:   #ffffff
-*.background:   #000000
+*.background:   #111111
 *.cursorColor:  #ffffff
 
 ! black
@@ -156,3 +156,5 @@ URxvt*color14:     #34E2E2
 ! white
 URxvt*color7:      #D3D7CF
 URxvt*color15:     #ECEDEE
+
+!#include "/home/siid/Downloads/solarized/xresources-colors-solarized/Xresources"

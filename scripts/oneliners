@@ -6,3 +6,6 @@ mkdir -p fn{fn,fn,fn}/fn{fn,fn,fn}
 
 # remove all files wihout extensions
 find . -type f ! -name "*.?*" -delete
+
+# search and replace multiple files recursively
+find .type -f -exec sed -i 's/search/replace/g' {} \;

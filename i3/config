@@ -71,10 +71,10 @@ bindsym $mod+Shift+l move up
 bindsym $mod+Shift+ntilde move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+#bindsym $mod+Shift+Left move left
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -201,6 +201,7 @@ bindsym $mod+g exec --no-startup-id $HOME/.dotfiles/scripts/runorraise.sh gsimpl
 # tmux
 bindsym $mod+Control+t exec urxvt -e tmux
 # urxvt
+bindsym $mod+Control+u exec urxvt
 bindsym $mod+Return exec urxvt -name urxvt_dropdown
 
 # remove titlebars
@@ -210,7 +211,7 @@ new_window 1pixel
 # finds out, if available)
 bar {
     mode dock
-    font pango:Amble regular 9
+    font pango:Amble regular 10
     position top
     tray_output DVI-I-0
     strip_workspace_numbers yes
@@ -252,5 +253,7 @@ assign [class="^Gimp$"]  $tag8
 #exec conky
 #exec firefox
 #exec firejail --caps thunderbird
-exec $HOME/.dotfiles/scripts/tmux-system.sh
-exec $HOME/.dotfiles/scripts/tmux-communication.sh
+
+exec $HOME/Scripts/tmux-startup
+exec urxvt -name comm -e tmux attach -t Communication
+exec urxvt -name sys_info -e tmux attach -t System

@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# COMMUNICATION
+
+tmux has-session -t 'Communication' # prevent duplicates
+
+if [ $? != 0 ]; then
+    # create new communication session with 2 windows
+    tmux new-session -d -s   'Communication' -n   'Mutt'
+    tmux new-window  -d -t   'Communication' -n   'IRC'
+
+    # prevents window closing on process exit
+    tmux send-keys -t 'Communication':0 'mutt'  C-m
+    tmux send-keys -t 'Communication':1 'irssi' C-m
+
+    tmux select-pane 'Communication':0
+fi
+
+# SYSTEM
+
+tmux has-session -t 'System'    # prevent duplicates
+
+if [ $? != 0 ]; then
+    # create new system session with 3 windows
+    tmux new-session -d -s   'System' -n    'Htop'
+    tmux new-window  -d -t   'System' -n    'IOtop'
+    tmux new-window  -d -t   'System' -n    'Rss/Torrent'
+
+    # 3rd window splits
+    tmux split-window -d -h -t 'System':'Rss/Torrent' 'newsbeuter'
+    tmux split-window -d -v -t 'System':'Rss/Torrent'.0 -c '/home/siid/Ktorrent/Aria2'
+
+    # send keys so pane doesn't close on program exit
+    tmux send-keys -t 'System':0 'htop' C-m
+    tmux send-keys -t 'System':1 'iotop -o' C-m
+    tmux send-keys -t 'System':2.0 'rtorrent' C-m
+    tmux send-keys -t 'System':2.2 'newsbeuter' C-m
+
+    tmux select-pane 'System':0
+fi

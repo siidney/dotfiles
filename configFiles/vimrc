@@ -15,7 +15,6 @@ Plugin 'chrisyip/Better-CSS-Syntax-for-Vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'sudar/vim-arduino-syntax'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'vim-scripts/CSApprox'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline'
 Plugin 'tikhomirov/vim-glsl'
@@ -23,6 +22,8 @@ Plugin 'elzr/vim-json'
 Plugin 'msanders/snipmate.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-scripts/Vim-R-plugin'
+Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 filetype plugin indent on
@@ -81,8 +82,11 @@ let mapleader=","
 "  COLOURS
 " -----------------------------
 " color scheme
+"let g:solarized_termcolor=256
+set t_Co=256
 set background=dark
 colorscheme Sunburst
+"colorscheme solarized
 
 " -----------------------------
 "  SEARCHING
@@ -161,7 +165,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " ----------------------------
 "  FILETYPE SETS
 " ----------------------------
-" autocmd BufNewFile,Bufread *.json set ft=javascript
+au BufNewfile,BufRead *.endfile set filetype=endfile
+au BufNewFile,Bufread *.json set filetype=javascript
 
 " ----------------------------
 "  TEMPLATE FILES

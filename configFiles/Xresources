@@ -11,8 +11,10 @@
 ! URxvt*scrollBar_right:                boolean
 ! URxvt*scrollBar_floating:             boolean
 ! URxvt*scrollBar_align:                mode
+ URxvt*secondaryScreen:                1
+ URxvt*secondaryScroll:                0
 ! URxvt*thickness:                      number
-! URxvt*scrollTtyOutput:                boolean
+! URxvt*scrollTtyOutput:                false
 ! URxvt*scrollTtyKeypress:              boolean
 ! URxvt*scrollWithBuffer:               boolean
 ! URxvt*inheritPixmap:                  boolean
@@ -35,18 +37,19 @@
 ! URxvt*pointerBlank:                   boolean
 
 ! Xft font config
-Xft.lcdfilter: lcddefault
-Xft.antialias: true
-Xft.autohint: 0
-Xft.hinting: true
-Xft.hintstyle: hintfull
-Xft.rgba: rgb
-Xft.dpi: 101
+Xft.lcdfilter:  lcddefault
+Xft.antialias:  true
+Xft.autohint:   0
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+Xft.rgba:       rgb
+Xft.dpi:        101
 
  URxvt*font:                            xft:bitstream vera sans mono:size=10:antialias=true
  URxvt*boldFont:                        xft:bitstream vera sans mono:bold:size=10:antialias=true
 ! URXVT*font:                            xft:terminus-10:hinting=true:antialias=true
  URxvt*letterSpace:                     -1
+ URxvt*lineSpace:                       1
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
  URxvt*intensityStyles:                false
@@ -130,7 +133,7 @@ URxvt.colorUL: #4682B4
 
 *.foreground:   #ffffff
 *.background:   #111111
-*.cursorColor:  #ffffff
+*.cursorColor:  #FCF5E7
 
 ! black
 URxvt*color0:      #000000
@@ -156,5 +159,3 @@ URxvt*color14:     #34E2E2
 ! white
 URxvt*color7:      #D3D7CF
 URxvt*color15:     #ECEDEE
-
-!#include "/home/siid/Downloads/solarized/xresources-colors-solarized/Xresources"

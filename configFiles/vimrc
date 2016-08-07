@@ -5,137 +5,175 @@ set nocompatible    " turn off vi compatibility
 filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'chrisyip/Better-CSS-Syntax-for-Vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'sudar/vim-arduino-syntax'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'bling/vim-airline'
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'elzr/vim-json'
-Plugin 'msanders/snipmate.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'vim-scripts/Vim-R-plugin'
-Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'MarcWeber/vim-addon-mw-utils'       " snipmate
+Plugin 'tomtom/tlib_vim'                    " snipmate
+Plugin 'garbas/vim-snipmate'                " snipmate
+Plugin 'jiangmiao/auto-pairs'               " auto close brackets
+Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting
+Plugin 'siidney/vim-php-html-indent'        " php html indent fix
+Plugin 'sickill/vim-sunburst'               " color scheme
+"Plugin 'hail2u/vim-css3-syntax'
+"Plugin 'flazz/vim-colorschemes'
+"Plugin 'sudar/vim-arduino-syntax'
+"Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()
-filetype plugin indent on
+
+if has('autocmd')
+    filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax:on')
+    syntax enable
+endif
 
 " -----------------------------
 "  GENERAL SETTINGS
 " -----------------------------
-" use .vimrc files from current dir if present
-set exrc
-" visual autocomplete for cmd menu
-set showcmd
-" restrict usage of some commands for non default .vimrc
-set secure
-" set shell
-set shell=/bin/zsh
-
-syntax enable       " syntax highlighting
-set number          " turn on line numbers
-set mouse=a         " enable all mouse features
-set statusline+=%F
-set nospell
-
-" reload files edited outside of vim
-set autoread
-
-" create <filename>.un~ for undo after file close
-set undofile
-
-" encoding is utf-8
+set exrc                        " use .vimrc files from current dir if present
+set showcmd			" visual autocomplete for cmd menu
+set secure			" restrict usage for non default .vimrc
+set shell=/bin/zsh		" set shell
 set encoding=utf-8
 set fileencoding=utf-8
+set fileformat=unix		" set unix line endings
+set fileformats=unix,dos	" line ending order for existing and new buffers
+set autoread			" reload files edited outside of vim
+set autoindent 			" set indent based on line above
+set backspace=indent,eol,start 	" make backspace work
+set complete-=1			" enable Ctrl-P Ctrl-N autocomplete
+set smarttab
+set nrformats-=octal		" Ctrl-A increments Ctrl-X decrements numbers
+set ttimeout			" allows key timeouts in command mode
+set ttimeoutlen=100		" set timeout length
+set ruler			" show line and col number of cursor position
+set number			" show line numbers
+set undofile			" create <filename>.un~ for undo after file close
 
-" set unix line endings
-set fileformat=unix
-" when reading new files try unix line endings, then dos. use unix for new buffers
-set fileformats=unix,dos
 " indentation
-set expandtab " use spaces instead of tab
-set autoindent " autoindent based on line above
-set smartindent " smarter indent for c-like languages
-set shiftwidth=4 " when reading, tabs are 4 spaces
-set softtabstop=4 " in insert mode, tabs are 4 spaces
-" limit line width to 80 and highlight col 80
-set textwidth=80
-if(exists('+colorcolumn'))
-    set colorcolumn=81
-    highlight ColorColumn ctermbg=8
+set expandtab			" use spaces instead of tabs
+set autoindent			" indent based on indentation of line above
+set smartindent			" smarter indent for c-like languages
+set shiftwidth=4		" when reading, tabs are 4 spaces
+set softtabstop=4		" insert mode tabs are 4 spaces
+
+" limit line width to 80 and hightlight col 80
+if !&textwidth
+    set textwidth=80
+    if(exists('+colorcolumn'))
+        set colorcolumn=81
+        highlight ColorColumn ctermbg=8
+    endif
 endif
 
-" change explorer style to tree
-let g:netrw_liststyle=3
-" change leader key to ,
-let mapleader=","
+if !&scrolloff
+    set scrolloff=1		" disables set number of lines around cursor
+endif
+
+if !&sidescrolloff
+    set sidescrolloff=1		" disables set number of lines around cursor
+endif
+
+if &history < 1000
+    set history=1000		" save last 1000 changes
+endif
+
+set display+=lastline		" show as much as possible of last line
+
+if !exists('g:netrw_liststyle')
+    let g:netrw_liststyle=3     " change explorer style to tree
+endif
+
+let mapleader=","		" remap leader key
 
 " -----------------------------
 "  COLOURS
 " -----------------------------
-" color scheme
-"let g:solarized_termcolor=256
 set t_Co=256
 set background=dark
 colorscheme Sunburst
-"colorscheme solarized
+
+" -----------------------------
+"  STATUS LINE
+" -----------------------------
+
+let g:modes = {'n':'NORMAL', 'i':'INSERT', 'R':'REPLACE', 'v':'VISUAL', 'V':'V-LINE', '':'V-BLOCK'}
+
+function! ModifiedColour()
+    if mode() == 'i'
+        hi statusline ctermbg=0 ctermfg=3
+    else
+        if &mod == 1
+            hi statusline ctermbg=0 ctermfg=51
+        else
+            hi statusline ctermbg=0 ctermfg=7
+        endif
+    endif
+    return ''
+endfunction
+
+if version >= 700
+    au InsertEnter * exec ModifiedColour()
+    au InsertLeave * exec ModifiedColour()
+    au BufWritePost * exec ModifiedColour()
+endif
+
+set laststatus=2            " always show status line
+
+set statusline=
+set statusline+=%{ModifiedColour()}
+set statusline+=\ [%{get(modes,mode())}]                " show modes
+set statusline+=\ %<%f                                  " filepath
+set statusline+=\ %([%R%M%H]%)                          " readonly modified helpfile
+" right side
+set statusline+=%=
+set statusline+=\%{strlen(&ft)?&ft:'none'}\ \|          " file type
+set statusline+=\ %{&fileformat}\ \|                    " file format
+set statusline+=\ %{(&fenc!=''?&fenc:&enc)}\ \|         " file encoding
+set statusline+=\ BUF\ #%n\ \|                          " buffer number
+set statusline+=\ %l/%L                                 " current/total lines
+set statusline+=\ (%P)\ \|                              " percentage through file
+set statusline+=\ COL%4c\                               " column number
 
 " -----------------------------
 "  SEARCHING
 " -----------------------------
-set wildmenu        " visual autocomplete for cmd menu
-set showmatch       " highlight matching [{()}]
-set incsearch       " search as characters are entered
-set hlsearch        " highlight matches
+set wildmenu			" visual autocomplete for cmd menu
+set showmatch			" highlight matching [{()}]
+set incsearch			" highlight matches as characters entered
+set hlsearch			" highlight matches
 
-" <,-space> clears search
-nnoremap <leader><space> :nohlsearch<CR>
+if maparg('<silent><leader><space>', 'n') ==# ''
+    nnoremap <silent> <leader><space> :noh<CR>	" clear search
+endif
 
 " -------------------------------
 "  KEY BINDINGS
 " -------------------------------
-" buffers
-"
-" <F5> lists buffers
-":nnoremap <F5> :buffers<CR>:buffer<Space>
-nnoremap <silent> <F5> :BufExplorerV<CR>
-
-" open new empty buffer
-nnoremap <leader>B :enew<CR>
-" move to next buffer
-nnoremap <leader>l :bnext<CR>
-" move to previous buffer
-nnoremap <leader>h :bprevious<CR>
+"  buffers
+" list open buffers and prompt to switch
+nnoremap <F5> :ls<CR>:b<space>
+nnoremap <leader>B :enew<CR>            " open new empty buffer
+nnoremap <leader>l :bnext<CR>		" move to next buffer
+nnoremap <leader>h :bprevious<CR>	" previous buffer
 
 " netrw
-"
-" <F6> explorer
-nnoremap <silent> <F6> :Lexplore<CR>
+nnoremap <silent> <F6> :Lexplore<CR>    " <F6> explorer
 
-" <tab> match bracket pairs
-nnoremap <tab> %
-vnoremap <tab> %
+" disable arrow keys
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
-" disable arrow keys in insert and normal modes
-" forces use of hjkl and normal mode
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 " <F9> insert timestamp (normal and insert mode)
 nnoremap <F9> "=strftime("%d/%m/%y %H:%M:%S")<CR>P
@@ -144,42 +182,46 @@ inoremap <F9> <C-R>=strftime("%d/%m/%y %H:%M:%S")<CR>
 " -----------------------------
 "  WINDOW SPLITS
 " -----------------------------
-set splitbelow
-set splitright
-
-" manage window splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+set splitbelow      " :split sets new window below current
+set splitright      " :vsplit sets new window to right of current
 
 " -----------------------------
 "  PLUGINS
 " -----------------------------
-" vim-airline
-" enable list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
 
 " ----------------------------
 "  FILETYPE SETS
 " ----------------------------
-au BufNewfile,BufRead *.endfile set filetype=endfile
-au BufNewFile,Bufread *.json set filetype=javascript
+au BufNewFile,BufRead *.endfile set filetype=endfile
+
+" ----------------------------
+"  STRIP WHITESPACE
+" ----------------------------
+highlight default ExtraWhitespace ctermbg=darkred
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred
+
+" show trailing whitespace
+:match ExtraWhitespace /\s\+\%#\@<!$/
+:au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+:au InsertLeave * match ExtraWhitespace /\s\+$/
+
+function! StripWhitespace()
+    let l:save_cursor = getpos('.')
+    :%s/\s\+$//e
+    call setpos('.', l:save_cursor)
+endfunction
+
+command! StripWhitespace call StripWhitespace()
 
 " ----------------------------
 "  TEMPLATE FILES
 " ----------------------------
-"  static
-"au BufNewFile *.cpp 0r ~/.vim/templates/skel.cpp
-
 function! Template()
     " read in template files
-    let filepath = '~/.vim/templates/skel.'.expand("%:e")
+    let filepath = '$HOME/.vim/templates/skel.'.expand("%:e")
     " ensure file exists
     if filereadable(expand(filepath))
-        silent! execute '0r ~/.vim/templates/skel.'.expand("<afile>:e")
+        silent! execute '0r $HOME/.vim/templates/skel.'.expand("<afile>:e")
         " parse special text in templates after read
         %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
         " go to end of description line and enter insert mode

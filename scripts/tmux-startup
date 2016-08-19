@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# send-keys is used so pane doesn't close after program execution ends
+
 # COMMUNICATION
 
 tmux has-session -t 'Communication' # prevent duplicates

@@ -5,6 +5,7 @@ alsa-tools
 alsa-utils
 android-tools
 android-udev
+apache
 aria2
 aspell-en
 autoconf
@@ -46,11 +47,13 @@ extundelete
 fakeroot
 feh
 ffmpeg0.10
+ffmpeg2.8
 file
 filesystem
 filezilla
 findutils
 firefox
+firejail
 freeglut
 fuseiso
 gamin
@@ -118,7 +121,9 @@ less
 lib32-alsa-plugins
 lib32-atk
 lib32-cairo
+lib32-dbus-glib
 lib32-fakeroot
+lib32-gconf
 lib32-gnutls
 lib32-gtk2
 lib32-libcups
@@ -148,6 +153,7 @@ libcec
 libdvdcss
 libgnome-keyring
 libgnomeui
+libmatroska
 libmythes
 libreoffice-fresh
 libtool
@@ -209,6 +215,8 @@ perl-data-dump
 perl-file-mimeinfo
 perl-json-xs
 perl-yaml
+php
+php-apache
 pkg-config
 pkgstats
 pngcrush
@@ -280,7 +288,9 @@ vim
 webkitgtk2
 wget
 which
+wine
 winetricks
+wordpress
 words
 xclip
 xf86-input-mouse

@@ -84,6 +84,7 @@ get_spacer_seconds(){
         spacer2=":"
     fi
 }
+
 echo -e "\E[0,36mPlease input the countdown time in (hh mm ss): "
 tput sgr0
 read hours minutes seconds
@@ -115,7 +116,6 @@ while [ $total -gt 0 ]; do
     get_spacer_seconds
 
     redraw $hours$spacer1$minutes$spacer2$seconds
-    #redraw $total
 
     if [ $minutes -eq 0 ] && [ $hours -gt 0 ] && [ $seconds -eq 0 ]
     then

@@ -8,27 +8,23 @@
 /build
 *.so
 
-# logs
-/logs
-*.log
-
 # rtorrent session/watch folders
 /rTorrent/.rtorrent/session
 /rTorrent/.rtorrent/watch
 
 # backup files
-*.*~
+*~
 
 # vim swap files
 *.swo
 *.swp
 
 # vim extended undo files
-*.un~
 /include
-*.un~
+*~
 /src
-*.un~
+*~
+
 .netrwhist
 
 # vim bundles

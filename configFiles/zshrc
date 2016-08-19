@@ -17,6 +17,8 @@ alias wine32="WINEPREFIX='/home/siid/.wine32'"
 alias skyrim="WINEPREFIX='/home/siid/.TESV'"
 # Fallout New Vegas
 alias fnv="WINEPREFIX='/home/siid/.FNV'"
+# Vampire The Masquerade Bloodlines
+alias vtmb="WINEARCH=win32 WINEPREFIX='/home/siid/.VTMB'"
 
 autoload -Uz compinit
 compinit

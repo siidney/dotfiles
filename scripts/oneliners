@@ -9,3 +9,11 @@ find . -type f ! -name "*.?*" -delete
 
 # search and replace multiple files recursively
 find .type -f -exec sed -i 's/search/replace/g' {} \;
+
+# add current working directory to xclip
+pwd | xclip
+# change current directory to contents of xclip
+cd $(xclip -o)
+
+# ctags
+ctags -R --c++-kinds=+p

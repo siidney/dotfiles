@@ -1,31 +1,6 @@
-# compiled executable
-/main
-
-# compiled object files
-*.o
-
-# compiled dynamic libraries
-/build
-*.so
-
 # rtorrent session/watch folders
 /rTorrent/.rtorrent/session
 /rTorrent/.rtorrent/watch
-
-# backup files
-*~
-
-# vim swap files
-*.swo
-*.swp
-
-# vim extended undo files
-/include
-*~
-/src
-*~
-
-.netrwhist
 
 # vim bundles
 **/bundle

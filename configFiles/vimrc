@@ -1,7 +1,7 @@
 " -----------------------------
 "  VUNDLE
 " -----------------------------
-set nocompatible    " turn off vi compatibility
+"set nocompatible    " turn off vi compatibility
 filetype off
 
 " set the runtime path to include Vundle and initialize
@@ -17,11 +17,11 @@ Plugin 'jiangmiao/auto-pairs'               " auto close brackets
 Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting
 Plugin 'siidney/vim-php-html-indent'        " php html indent fix
 Plugin 'sickill/vim-sunburst'               " color scheme
-Plugin 'scrooloose/syntastic'               " Syntax checking
+Plugin 'maralla/validator.vim'              " linting
 
 call vundle#end()
 
-if has('autocmd')
+if has('au')
     filetype plugin indent on
 endif
 if has('syntax') && !exists('g:syntax:on')
@@ -85,7 +85,7 @@ if !exists('g:netrw_liststyle')
     let g:netrw_liststyle=3     " change explorer style to tree
 endif
 
-let mapleader=","		" remap leader key
+let mapleader=','		" remap leader key
 
 " -----------------------------
 "  COLOURS
@@ -101,7 +101,7 @@ colorscheme Sunburst
 let g:modes = {'n':'NORMAL', 'i':'INSERT', 'R':'REPLACE', 'v':'VISUAL', 'V':'V-LINE', '':'V-BLOCK'}
 
 function! ModifiedColour()
-    if mode() == 'i'
+    if mode() ==# 'i'
         hi statusline ctermfg=0 ctermbg=3
     else
         if &mod == 1
@@ -113,10 +113,13 @@ function! ModifiedColour()
     return ''
 endfunction
 
-if version >= 700
-    au InsertEnter * exec ModifiedColour()
-    au InsertLeave * exec ModifiedColour()
-    au BufWritePost * exec ModifiedColour()
+if v:version >= 700
+    augroup statusline
+        au!
+        au InsertEnter * exec ModifiedColour()
+        au InsertLeave * exec ModifiedColour()
+        au BufWritePost * exec ModifiedColour()
+    augroup END
 endif
 
 hi statusline ctermfg=15 ctermbg=8
@@ -181,6 +184,19 @@ nnoremap <F8> <Esc>:!grip -b %<CR><CR>
 nnoremap <F9> "=strftime("%d/%m/%y %H:%M:%S")<CR>P
 inoremap <F9> <C-R>=strftime("%d/%m/%y %H:%M:%S")<CR>
 
+" jj to exit insert mode
+imap jk <Esc>
+
+" reload vimrc
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" save file
+nnoremap <leader>s :w<CR>
+inoremap <leader>s <C-c>:w<CR>
+
+" enter command line mode
+nnoremap <Space>  :
+
 " -----------------------------
 "  WINDOW SPLITS
 " -----------------------------
@@ -190,17 +206,15 @@ set splitright      " :vsplit sets new window to right of current
 " -----------------------------
 "  PLUGINS
 " -----------------------------
-" syntastic
-set statusline+=%#warningsmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" validator
+" select checkers
+let g:validator_javascript_checkers = ['jshint']
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" permanently show sign column
+let g:validator_permament_sign = 1
 
-nnoremap <F7> :SyntasticToggleMode<CR>
+" auto-open quickfix window
+"let g:validator_auto_open_quickfix = 1
 
 " ----------------------------
 "  FILETYPE SETS
@@ -211,17 +225,24 @@ au BufNewFile,BufRead *.endfile set filetype=endfile
 "  STRIP WHITESPACE
 " ----------------------------
 highlight default ExtraWhitespace ctermbg=darkred
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred
+augroup whiteSpace_highlight
+    au!
+    :au ColorScheme * highlight ExtraWhitespace ctermbg=darkred
+augroup END
 
 " show trailing whitespace
 :match ExtraWhitespace /\s\+\%#\@<!$/
-:au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-:au InsertLeave * match ExtraWhitespace /\s\+$/
+
+augroup whiteSpace
+    au!
+    :au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    :au InsertLeave * match ExtraWhitespace /\s\+$/
+augroup END
 
 function! StripWhitespace()
-    let l:save_cursor = getpos('.')
-    :%s/\s\+$//e
-    call setpos('.', l:save_cursor)
+    let l:save_cursor = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:save_cursor)
 endfunction
 
 command! StripWhitespace call StripWhitespace()
@@ -231,23 +252,26 @@ command! StripWhitespace call StripWhitespace()
 " ----------------------------
 function! Template()
     " read in template files
-    let filepath = '$HOME/.vim/templates/skel.'.expand("%:e")
+    let filepath = '$HOME/.vim/templates/skel.'.expand('%:e')
     " ensure file exists
     if filereadable(expand(filepath))
-        silent! execute '0r $HOME/.vim/templates/skel.'.expand("<afile>:e")
+        silent! execute '0r $HOME/.vim/templates/skel.'.expand('<afile>:e')
         " parse special text in templates after read
         %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+
         " go to end of description line and enter insert mode
-        execute "normal! gg"
-        if search("Description")
-            execute "normal! gg/Description:\<cr>"
-            execute "normal! :nohlsearch<cr>"
-            execute ":startinsert!"
+        let desc = search('Description')
+
+        if desc > 0
+            execute 'normal! :cursor(desc)<CR>'
         else
-            execute "normal! G"
-            execute ":startinsert!"
+            execute 'normal! G'
         endif
+        execute ':startinsert!'
     endif
 endfunction
 
-autocmd BufNewfile * call Template()
+augroup templates
+    au!
+    au BufNewfile * call Template()
+augroup END

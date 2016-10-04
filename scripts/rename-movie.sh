@@ -1,5 +1,5 @@
-# script to format movie files
 #!/bin/sh
+# script to format movie files
 
 # extract and store extension
 get_extension(){
@@ -64,7 +64,7 @@ rename(){
 # get rawfile
 if [ $# -eq 0 ]
 then
-    echo -e "\E[0,36mPlease input a media filename to be renamed: "
+    printf "\E[0,36mPlease input a media filename to be renamed: "
     read rawfile
 else
     rawfile=$1
@@ -76,5 +76,5 @@ then
     extension=$(get_extension)
     format_file rawfile
 else
-    echo -e "\E[0,36mERROR: file not found!"
+    printf "\E[0,36mERROR: file not found!\n"
 fi

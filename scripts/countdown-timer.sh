@@ -1,5 +1,5 @@
-# simple bash countdown timer
 #!/bin/sh
+# simple bash countdown timer
 
 # play the alarm
 sound_alarm(){
@@ -9,7 +9,7 @@ sound_alarm(){
     while [ $COUNTER -lt 3 ]; do
         # sound the alarm
         mpg123 -q ~/Sounds/Woop-Woop-SoundBible.com-198943467.mp3
-        let COUNTER++
+        : $((COUNTER+=1))
     done
 }
 # check status of mpd
@@ -30,7 +30,7 @@ mpc_status(){
 }
 # clear screen and move cursor
 redraw(){
-    local str width height length
+    str width height length
 
     width=$(tput cols)
     height=$(tput lines)
@@ -38,9 +38,9 @@ redraw(){
     # clear the screen
     clear
     tput cup $(((height -1) / 2)) $(((width / 2) - (${#timer} / 2)))
-    echo -ne "\E[0.36m" $timer \\r
+    printf "\E[0;36m %s" "$timer"
     tput cup $((height/ 2)) $(((width / 2) - (${#1} / 2)))
-    echo -ne "\E[0,36m" $1 \\r
+    printf "\E[0;36m %s" "$1"
 }
 # validate input (check seconds and minutes not greater than 59)
 validate(){
@@ -53,7 +53,7 @@ validate(){
     if [ $seconds -gt 59 ]
     then
         while [ $seconds -ge 60 ]; do
-            let minutes++
+            : $((minutes+=1))
             seconds=$((seconds-60))
         done
     fi
@@ -62,7 +62,7 @@ validate(){
     if [ $minutes -gt 59 ]
     then
         while [ $minutes -ge 60 ]; do
-            let hours++
+            : $((hours+=1))
             minutes=$((minutes-60))
         done
     fi
@@ -85,7 +85,7 @@ get_spacer_seconds(){
     fi
 }
 
-echo -e "\E[0,36mPlease input the countdown time in (hh mm ss): "
+printf "\E[0,36mPlease input the countdown time in (hh mm ss): "
 tput sgr0
 read hours minutes seconds
 
@@ -119,23 +119,23 @@ while [ $total -gt 0 ]; do
 
     if [ $minutes -eq 0 ] && [ $hours -gt 0 ] && [ $seconds -eq 0 ]
     then
-        let hours--
+        : $((hours-=1))
         minutes=60
     fi
 
     if [ $seconds -eq 0 ] && [ $minutes -gt 0 ]
     then
-        let minutes--
+        : $((minutes-=1))
         seconds=60
     fi
 
     if [ $hours -eq 0 ] && [ $minutes -eq 0 ] && [ $seconds -le 3 ]
     then
-        echo -ne "\a" \\r
+        printf "\a"
     fi
 
-    let seconds--
-    let total--
+    : $((seconds-=1))
+    : $((total-=1))
 
     sleep 1
 done
@@ -145,6 +145,6 @@ tput sgr0
 # restore screen
 tput rmcup
 
-echo "$timer FINISHED: $strTotal"
+printf "%s FINISHED: %s" "$timer" "$strTotal"
 
 mpc_status

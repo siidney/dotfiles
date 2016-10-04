@@ -1,9 +1,9 @@
-# feh! slideshow wrapper script
 #!/bin/sh
+# feh! slideshow wrapper script
 
 # prompt for directory
 directory_prompt(){
-    echo -e "\E[0,36mPlease intput the dir path: "
+    printf "\E[0,36mPlease intput the dir path: "
     read dir
 }
 

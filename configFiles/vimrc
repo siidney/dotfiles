@@ -1,7 +1,6 @@
 " -----------------------------
 "  VUNDLE
 " -----------------------------
-"set nocompatible    " turn off vi compatibility
 filetype off
 
 " set the runtime path to include Vundle and initialize
@@ -50,6 +49,8 @@ set ttimeoutlen=100		" set timeout length
 set ruler			" show line and col number of cursor position
 set number			" show line numbers
 set undofile			" create <filename>.un~ for undo after file close
+set vb t_vb=                    " turn off system beeps
+
 
 " indentation
 set expandtab			" use spaces instead of tabs
@@ -81,11 +82,16 @@ endif
 
 set display+=lastline		" show as much as possible of last line
 
+let mapleader=','		" remap leader key
+
+" File Browsing
+if !exists('g:newtw_banner')
+    let g:netrw_banner=0        " disable banner
+endif
+
 if !exists('g:netrw_liststyle')
     let g:netrw_liststyle=3     " change explorer style to tree
 endif
-
-let mapleader=','		" remap leader key
 
 " -----------------------------
 "  COLOURS
@@ -144,6 +150,7 @@ set statusline+=\ COL%4c\                               " column number
 " -----------------------------
 "  SEARCHING
 " -----------------------------
+set path+=**                    " tab-completion for all file-related tasks
 set wildmenu			" visual autocomplete for cmd menu
 set showmatch			" highlight matching [{()}]
 set incsearch			" highlight matches as characters entered
@@ -159,9 +166,12 @@ endif
 "  buffers
 " list open buffers and prompt to switch
 nnoremap <F5> :ls<CR>:b<space>
-nnoremap <leader>B :enew<CR>            " open new empty buffer
-nnoremap <leader>l :bnext<CR>		" move to next buffer
-nnoremap <leader>h :bprevious<CR>	" previous buffer
+" open new empty buffer
+nnoremap <leader>B :enew<CR>
+" move to next buffer
+nnoremap <leader>l :bnext<CR>
+" move to previous buffer
+nnoremap <leader>h :bprevious<CR>
 
 " netrw
 nnoremap <silent> <F6> :Lexplore<CR>    " <F6> explorer
@@ -219,7 +229,10 @@ let g:validator_permament_sign = 1
 " ----------------------------
 "  FILETYPE SETS
 " ----------------------------
-au BufNewFile,BufRead *.endfile set filetype=endfile
+augroup filetype_set
+    au!
+    au BufNewFile,BufRead *.endfile set filetype=endfile
+augroup END
 
 " ----------------------------
 "  STRIP WHITESPACE
@@ -227,7 +240,7 @@ au BufNewFile,BufRead *.endfile set filetype=endfile
 highlight default ExtraWhitespace ctermbg=darkred
 augroup whiteSpace_highlight
     au!
-    :au ColorScheme * highlight ExtraWhitespace ctermbg=darkred
+    au ColorScheme * highlight ExtraWhitespace ctermbg=darkred
 augroup END
 
 " show trailing whitespace
@@ -235,8 +248,8 @@ augroup END
 
 augroup whiteSpace
     au!
-    :au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    :au InsertLeave * match ExtraWhitespace /\s\+$/
+    au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    au InsertLeave * match ExtraWhitespace /\s\+$/
 augroup END
 
 function! StripWhitespace()
@@ -261,7 +274,6 @@ function! Template()
 
         " go to end of description line and enter insert mode
         let desc = search('Description')
-
         if desc > 0
             execute 'normal! :cursor(desc)<CR>'
         else

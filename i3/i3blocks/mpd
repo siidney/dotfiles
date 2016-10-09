@@ -1,10 +1,10 @@
-# Display current MPD information
 #!/bin/sh
+# Display current MPD information
 
 # check status of mpd
 mpc_status(){
     for i in $( mpc --format "" ); do
-        local a=$i
+        a=$i
         break
     done
 

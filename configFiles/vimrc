@@ -51,7 +51,6 @@ set number			" show line numbers
 set undofile			" create <filename>.un~ for undo after file close
 set vb t_vb=                    " turn off system beeps
 
-
 " indentation
 set expandtab			" use spaces instead of tabs
 set autoindent			" indent based on indentation of line above
@@ -156,8 +155,9 @@ set showmatch			" highlight matching [{()}]
 set incsearch			" highlight matches as characters entered
 set hlsearch			" highlight matches
 
+" clear search
 if maparg('<silent><leader><space>', 'n') ==# ''
-    nnoremap <silent> <leader><space> :noh<CR>	" clear search
+    nnoremap <silent> <leader><space> :noh<CR>
 endif
 
 " -------------------------------
@@ -194,7 +194,7 @@ nnoremap <F8> <Esc>:!grip -b %<CR><CR>
 nnoremap <F9> "=strftime("%d/%m/%y %H:%M:%S")<CR>P
 inoremap <F9> <C-R>=strftime("%d/%m/%y %H:%M:%S")<CR>
 
-" jj to exit insert mode
+" jk to exit insert mode
 imap jk <Esc>
 
 " reload vimrc
@@ -206,6 +206,14 @@ inoremap <leader>s <C-c>:w<CR>
 
 " enter command line mode
 nnoremap <Space>  :
+
+" xclip
+" pipe contents of paste buffer to xclip
+nnoremap <silent><leader>xo :call system('xclip', @0)<CR>
+
+" paste contents of xclip
+nnoremap <silent><leader>xi :execute 'r! xclip -o'<CR>
+inoremap <silent><leader>xi <esc>:execute 'r! xclip -o'<CR>i
 
 " -----------------------------
 "  WINDOW SPLITS

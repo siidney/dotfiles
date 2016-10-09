@@ -71,7 +71,7 @@ else
 fi
 
 # ensure file exists
-if [[ -f "${rawfile:-no-such-file}" ]]
+if [ -f "${rawfile:-no-such-file}" ]
 then
     extension=$(get_extension)
     format_file rawfile

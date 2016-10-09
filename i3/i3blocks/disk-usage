@@ -1,5 +1,5 @@
-# Display disk usage information
 #!/bin/sh
+# Display disk usage information
 
 root(){
     df -h / | grep '/' | awk '{
@@ -36,12 +36,12 @@ home(){
         }'
 }
 
-if [[ -n $BLOCK_INSTANCE ]]
+if [ -n "$BLOCK_INSTANCE" ]
 then
-    if [ $BLOCK_INSTANCE == "root" ]
+    if [ $BLOCK_INSTANCE = "root" ]
     then
         root
-    elif [ $BLOCK_INSTANCE == "home" ]
+    elif [ $BLOCK_INSTANCE = "home" ]
     then
         home
     fi

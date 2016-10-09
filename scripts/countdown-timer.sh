@@ -37,6 +37,7 @@ redraw(){
 
     # clear the screen
     clear
+    tput civis
     tput cup $(((height -1) / 2)) $(((width / 2) - (${#timer} / 2)))
     printf "\E[0;36m %s" "$timer"
     tput cup $((height/ 2)) $(((width / 2) - (${#1} / 2)))
@@ -145,6 +146,6 @@ tput sgr0
 # restore screen
 tput rmcup
 
-printf "%s FINISHED: %s" "$timer" "$strTotal"
+printf "%s FINISHED: %s\n" "$timer" "$strTotal"
 
 mpc_status

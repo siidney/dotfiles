@@ -2,7 +2,7 @@
 
 ip=$(wget -qO - http://ipinfo.io/ip)
 
-if [ -n $ip ]
+if [ -n "$ip" ]
 then
     echo $ip
 else

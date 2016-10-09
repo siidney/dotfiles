@@ -1,4 +1,5 @@
 #!/bin/sh
+# Basic i3 run or raise(focus)
 
 if [ "$(pidof $1)" ]
 then

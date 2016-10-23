@@ -4,7 +4,7 @@
 filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$HOME/.vim/bundle/Vundle.vim
+set runtimepath+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -16,7 +16,7 @@ Plugin 'jiangmiao/auto-pairs'               " auto close brackets
 Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting
 Plugin 'siidney/vim-php-html-indent'        " php html indent fix
 Plugin 'sickill/vim-sunburst'               " color scheme
-Plugin 'maralla/validator.vim'              " linting
+Plugin 'w0rp/ale'                           " linting
 
 call vundle#end()
 
@@ -49,9 +49,9 @@ set ttimeoutlen=100		" set timeout length
 set ruler			" show line and col number of cursor position
 set number			" show line numbers
 set undofile			" create <filename>.un~ for undo after file close
-set vb t_vb=                    " turn off system beeps
+set visualbell t_vb=            " turn off system beeps
 
-" indentation
+" INDENTATION
 set expandtab			" use spaces instead of tabs
 set autoindent			" indent based on indentation of line above
 set smartindent			" smarter indent for c-like languages
@@ -81,7 +81,7 @@ endif
 
 set display+=lastline		" show as much as possible of last line
 
-let mapleader=','		" remap leader key
+let g:mapleader=','		" remap leader key
 
 " File Browsing
 if !exists('g:newtw_banner')
@@ -109,7 +109,7 @@ function! ModifiedColour()
     if mode() ==# 'i'
         hi statusline ctermfg=0 ctermbg=3
     else
-        if &mod == 1
+        if &modified == 1
             hi statusline ctermfg=0 ctermbg=51
         else
             hi statusline ctermfg=15 ctermbg=8
@@ -224,15 +224,14 @@ set splitright      " :vsplit sets new window to right of current
 " -----------------------------
 "  PLUGINS
 " -----------------------------
-" validator
-" select checkers
-let g:validator_javascript_checkers = ['jshint']
+" ale
+let g:ale_linters = {
+\    'javascript': ['eslint']
+\}
 
-" permanently show sign column
-let g:validator_permament_sign = 1
-
-" auto-open quickfix window
-"let g:validator_auto_open_quickfix = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 
 " ----------------------------
 "  FILETYPE SETS
@@ -246,6 +245,7 @@ augroup END
 "  STRIP WHITESPACE
 " ----------------------------
 highlight default ExtraWhitespace ctermbg=darkred
+
 augroup whiteSpace_highlight
     au!
     au ColorScheme * highlight ExtraWhitespace ctermbg=darkred
@@ -273,16 +273,16 @@ command! StripWhitespace call StripWhitespace()
 " ----------------------------
 function! Template()
     " read in template files
-    let filepath = '$HOME/.vim/templates/skel.'.expand('%:e')
+    let l:filepath = '$HOME/.vim/templates/skel.'.expand('%:e')
     " ensure file exists
-    if filereadable(expand(filepath))
+    if filereadable(expand(l:filepath))
         silent! execute '0r $HOME/.vim/templates/skel.'.expand('<afile>:e')
         " parse special text in templates after read
         %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 
         " go to end of description line and enter insert mode
-        let desc = search('Description')
-        if desc > 0
+        let l:desc = search('Description')
+        if l:desc > 0
             execute 'normal! :cursor(desc)<CR>'
         else
             execute 'normal! G'

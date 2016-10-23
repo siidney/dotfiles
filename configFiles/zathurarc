@@ -5,6 +5,8 @@ set pages-per-row 1
 set render-loading true
 set window-title-page true
 #set recolor true
+set statusbar-h-padding 0
+set statusbar-v-padding 0
 
 # key bindings
 map [normal]        <F11> toggle_fullscreen

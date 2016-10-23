@@ -19,7 +19,7 @@ mpc_status(){
         break
     done
 
-    if [ $a = "[playing]" ]
+    if [ "$a" = "[playing]" ]
     then
         mpc toggle > /dev/null
         sound_alarm
@@ -88,7 +88,7 @@ get_spacer_seconds(){
 
 printf "\E[0,36mPlease input the countdown time in (hh mm ss): "
 tput sgr0
-read hours minutes seconds
+read -r hours minutes seconds
 
 # save the screen
 tput smcup
@@ -116,15 +116,15 @@ while [ $total -gt 0 ]; do
     get_spacer_minutes
     get_spacer_seconds
 
-    redraw $hours$spacer1$minutes$spacer2$seconds
+    redraw "$hours$spacer1$minutes$spacer2$seconds"
 
-    if [ $minutes -eq 0 ] && [ $hours -gt 0 ] && [ $seconds -eq 0 ]
+    if [ "$minutes" -eq 0 ] && [ "$hours" -gt 0 ] && [ "$seconds" -eq 0 ]
     then
         : $((hours-=1))
         minutes=60
     fi
 
-    if [ $seconds -eq 0 ] && [ $minutes -gt 0 ]
+    if [ "$seconds" -eq 0 ] && [ "$minutes" -gt 0 ]
     then
         : $((minutes-=1))
         seconds=60

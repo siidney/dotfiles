@@ -3,10 +3,10 @@
 
 # extract and store extension
 get_extension(){
-    local ext=${rawfile:(-4)}
+    ext=${rawfile:(-4)}
 
     # account for extensions such as mpeg
-    if [[ ${ext:0:1} != "." ]]
+    if [ "${ext:0:1}" != "." ]
     then
         echo ".$ext"
     else
@@ -15,46 +15,44 @@ get_extension(){
 }
 # filename format entry point
 format_file(){
-    noext=$(drop_extension $1)
+    noext=$(drop_extension "$1")
 
-    bracketdate=$(bracket_date $noext)
+    bracketdate=$(bracket_date "$noext")
 
-    spaces=$(add_spaces $bracketdate)
+    spaces=$(add_spaces "$bracketdate")
 
-    rename $spaces
+    rename "$spaces"
 }
 # drop extension from rawfile
 drop_extension(){
-    echo ${rawfile%$extension}
+    echo "${rawfile%$extension}"
 }
 # add brackets around date
 bracket_date(){
     # check if filename contains date
     # if so bracket, if not return original string
-    if [[ $1 =~ [0-9]{4} ]]
+    if [[ "$1" =~ [0-9]{4} ]]
     then
         date=$BASH_REMATCH
         repl="[$date]"
 
-        echo ${1/$date/$repl}
+        echo "${1/$date/$repl}"
     else
-        echo $1
+        echo "$1"
     fi
 }
 # replaces . with spaces
 add_spaces(){
     match="."
     repl=' '
-    echo ${1//$match/$repl}
+    echo "${1//$match/$repl}"
 }
 # append file extension and rename rawfile
 rename(){
      formattedfile=$*$extension
 
-     mv "$rawfile" "$formattedfile"
-
      # check exit code of mv
-     if [ $? -eq 0 ]
+     if [ "$(mv "$rawfile" "$formattedfile")" -eq 0 ]
      then
          echo "File rename successful."
      else
@@ -65,7 +63,7 @@ rename(){
 if [ $# -eq 0 ]
 then
     printf "\E[0,36mPlease input a media filename to be renamed: "
-    read rawfile
+    read -r rawfile
 else
     rawfile=$1
 fi

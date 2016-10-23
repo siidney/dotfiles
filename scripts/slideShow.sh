@@ -4,7 +4,7 @@
 # prompt for directory
 directory_prompt(){
     printf "\E[0,36mPlease intput the dir path: "
-    read dir
+    read -r dir
 }
 
 # check for directory and flags
@@ -19,4 +19,4 @@ else
     done
 fi
 
-feh -s --recursive --slideshow-delay 5.0 --fullscreen --auto-zoom $dir
+feh -s --recursive --slideshow-delay 5.0 --fullscreen --auto-zoom "$dir"

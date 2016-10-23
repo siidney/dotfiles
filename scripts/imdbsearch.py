@@ -25,13 +25,13 @@
 
 import requests
 import urllib.parse
-import json
 import operator
 
 prompt = "> "
 titlePrompt = "Enter Movie/TV Show Title: "
 typePrompt = "Enter media type to search for (movie/series/episode): "
 separator = "\n************************************"
+
 
 #
 # main menu
@@ -40,11 +40,12 @@ def main_menu():
     """
         Prints the main menu
     """
-    print ("\n################################\n")
-    print ("1. Get Movie/TV information (Known title/year)")
-    print ("2. Search for Movie/TV information (Sorted by year)")
-    print ("0. Quit")
-    print ("\n################################\n")
+    print("\n################################\n")
+    print("1. Get Movie/TV information (Known title/year)")
+    print("2. Search for Movie/TV information (Sorted by year)")
+    print("0. Quit")
+    print("\n################################\n")
+
 
 #
 # Get known movie/tv info
@@ -55,8 +56,8 @@ def get_movie_tv():
         Prints a single move/tv result from imdb
     """
 
-    print (separator)
-    print ("\nGet Movie/Tv show information: \n")
+    print(separator)
+    print("\nGet Movie/Tv show information: \n")
 
     title = input(titlePrompt)
     while(title == ""):
@@ -66,28 +67,38 @@ def get_movie_tv():
 
     # format IMDBAPI url (add '+' between title spaces, make url safe if
     # title contains non ASCII chars)
-    url = "http://www.omdbapi.com/?t=" + urllib.parse.quote_plus(title)  + "&y=" + year + "&plot=long&r=json"
+    url = "http://www.omdbapi.com/?t=" + urllib.parse.quote_plus(title)\
+        + "&y=" + year + "&plot=long&r=json"
 
     # assign create dict of json object
     jobject = serialise_response(url)
 
-    if check_response(jobject) == True:
+    if check_response(jobject) is True:
 
         title = jobject["Title"] + " [" + jobject["Year"] + "]"
-        meta = jobject["Rated"] + " | " + jobject["Runtime"] + " | " + jobject["Genre"] + " | " + jobject["Released"] + "\n"
+
+        meta = jobject["Rated"] + " | " + jobject["Runtime"] + " | "\
+            + jobject["Genre"] + " | " + jobject["Released"] + "\n"
+
         actors = "Stars: " + jobject["Actors"] + "\n"
+
         language = "Language: " + jobject["Language"] + "\n"
+
         rating = "IMDBRating: " + jobject["imdbRating"] + "\n"
+
         plot = "\n" + jobject["Plot"]
+
         link = "\n\tIMDB link: http://www.imdb.com/title/" + jobject["imdbID"]
 
-        print (separator)
-        print ("\n" + title + "\n" + meta + actors + language + rating + plot + link)
-        print (separator)
+        print(separator)
+        print("\n" + title + "\n" + meta
+              + actors + language + rating + plot + link)
+        print(separator)
 
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':
         get_movie_tv()
+
 
 #
 # Do a movie/tv search
@@ -98,8 +109,8 @@ def search_movie_tv():
         Prints 10 movie/tv search results from imdb in ascending order by year
     """
 
-    print (separator)
-    print ("\nSearch Movie/Tv info: \n")
+    print(separator)
+    print("\nSearch Movie/Tv info: \n")
 
     title = input(titlePrompt)
     while(title == ""):
@@ -109,28 +120,34 @@ def search_movie_tv():
 
     # format IMDBAPI url (add '+' between title spaces, make url safe if
     # contains non ASCII chars)
-    url = "http://www.omdbapi.com/?s=" + urllib.parse.quote_plus(title) + "&y=" + year + "&r=json"
+    url = "http://www.omdbapi.com/?s=" + urllib.parse.quote_plus(title)\
+        + "&y=" + year + "&r=json"
 
     # assign create dict of json object
     jobject = serialise_response(url)
 
-    print (separator)
-    if check_response(jobject) == True:
-        # sort by year and print required information
+    print(separator)
+    if check_response(jobject) is True:
+        # sort by year and printrequired information
         indices = sort_results(jobject["Search"])
         # select year ordered elements from the indices generated above
         for i in indices:
             mediaType = jobject["Search"][i]["Type"].capitalize() + ": "
+
             title = jobject["Search"][i]["Title"]
+
             year = jobject["Search"][i]["Year"]
-            link = "\n\tIMDB link: http://www.imdb.com/title/" + jobject["Search"][i]["imdbID"]
 
-            print (mediaType + title + " [" + year + "]" + link)
+            link = "\n\tIMDB link: http://www.imdb.com/title/"\
+                + jobject["Search"][i]["imdbID"]
 
-    print (separator)
+            print(mediaType + title + " [" + year + "]" + link)
+
+    print(separator)
     repeat = input("\nSearch Again (y/n): ")
     if repeat == 'y':
         search_movie_tv()
+
 
 #
 # Serialise the json into dict
@@ -147,12 +164,12 @@ def serialise_response(url):
     try:
         response = requests.get(url)
     except requests.exceptions.ConnectionError as e:
-        print (separator)
-        print ("The domain name does not exist.")
+        print(separator)
+        print("The domain name does not exist.")
         return
     except requests.exceptions.HTTPError as e:
-        print (separator)
-        print ("HTTPError: ", e.message)
+        print(separator)
+        print("HTTPError: ", e.message)
         return
     else:
         # no connection issues ensure reponse body is JSON
@@ -162,6 +179,7 @@ def serialise_response(url):
             raise WrongContent(response=response)
 
         return obj
+
 
 #
 # Check response code
@@ -176,15 +194,17 @@ def check_response(jobject):
     """
 
     # ensure a proper response received (internet connection)
-    if jobject == None:
+    if jobject is None:
         return False
     else:
         # check for existence of 'Error' key
         if 'Error' in jobject:
-            print ("\nError: " + jobject["Error"] + "\n")
-            print ("Check your spelling and/or try searching again with/without specific year.")
+            print("\nError: " + jobject["Error"] + "\n")
+            print("Check your spelling and/or try searching again "
+                  "with/without specific year.")
         else:
             return True
+
 
 #
 # returns a tuple of dict indices sorted by year
@@ -206,7 +226,7 @@ def sort_results(jobject):
     years = []
     indices = []
     # create list of indices and years
-    for i in range (0, resLength):
+    for i in range(0, resLength):
         # only get beginning for year to account for ranges (xxxx-xxxx)
         years.append((i, jobject[i]["Year"][:4]))
 
@@ -214,11 +234,12 @@ def sort_results(jobject):
     years.sort(key=operator.itemgetter(1))
 
     # create a list of the indices
-    for i in range (0, len(years)):
+    for i in range(0, len(years)):
         indices.extend([years[i][0]])
 
     # return a tuple of indices (immutable)
     return tuple(indices)
+
 
 #
 # MAIN
@@ -229,8 +250,8 @@ def main():
     """
 
     menuOptions = {
-        '1':get_movie_tv,
-        '2':search_movie_tv,
+        '1': get_movie_tv,
+        '2': search_movie_tv,
     }
 
     main_menu()
@@ -240,7 +261,7 @@ def main():
         try:
             menuOptions[choice]()
         except KeyError:
-            print ("Incorrect menu option.")
+            print("Incorrect menu option.")
 
         main_menu()
         choice = input(prompt)

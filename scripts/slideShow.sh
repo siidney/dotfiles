@@ -19,4 +19,4 @@ else
     done
 fi
 
-feh -s --recursive --slideshow-delay 5.0 --fullscreen --auto-zoom "$dir"
+feh -s --recursive --slideshow-delay 5.0 --fullscreen --auto-zoom $dir

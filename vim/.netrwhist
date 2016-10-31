@@ -1,6 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/siid/.dotfiles/vim/bundle'
 let g:netrw_dirhist_2='/home/siid/.dotfiles/vim/bundle/auto-pairs'
 let g:netrw_dirhist_3='/home/siid/.dotfiles/vim/bundle'
 let g:netrw_dirhist_4='/home/siid/.dotfiles/vim/bundle/Vundle.vim'
+let g:netrw_dirhist_5='/home/siid'
+let g:netrw_dirhist_6='/home/siid/Work/C++/Cpp-How-To-Program/Chapter15/exercises/15.06'
+let g:netrw_dirhist_7='/home/siid/Work/C++/Cpp-How-To-Program/Chapter15/exercises'
+let g:netrw_dirhist_8='/home/siid/Work/C++/Cpp-How-To-Program/Chapter15/exercises/15.18'
+let g:netrw_dirhist_9='/home/siid/Work/C++/Cpp-How-To-Program/Chapter15/exercises/15.06'

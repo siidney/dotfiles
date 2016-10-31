@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'       " snipmate
 Plugin 'tomtom/tlib_vim'                    " snipmate
 Plugin 'garbas/vim-snipmate'                " snipmate
+
 Plugin 'jiangmiao/auto-pairs'               " auto close brackets
 Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting
 Plugin 'siidney/vim-php-html-indent'        " php html indent fix
@@ -50,6 +51,7 @@ set ruler			" show line and col number of cursor position
 set number			" show line numbers
 set undofile			" create <filename>.un~ for undo after file close
 set visualbell t_vb=            " turn off system beeps
+set omnifunc=syntaxcomplete#Complete
 
 " INDENTATION
 set expandtab			" use spaces instead of tabs
@@ -260,7 +262,7 @@ augroup whiteSpace
     au InsertLeave * match ExtraWhitespace /\s\+$/
 augroup END
 
-function! StripWhitespace()
+function! g:StripWhitespace()
     let l:save_cursor = winsaveview()
     %s/\s\+$//e
     call winrestview(l:save_cursor)

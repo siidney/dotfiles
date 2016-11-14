@@ -1,5 +1,6 @@
 # make custom snippets override defaults
-priority 1
+# priority 2 is higher than c.snippets
+priority 2
 
 # include
 snippet inc "#include <...>"
@@ -15,8 +16,14 @@ endsnippet
 snippet main "int main(int argc, const char* argv[])"
 int main(int argc, const char* argv[]){
 	${VISUAL}${0}
+
 	return 0;
 }
+endsnippet
+
+# vector
+snippet vector "std::vector (v)"
+std::vector<${1:char}> ${2:v};${0}
 endsnippet
 
 # class
@@ -32,29 +39,89 @@ endsnippet
 
 # function definition class name
 snippet funcl "function class name" b
-${1:void} ${2:`!p snip.rv = snip.basename or "name"`}::${3:function_name}(${4})${5}{
+${1:void} ${2:`!p snip.rv = snip.basename or "name"`}::${3:func}(${4})${5}{
 	${VISUAL}${0}
 }
 endsnippet
 
 # function definition
 snippet fun "function" b
-${1:void} ${2:function_name}(${3})${4}{
+${1:void} ${2:func}(${3})${4}{
 	${VISUAL}${0}
 }
 endsnippet
 
 # function declaration
 snippet fund "function declaration" b
-${1:void} ${2:function_name}(${3})${4};
+${1:void} ${2:func}(${3})${4};
+endsnippet
+
+# empty function template
+snippet fn "function template"
+${1:func}(${2:args})${0}
+endsnippet
+
+# empty dot function template
+snippet .fn "dot function template"
+${1:obj}.${2:func}(${3:args})${0}
+endsnippet
+
+# empty ptr function template
+snippet ->fn "ptr function template"
+${1:obj}->${2:func}(${3:args})${0}
 endsnippet
 
 # for loop
 snippet for "for loop (for)"
-for(int ${1:i}=0; $1${2:<count}; ${3:++$1}){
+for(${1:int} ${2:i}=${3:0}; $2${4:<count}; ${5:++}$2){
 	${VISUAL}${0}
 }
 endsnippet
+
+# if
+snippet if "if()"
+if(${1:true})
+	${VISUAL}${0}
+endsnippet
+
+# iff
+snippet iff "if(){}"
+if(${1:true}){
+	${VISUAL}${0}
+}
+endsnippet
+
+# switch
+snippet sw "switch()"
+switch(${1:/* var */}){
+	case ${2:/* var case */}:
+		${3:}
+	break;${0}
+}
+endsnippet
+
+# switch case
+snippet case "case x:"
+case ${1:/*var case*/}:
+	${2}
+break;${0}
+endsnippet
+
+# while
+snippet wh "while()"
+while(${1:true}){
+	${VISUAL}${0}
+}
+endsnippet
+
+# do..while
+snippet do "do..while()"
+do{
+	${VISUAL}${0}
+}while(${1: /* condition */});
+endsnippet
+
+# STL Prefixed stuff
 
 # cout
 snippet cout "std::cout << "
@@ -69,6 +136,11 @@ endsnippet
 # cendl
 snippet cendl "std::cout << std::endl;"
 std::cout << std::endl;
+endsnippet
+
+# string
+snippet string "std::string"
+std::string${0}
 endsnippet
 
 # vim:ft=snippets:

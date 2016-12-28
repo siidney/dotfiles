@@ -1,24 +1,22 @@
 " -----------------------------
-"  VUNDLE
+"  PLUGINS
 " -----------------------------
-filetype off
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set runtimepath+=$HOME/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plug 'sirVer/ultisnips' | Plug 'honza/vim-snippets'
+"
+" auto close brackets
+Plug 'jiangmiao/auto-pairs'
+" better c++ highlighting
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
+" php html indent fix
+Plug 'siidney/vim-php-html-indent'
+" color scheme
+Plug 'sickill/vim-sunburst'
+" linting
+Plug 'w0rp/ale'
 
-Plugin 'sirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
-Plugin 'jiangmiao/auto-pairs'               " auto close brackets
-Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting
-Plugin 'siidney/vim-php-html-indent'        " php html indent fix
-Plugin 'sickill/vim-sunburst'               " color scheme
-Plugin 'w0rp/ale'                           " linting
-
-call vundle#end()
+call plug#end()
 
 if has('autocmd')
     filetype plugin indent on

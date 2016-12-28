@@ -1,11 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='ftp://siid@niceteenmag.com/'
-let g:netrw_dirhist_2='ftp://ftp@niceteenmag.com/'
-let g:netrw_dirhist_3='ftp://ftp.niceteenmag.com/'
-let g:netrw_dirhist_4='ftp://ftp.niceteenmag.com/public_html/'
-let g:netrw_dirhist_5='ftp://ftp.niceteenmag.com/'
-let g:netrw_dirhist_6='ftp://nicetymg@niceteenmag.com/'
-let g:netrw_dirhist_7='ftp://nicetymg@niceteenmag.com/public_html/'
-let g:netrw_dirhist_8='ftp://nicetymg@niceteenmag.com/public_html/public/'
-let g:netrw_dirhist_9='ftp://nicetymg@niceteenmag.com/public_html/public/js/'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/siid/addons/webextensions-examples/bookmark-it/icons'

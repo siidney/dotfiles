@@ -20,6 +20,12 @@ alias fnv="WINEPREFIX='/home/siid/.FNV'"
 # Vampire The Masquerade Bloodlines
 alias vtmb="WINEARCH=win32 WINEPREFIX='/home/siid/.VTMB'"
 
+# STEAM
+# TombRaider
+alias tombraider="LD_PRELOAD=…/Steam/ubuntu12_32/gameoverlayrenderer.so ~/.local/share/Steam/steamapps/common/Tomb\ Raider/bin/TombRaider"
+# Borderlands The Pre-Sequel
+alias ssldir="SSL_CERT_DIR='/etc/ssl/certs'"
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -49,7 +55,6 @@ alias help=run-help
 typeset -A key
 
 key[Home]=${terminfo[khome]}
-
 key[End]=${terminfo[kend]}
 key[Insert]=${terminfo[kich1]}
 key[Delete]=${terminfo[kdch1]}

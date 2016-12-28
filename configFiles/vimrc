@@ -105,7 +105,6 @@ colorscheme Sunburst
 " -----------------------------
 "  STATUS LINE
 " -----------------------------
-
 let g:modes = {'n':'NORMAL', 'i':'INSERT', 'R':'REPLACE', 'v':'VISUAL', 'V':'V-LINE', '':'V-BLOCK'}
 
 function! ModifiedColour()

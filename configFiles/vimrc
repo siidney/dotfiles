@@ -10,7 +10,7 @@ Plug 'jiangmiao/auto-pairs'
 " better c++ highlighting
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 " php html indent fix
-Plug 'siidney/vim-php-html-indent'
+Plug 'siidney/vim-php-html-indent', {'for': ['php', 'html']}
 " color scheme
 Plug 'sickill/vim-sunburst'
 " linting

@@ -211,9 +211,15 @@ nnoremap <Space>  :
 " pipe contents of paste buffer to xclip
 nnoremap <silent><leader>xo :call system('xclip', @0)<CR>
 
-" paste contents of xclip
-nnoremap <silent><leader>xi :execute 'r! xclip -o'<CR>
-inoremap <silent><leader>xi <esc>:execute 'r! xclip -o'<CR>i
+" add contentes of xclip to x register
+" paste contents of x register inline
+function! XclipO()
+    let @x=system('xclip -o')
+    normal! "xp
+endfunction
+
+nnoremap <silent><leader>xi :call XclipO()<CR>
+inoremap <silent><leader>xi <esc>:call XclipO()<CR>i
 
 " -----------------------------
 "  WINDOW SPLITS

@@ -22,9 +22,9 @@ alias vtmb="WINEARCH=win32 WINEPREFIX='/home/siid/.VTMB'"
 
 # STEAM
 # TombRaider
-alias tombraider="LD_PRELOAD=…/Steam/ubuntu12_32/gameoverlayrenderer.so ~/.local/share/Steam/steamapps/common/Tomb\ Raider/bin/TombRaider"
+alias tombraider="LD_PRELOAD=~/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so ~/.local/share/Steam/steamapps/common/Tomb\ Raider/bin/TombRaider"
 # Borderlands The Pre-Sequel
-alias ssldir="SSL_CERT_DIR='/etc/ssl/certs'"
+alias borderlandsPreSeq="SSL_CERT_DIR='/etc/ssl/certs' LD_PRELOAD=~/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so"
 
 autoload -Uz compinit
 compinit

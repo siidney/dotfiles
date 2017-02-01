@@ -2,8 +2,8 @@
 /rTorrent/.rtorrent/session
 /rTorrent/.rtorrent/watch
 
-# vim bundles
-**/bundle
+# vim plugins
+vim/plugged
 
 # pkglist file
 pkglist.txt

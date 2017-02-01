@@ -211,7 +211,7 @@ nnoremap <Space>  :
 " pipe contents of paste buffer to xclip
 nnoremap <silent><leader>xo :call system('xclip', @0)<CR>
 
-" add contentes of xclip to x register
+" add contents of xclip to x register
 " paste contents of x register inline
 function! XclipO()
     let @x=system('xclip -o')

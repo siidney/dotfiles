@@ -9,13 +9,13 @@ root(){
         print freeperc "%" " " $4 "/" $2
 
         if(freeperc < 25)
-            print "#FF9933"
+            print "#CC9393"
         else if(freeperc < 50)
             print "#F0DC64"
         else if(freeperc > 75)
             print "#AAF096"
         else
-            print "#CC9393"
+            print "#FF9933"
         }'
 }
 home(){
@@ -26,13 +26,13 @@ home(){
         print freeperc "%" " " $4 "/" $2
 
         if(freeperc < 25)
-            print "#FF9933"
+            print "#CC9393"
         else if(freeperc < 50)
             print "#F0DC64"
         else if(freeperc > 75)
             print "#AAF096"
         else
-            print "#CC9393"
+            print "#FF9933"
         }'
 }
 

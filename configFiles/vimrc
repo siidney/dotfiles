@@ -50,6 +50,7 @@ set number			" show line numbers
 set undofile			" create <filename>.un~ for undo after file close
 set visualbell t_vb=            " turn off system beeps
 set omnifunc=syntaxcomplete#Complete
+set autochdir                   " auto change working dir to current file (for linters)
 
 " INDENTATION
 set expandtab			" use spaces instead of tabs
@@ -240,7 +241,8 @@ let g:UltiSnipsEditSplit='vertical'
 
 " ale
 let g:ale_linters = {
-\    'javascript': ['eslint']
+\    'javascript': ['eslint'],
+\    'cpp': ['cppcheck']
 \}
 
 let g:ale_sign_column_always = 1

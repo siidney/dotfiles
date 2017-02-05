@@ -1,0 +1,31 @@
+#! /bin/sh
+
+$HOME/Scripts/tmux-startup &
+
+#bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d Sys WWW Email Work Office Files Multimedia
+
+bspc config border_width         1
+bspc config window_gap           0
+bspc config focus_follows_pointer true
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a URxvt:sys_info desktop='^1'
+bspc rule -a URxvt:comm desktop='^3'
+
+bspc rule -a Chromium desktop='^2'
+bspc rule -a Firefox desktop='^2'
+
+bspc rule -a libreoffice-startcenter desktop='^5'
+
+bspc rule -a Gimp desktop='^7' state=floating follow=on
+bspc rule -a Steam desktop='^7' state=floating
+
+bspc rule -a mpv state=floating
+bspc rule -a Qalculate-gtk state=floating
+bspc rule -a Gsimplecal state=floating
+
+panel &

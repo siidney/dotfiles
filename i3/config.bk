@@ -11,11 +11,6 @@
 
 set $mod Mod4
 
-set $left h
-set $down j
-set $up k
-set $right l
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Sans, FontAwesome 8
@@ -35,13 +30,14 @@ font pango:Sans, FontAwesome 8
 floating_modifier $mod
 
 # named workspaces
-set $tag1 "1: &#xf120;"
-set $tag2 "2: &#xf0ac;"
-set $tag3 "3: &#xf0e0;"
-set $tag4 "4: &#xf121;"
-set $tag5 "5: &#xf016;"
-set $tag6 "6: &#xf115;"
-set $tag7 "7: &#xf144;"
+set $tag1 "1: Main"
+set $tag2 "2: WWW"
+set $tag3 "3: Email"
+set $tag4 "4: Work"
+set $tag5 "5: Office"
+set $tag6 "6: Torrent"
+set $tag7 "7: Files"
+set $tag8 "8: Multimedia"
 
 # kill focused window
 bindsym $mod+Shift+c kill
@@ -57,16 +53,16 @@ bindsym $mod+p exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
 bindsym $mod+z split h
@@ -102,6 +98,7 @@ bindsym $mod+4 workspace $tag4
 bindsym $mod+5 workspace $tag5
 bindsym $mod+6 workspace $tag6
 bindsym $mod+7 workspace $tag7
+bindsym $mod+8 workspace $tag8
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $tag1
@@ -111,6 +108,7 @@ bindsym $mod+Shift+4 move container to workspace $tag4
 bindsym $mod+Shift+5 move container to workspace $tag5
 bindsym $mod+Shift+6 move container to workspace $tag6
 bindsym $mod+Shift+7 move container to workspace $tag7
+bindsym $mod+Shift+8 move container to workspace $tag8
 
 # reload the configuration file
 #bindsym $mod+Shift+c reload
@@ -127,10 +125,10 @@ mode "resize" {
     # Pressing right will grow the window’s width.
     # Pressing up will shrink the window’s height.
     # Pressing down will grow the window’s height.
-    bindsym $left resize grow width 5 px or 5 ppt
-    bindsym $down resize shrink height 5 px or 5 ppt
-    bindsym $up resize grow height 5 px or 5 ppt
-    bindsym $right resize shrink width 5 px or 5 ppt
+    bindsym h resize grow width 5 px or 5 ppt
+    bindsym j resize shrink height 5 px or 5 ppt
+    bindsym k resize grow height 5 px or 5 ppt
+    bindsym l resize shrink width 5 px or 5 ppt
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -141,9 +139,9 @@ bindsym $mod+r mode "resize"
 
 # multimedia keys
 # volume
-bindsym $mod+F1 exec "amixer -c 0 set Master 1dB-; pkill -RTMIN+2 i3blocks"
-bindsym $mod+F2 exec "amixer -c 0 set Master 1dB+; pkill -RTMIN+2 i3blocks"
-bindsym $mod+F3 exec "amixer set Master toggle; pkill -RTMIN+2 i3blocks"
+bindsym $mod+F1 exec amixer -c 0 set Master 1dB-
+bindsym $mod+F2 exec amixer -c 0 set Master 1dB+
+bindsym $mod+F3 exec amixer set Master toggle
 # mpc keybinding
 bindsym XF86Messenger exec mpc next
 bindsym XF86Favorites exec mpc prev
@@ -163,11 +161,14 @@ for_window [instance="scratchpad"] move window to scratchpad, scratchpad show
 for_window [title="mutt-attachment"] floating enable
 
 # floating windows by default
+for_window [class="^Gpicview$"] floating enable
 for_window [class="^mpv$"] floating enable
 for_window [class="^URxvt$" instance="urxvt_dropdown"] floating enable
 for_window [class="^Gimp$"] floating enable
 for_window [class="^Qalculate-gtk$"] floating enable
 for_window [class="^Gsimplecal$"] floating enable
+for_window [class="^Lxappearance$"] floating enable
+for_window [class="Scudcloud$"] floating enable
 
 # make OpenGL and GTK test application floating
 for_window [class="^OpenGLTest$"] floating enable focus
@@ -192,7 +193,7 @@ new_window 1pixel
 # finds out, if available)
 bar {
     mode dock
-    font pango:Amble regular, Awesome 11
+    font pango:Amble regular 10, Awesome 10
     position top
     tray_output DVI-I-0
     strip_workspace_numbers yes
@@ -213,6 +214,7 @@ bar {
     #status_command i3status -c ~/.i3/i3status.conf
     #status_command $HOME/.i3/conky/conky-i3bar
     status_command i3blocks -c $HOME/.i3//i3blocks/i3blocks.conf
+
 }
 
 # start clients on specific workspaces
@@ -224,8 +226,10 @@ assign [class="^Firefox$"] $tag2
 
 assign [class="^libreoffice-startcenter$"] $tag5
 
-assign [class="^Steam$"] $tag7
-assign [class="^Gimp$"]  $tag7
+assign [class="^Spacefm$"] $tag7
+
+assign [class="^Steam$"] $tag8
+assign [class="^Gimp$"]  $tag8
 
 # autostart
 exec $HOME/Scripts/tmux-startup

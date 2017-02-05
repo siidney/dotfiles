@@ -40,3 +40,15 @@ if [ $? != 0 ]; then
 
     tmux select-pane 'System':0
 fi
+
+# check if urxvt instance is already running
+comm=$(xdo id -n "comm")
+sys_info=$(xdo id -n "sys_info")
+
+if ! [ $comm ]; then
+    urxvt -name comm -e tmux attach -d -t Communication &
+fi
+
+if ! [ $sys_info ]; then
+    urxvt -name sys_info -e tmux attach -d -t System &
+fi

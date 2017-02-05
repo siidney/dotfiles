@@ -9,6 +9,8 @@ export TERMINAL="urxvt -e"
 export GPG_TTY=$(tty)
 export GPG_AGENT_INFO=""
 #export http_proxy="http://localhost:8118"
+export PANEL_FIFO=/tmp/panel-fifo
+export PATH=$PATH:/home/siid/.config/bspwm/panel
 
 # WINE ALIASES
 # wine 32bit

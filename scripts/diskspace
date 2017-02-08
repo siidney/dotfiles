@@ -1,0 +1,11 @@
+#! /bin/sh
+
+diskspace(){
+    head="Mount Use% Size/Used Avail"
+    rs=$(df -h | awk '$NF=="/"{printf "%s", $6 "       " $5 "   " $2"/"$3"     "$4}')
+    hs=$(df -h | awk '$NF=="/home"{printf "%s", $6 "   " $5 "   " $2"/"$3"    "$4}')
+
+    notify-send "${head}" "${rs}\n${hs}"
+}
+
+diskspace

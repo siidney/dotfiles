@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	urxvt
+        xdotool search --onlyvisible --classname scratchpad windowunmap || xdotool search --classname scratchpad windowmap || urxvt -name scratchpad
 
 # program launcher
 super + space
@@ -23,7 +23,7 @@ super + alt + Escape
 	pkill -x panel; bspc quit
 
 # close and kill
-super + {_,shift + }w
+super + shft + w
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -136,6 +136,16 @@ XF86Messenger
 XF86Favorites
         mpc prev
 
+# volume controls
+super + F1
+        amixer -c 0 set Master 1dB-
+
+super + F2
+        amixer -c 0 set Master 1dB+
+
+super + F3
+        amixer set Master toggle
+
 # application launchers
 super + XF86WWW
         chromium
@@ -163,4 +173,4 @@ super + control + t
 
 # ncmpcpp
 super + control + c
-        urxvt -e ncmpcpp
+        urxvt -name scratchpad -geometry 100x50 -e ncmpcpp

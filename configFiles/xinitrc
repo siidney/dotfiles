@@ -22,10 +22,11 @@ fi
 export GPG_AGENT_INFO # the env file does not contain the export statement
 export SSH_AUTH_SOCK # enable gpg-agent for ssh
 
+#mpd &
 numlockx &
 sxhkd &
-mpd &
-feh --bg-scale ~/.i3/backgrounds/i3-background.png &
+xsetroot -cursor_name left_ptr &
+feh --bg-scale ~/.backgrounds/i3-background.png &
 
 # exec gnome-session
 # exec startkde

@@ -130,10 +130,10 @@ super + {Left,Down,Up,Right}
 XF86Audio{Play,Stop}
         mpc {toggle,stop}
 
-XF86Messenger
+super + F12
         mpc next
 
-XF86Favorites
+super + F11
         mpc prev
 
 # volume controls
@@ -147,7 +147,7 @@ super + F3
         amixer set Master toggle
 
 # application launchers
-super + XF86WWW
+super + XF86HomePage
         chromium
 
 XF86WWW

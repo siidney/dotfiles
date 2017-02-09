@@ -32,6 +32,7 @@ bspc rule -a libreoffice-startcenter desktop='^5'
 
 bspc rule -a Gimp desktop='^7' state=floating follow=on
 bspc rule -a Steam desktop='^7' state=floating
+bspc rule -a Kodi desktop='^7'
 
 bspc rule -a mpv state=floating
 bspc rule -a Qalculate-gtk state=floating

@@ -51,6 +51,7 @@ set undofile			" create <filename>.un~ for undo after file close
 set visualbell t_vb=            " turn off system beeps
 set omnifunc=syntaxcomplete#Complete
 set autochdir                   " auto change working dir to current file (for linters)
+set relativenumber
 
 " INDENTATION
 set expandtab			" use spaces instead of tabs
@@ -136,7 +137,8 @@ set statusline=
 set statusline+=%{ModifiedColour()}
 set statusline+=\ [%{get(modes,mode())}]                " show modes
 set statusline+=\ %<%f                                  " filepath
-set statusline+=\ %([%R%M%H]%)                          " readonly modified helpfile
+set statusline+=\ %([%R%M%H]%)\ \|                          " readonly modified helpfile
+set statusline+=\ %{ALEGetStatusLine()}\ \|                   " ale statusline
 " right side
 set statusline+=%=
 set statusline+=\%{strlen(&ft)?&ft:'none'}\ \|          " file type
@@ -231,15 +233,13 @@ set splitright      " :vsplit sets new window to right of current
 " -----------------------------
 "  PLUGINS
 " -----------------------------
-" ultisnips
+" ULTISNIPS
 let g:UltiSnipsExpandTrigger='<TAB>'
 let g:UltiSnipsJumpForwardTrigger='<TAB>'
 let g:UltiSnipsJumpBackwardTrigger='<S-TAB>'
-
-" split window
 let g:UltiSnipsEditSplit='vertical'
 
-" ale
+" ALE
 let g:ale_linters = {
 \    'javascript': ['eslint'],
 \    'cpp': ['cppcheck']
@@ -248,6 +248,7 @@ let g:ale_linters = {
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
+let g:ale_statusline_format = ['X %d','⚠ %d', '⬥ ok']
 
 " ----------------------------
 "  FILETYPE SETS

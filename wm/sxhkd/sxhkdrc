@@ -23,7 +23,7 @@ super + alt + Escape
 	pkill -x panel; bspc quit
 
 # close and kill
-super + shft + w
+super + shift + w
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -150,7 +150,7 @@ super + F3
 super + XF86HomePage
         chromium
 
-XF86WWW
+XF86HomePage
         firefox
 
 super + shift + g

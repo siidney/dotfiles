@@ -1,5 +1,6 @@
 #! /bin/sh
 
+# show root and home diskspace in notify-send
 diskspace(){
     head="Mount Use% Size/Used Avail"
     rs=$(df -h | awk '$NF=="/"{printf "%s", $6 "       " $5 "   " $2"/"$3"     "$4}')

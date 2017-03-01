@@ -95,10 +95,16 @@ while read; do
     mpd_information
 done > "$PANEL_FIFO" &
 
-
 ##############
 # RIGHT SIDE #
 ##############
+
+############################################
+# Network Up/Down Speed
+####
+network(){
+    printf "%b%s\n" "N $($HOME/Scripts/updownspeed) ${SEPERATOR} "
+}
 
 ############################################
 # Disk Space
@@ -117,31 +123,10 @@ datetime(){
 
 while :; do
     datetime
+    network
 
     sleep 1
 done > "$PANEL_FIFO" &
-
-# memory
-mem(){
-    free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2 }'
-}
-# cpu
-cpu(){
-    #ps -eo pcpu | awk 'BEGIN {sum=0.0f} {sum+=$1} END {print sum}'
-    #grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}'
-    #top -bn1 | grep load | awk '{printf "%.2f%%\t\t\n", $(NF-2)}'
-    load=$(cut -d " " -f1 /proc/loadavg)
-      if [ $(cut -d "." -f1 <<< $load) -gt 2 ]; then
-        printf "%s" "%{F#e3e3e3}%{+u}$load¡%{-u}%{F-}"
-      else
-        printf "%s" "$load"
-      fi
-}
-# ipaddress
-# network speed(s)
-network(){
-    printf "%s\n" "Network"
-}
 
 . panel_colors
 

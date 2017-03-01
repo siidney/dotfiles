@@ -45,6 +45,11 @@ int main(int argc, const char* argv[]){
 }
 endsnippet
 
+# filename
+snippet fname "current file name" i
+${1:`!p snip.rv = snip.basename or "name"`}::
+endsnippet
+
 # vector
 snippet vec "std::vector (v)" i
 std::vector<${1:char}> ${2:v}${0}

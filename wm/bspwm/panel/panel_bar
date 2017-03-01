@@ -26,6 +26,10 @@ while read -r line ; do
             mpd="${line#?}"
             ;;
         # RIGHT
+        N*)
+            # network information
+            nw="${line#?}"
+            ;;
         Z*)
             # freespace
             fs="%{A:${HOME}/Scripts/diskspace:}${line#?}%{A}"
@@ -103,5 +107,5 @@ while read -r line ; do
             done
             ;;
     esac
-    printf "%s\n" "%{l}${vol}${mpd}%{c}${wm}%{r}${fs}${dt}"
+    printf "%s\n" "%{l}${vol}${mpd}%{c}${wm}%{r}${nw}${fs}${dt}"
 done

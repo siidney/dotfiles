@@ -3,7 +3,10 @@
 /rTorrent/.rtorrent/watch
 
 # vim plugins
-*/plugged
+vim/plugged
+
+# vim netrwhist
+vim/.netrwhist
 
 # pkglist file
 pkglist.txt

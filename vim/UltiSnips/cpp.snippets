@@ -21,7 +21,7 @@ endsnippet
 
 # destructor
 snippet dt "~CLASS::CLASS()"
-~${1:`!p snip.rv = snip.basename or "name"`}::$1(${2:})${3}{
+${1:`!p snip.rv = snip.basename or "name"`}::~$1(${2:})${3}{
 	${VISUAL}${0}
 }
 endsnippet
@@ -96,6 +96,12 @@ snippet for "for loop (for)" b
 for(${1:int} ${2:i}=${3:0}; $2${4:<count}; ${5:++}$2){
 	${VISUAL}${0}
 }
+endsnippet
+
+# for loop no braces
+snippet forr "for loop (no braces)" b
+for(${1:int} ${2:i}=${3:0}; $2${4:<count}; ${5:++}$2)
+	${VISUAL}${0}
 endsnippet
 
 # if

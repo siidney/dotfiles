@@ -20,18 +20,18 @@ ${1:`!p snip.rv = snip.basename or "name"`}::$1(${2:})${3}{
 endsnippet
 
 # destructor
-snippet dt "~CLASS::CLASS()"
+snippet dt "CLASS::~CLASS()"
 ${1:`!p snip.rv = snip.basename or "name"`}::~$1(${2:})${3}{
 	${VISUAL}${0}
 }
 endsnippet
 
 # constructor/destructor
-snippet ctdt "CLASS::CLASS() ~CLASS::CLASS()"
+snippet ctdt "CLASS::CLASS() CLASS::~CLASS()"
 ${1:`!p snip.rv = snip.basename or "name"`}::$1(${2:})${3}{
 	${4}
 }
-~$1::$1(${5:})${6}{
+$1::~$1(${5:})${6}{
 	${VISUAL}${0}
 }
 endsnippet

@@ -16,7 +16,9 @@ Plug 'sickill/vim-sunburst'
 " linting
 Plug 'w0rp/ale'
 " glsl highlighting
-Plug 'tikhomirov/vim-glsl'
+Plug 'beyondmarc/glsl.vim'
+" OpenGL highlighting
+Plug 'beyondmarc/opengl.vim', {'for': ['c', 'cpp']}
 
 call plug#end()
 
@@ -36,6 +38,7 @@ set showcmd			" visual autocomplete for cmd menu
 set secure			" restrict usage for non default .vimrc
 set shell=/bin/zsh		" set shell
 set encoding=utf-8
+scriptencoding utf-8
 set fileencoding=utf-8
 set fileformat=unix		" set unix line endings
 set fileformats=unix,dos	" line ending order for existing and new buffers
@@ -124,10 +127,10 @@ endfunction
 
 if v:version >= 700
     augroup statusline
-        au!
-        au InsertEnter * exec ModifiedColour()
-        au InsertLeave * exec ModifiedColour()
-        au BufWritePost * exec ModifiedColour()
+        autocmd!
+        autocmd InsertEnter * exec ModifiedColour()
+        autocmd InsertLeave * exec ModifiedColour()
+        autocmd BufWritePost * exec ModifiedColour()
     augroup END
 endif
 
@@ -139,8 +142,8 @@ set statusline=
 set statusline+=%{ModifiedColour()}
 set statusline+=\ [%{get(modes,mode())}]                " show modes
 set statusline+=\ %<%f                                  " filepath
-set statusline+=\ %([%R%M%H]%)\ \|                          " readonly modified helpfile
-set statusline+=\ %{ALEGetStatusLine()}\ \|                   " ale statusline
+set statusline+=\ %([%R%M%H]%)\ \|                      " readonly modified helpfile
+set statusline+=\ %{ALEGetStatusLine()}\ \|             " ale statusline
 " right side
 set statusline+=%=
 set statusline+=\%{strlen(&ft)?&ft:'none'}\ \|          " file type
@@ -252,12 +255,15 @@ let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_statusline_format = ['X %d','⚠ %d', '⬥ ok']
 
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
 " ----------------------------
 "  FILETYPE SETS
 " ----------------------------
 augroup filetype_set
-    au!
-    au BufNewFile,BufRead *.endfile set filetype=endfile
+    autocmd!
+    autocmd BufNewFile,BufRead *.endfile set filetype=endfile
 augroup END
 
 " ----------------------------
@@ -266,17 +272,17 @@ augroup END
 highlight default ExtraWhitespace ctermbg=darkred
 
 augroup whiteSpace_highlight
-    au!
-    au ColorScheme * highlight ExtraWhitespace ctermbg=darkred
+    autocmd!
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred
 augroup END
 
 " show trailing whitespace
 :match ExtraWhitespace /\s\+\%#\@<!$/
 
 augroup whiteSpace
-    au!
-    au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    au InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd!
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 augroup END
 
 function! g:StripWhitespace()
@@ -311,6 +317,6 @@ function! Template()
 endfunction
 
 augroup templates
-    au!
-    au BufNewfile * call Template()
+    autocmd!
+    autocmd BufNewfile * call Template()
 augroup END

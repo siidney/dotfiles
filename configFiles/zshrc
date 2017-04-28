@@ -28,6 +28,9 @@ alias tombraider="LD_PRELOAD=~/.local/share/Steam/ubuntu12_32/gameoverlayrendere
 # Borderlands The Pre-Sequel
 alias borderlandsPreSeq="SSL_CERT_DIR='/etc/ssl/certs' LD_PRELOAD=~/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so"
 
+# Quick compile Alias
+alias quickComp="g++ -o main *.cpp -g -Wall -O3 --std=c++14"
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall

@@ -11,6 +11,7 @@ bzip2
 cantarell-fonts
 chromium
 clamav
+clamav-unofficial-sigs
 coreutils
 cppcheck
 cryptsetup
@@ -37,9 +38,11 @@ flex
 gawk
 gcc
 gcc-libs
+gdb
 gettext
 gimp
 git
+glfw-x11
 glibc
 gptfdisk
 grep
@@ -73,7 +76,7 @@ libreoffice-fresh
 licenses
 linux
 logrotate
-luakit
+luakit-git
 lvm2
 m4
 make
@@ -86,6 +89,7 @@ mlocate
 mpc
 mpd
 mpv
+msmtp
 mutt
 nano
 ncmpcpp
@@ -93,7 +97,6 @@ netctl
 newsbeuter
 numlockx
 nvidia
-nvidia-libgl
 openssh
 otf-font-awesome
 p7zip
@@ -114,6 +117,7 @@ qalculate-gtk
 r
 reflector
 reiserfsprogs
+rmlint
 rsync
 rtorrent
 rxvt-unicode
@@ -144,12 +148,14 @@ unrar
 urlview
 usbutils
 util-linux
+valgrind
 vi
 vim
 wget
 which
 wine
 winetricks
+wipe
 xclip
 xdo
 xf86-video-vesa

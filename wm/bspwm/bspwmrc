@@ -41,4 +41,6 @@ bspc rule -a Zathura state=tiled
 
 bspc rule -a URxvt:scratchpad sticky=on state=floating border=off
 
+bspc rule -a "OPENGL test" state=floating
+
 panel &

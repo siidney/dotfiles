@@ -1,9 +1,12 @@
 #!/bin/sh
 # Basic i3 run or raise(focus)
 
+# @param $1 program name
+# @param $2 program class name
+
 if [ "$(pidof "$1")" ]
 then
-    i3-msg "[class=$2] focus"
+    xdo activate -N $2
 else
     $1
 fi

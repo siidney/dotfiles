@@ -148,16 +148,16 @@ super + F3
 
 # application launchers
 super + XF86HomePage
-        chromium
+        $HOME/Scripts/runorraise.sh chromium Chromium
 
 XF86HomePage
-        firefox
+        $HOME/Scripts/runorraise.sh firefox Firefox
 
 super + shift + g
-        gsimplecal
+        $HOME/Scripts/runorraise.sh gsimplecal GsimpleCal
 
 super + q
-        qalculate-gtk
+        $HOME/Scripts/runorraise.sh qalculate-gtk Qalculate-gtk
 
 # screenshot
 super + Print

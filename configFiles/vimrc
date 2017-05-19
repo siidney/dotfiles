@@ -1,10 +1,22 @@
 " -----------------------------
 "  PLUGINS
 " -----------------------------
+"
+" install plug if not already
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    augroup plugInstall
+        autocmd!
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    augroup END
+endif
+
 call plug#begin('~/.vim/plugged')
 
+" snippets
 Plug 'sirVer/ultisnips' | Plug 'honza/vim-snippets'
-"
 " auto close brackets
 Plug 'jiangmiao/auto-pairs'
 " better c++ highlighting
@@ -165,7 +177,7 @@ set hlsearch			" highlight matches
 
 " clear search
 if maparg('<silent><leader><space>', 'n') ==# ''
-nnoremap <silent> <leader><space> :noh<CR>
+    nnoremap <silent> <leader><space> :noh<CR>
 endif
 
 " -------------------------------
@@ -246,9 +258,9 @@ let g:UltiSnipsEditSplit='vertical'
 
 " ALE
 let g:ale_linters = {
-\    'javascript': ['eslint'],
-\    'cpp': ['cppcheck']
-\}
+            \    'javascript': ['eslint'],
+            \    'cpp': ['cppcheck']
+            \}
 
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
@@ -292,6 +304,15 @@ function! g:StripWhitespace()
 endfunction
 
 command! StripWhitespace call StripWhitespace()
+
+" ----------------------------
+"  FOCUS/BLUR WINDOW
+" ----------------------------
+"augroup BgHighlight
+"    autocmd!
+"    autocmd WinEnter * set colorcolumn=81
+"    autocmd WinLeave * set colorcolumn=0
+"augroup END
 
 " ----------------------------
 "  TEMPLATE FILES

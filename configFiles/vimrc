@@ -69,6 +69,7 @@ set visualbell t_vb=            " turn off system beeps
 set omnifunc=syntaxcomplete#Complete
 set autochdir                   " auto change working dir to current file (for linters)
 set relativenumber
+set lazyredraw                  " prevents redraw during macro execution etc
 
 " INDENTATION
 set expandtab			" use spaces instead of tabs
@@ -183,7 +184,7 @@ endif
 " -------------------------------
 "  KEY BINDINGS
 " -------------------------------
-"  buffers
+" buffers
 " list open buffers and prompt to switch
 nnoremap <F5> :ls<CR>:b<space>
 " open new empty buffer
@@ -206,6 +207,9 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+" <F2> Opens the location list
+nnoremap <silent><F2> <Esc>:lopen<CR>
 
 " <F8> View rendered markdown with grip
 nnoremap <F8> <Esc>:!grip -b %<CR><CR>
@@ -259,13 +263,14 @@ let g:UltiSnipsEditSplit='vertical'
 " ALE
 let g:ale_linters = {
             \    'javascript': ['eslint'],
-            \    'cpp': ['cppcheck']
+            \    'cpp': ['clang-tidy', 'cppcheck', 'cpplint', 'g++']
             \}
 
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_statusline_format = ['X %d','⚠ %d', '⬥ ok']
+let g:ale_java_checkstyle_options = '-c ~/.google_checks.xml'
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -306,15 +311,6 @@ endfunction
 command! StripWhitespace call StripWhitespace()
 
 " ----------------------------
-"  FOCUS/BLUR WINDOW
-" ----------------------------
-"augroup BgHighlight
-"    autocmd!
-"    autocmd WinEnter * set colorcolumn=81
-"    autocmd WinLeave * set colorcolumn=0
-"augroup END
-
-" ----------------------------
 "  TEMPLATE FILES
 " ----------------------------
 function! Template()
@@ -326,17 +322,22 @@ function! Template()
         " parse special text in templates after read
         %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 
-        " go to end of description line and enter insert mode
+        " go to end of description line
         let l:desc = search('Description')
+
         if l:desc > 0
-            execute 'normal! :cursor(desc)<CR>'
+            " JAVA
+            if(expand('%:e') ==# 'java')
+                execute 'normal! B d$'
+            endif
         else
+            " no description go to EOF
             execute 'normal! G'
         endif
+        " enter insert mode
         execute ':startinsert!'
     endif
 endfunction
-
 augroup templates
     autocmd!
     autocmd BufNewfile * call Template()

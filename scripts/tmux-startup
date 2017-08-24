@@ -34,7 +34,7 @@ if [ $? != 0 ]; then
 
     # send keys so pane doesn't close on program exit
     tmux send-keys -t 'System':0 'htop' C-m
-    tmux send-keys -t 'System':1 'iotop -o' C-m
+    tmux send-keys -t 'System':1 'sudo iotop -o' C-m
     tmux send-keys -t 'System':2.0 'rtorrent' C-m
     tmux send-keys -t 'System':2.2 'newsbeuter' C-m
 

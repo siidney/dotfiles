@@ -1,0 +1,186 @@
+# make custom snippets override defaults
+# priority 2 is higher than java.snippets
+priority 2
+
+# filename
+snippet fname "current file name" i
+${1:`!p snip.rv = snip.basename or "name"`}
+endsnippet
+
+# import
+snippet im "import java.util." b
+import ${1:java}.${2:util}.$3;$0
+endsnippet
+
+# Scanner
+snippet scanner "Scanner" b
+Scanner ${1:sc} = new Scanner(${2:System.in});$0
+endsnippet
+
+# SecureRandom
+snippet secrand "SecureRandom" b
+SecureRandom ${1:randomNumbers} = new SecureRandom();$0
+endsnippet
+
+# Class definition
+snippet cl "class" b
+${1:public} class ${2:`!p snip.rv = snip.basename or "untitled"`} $3{
+	$0
+} // end class $2
+endsnippet
+
+# Class definition with extends
+snippet cle "class extends" b
+${1:public} class ${2:`!p snip.rv = snip.basename or "untitled"`} extends $3 {
+	$0
+} // end class $2
+endsnippet
+
+# Class definition with main
+snippet clm "class main" b
+${1:public} class ${2:`!p snip.rv = snip.basename or "untitled"`} $3{
+	/**
+	 * This is the main method.
+	 * @param args Unused.
+	 * @return Nothing.
+	 */
+	public static void main(String[] args) {
+		$0
+	} // end method main
+} // end class $2
+endsnippet
+
+# Constructor
+snippet ct "constructor" b
+/**
+ * Class `!p snip.rv = snip.basename or "untitled"` constructor.$1
+ */
+public ${2:`!p snip.rv = snip.basename or "untitled"`}($3) {
+	$0
+} // end constructor $2
+endsnippet
+
+# Main
+snippet main "method (main)" b
+/**
+ * ${1:This is the main method.}
+ * @param args ${2:Unused}
+ * @return Nothing.
+ */
+public static void main(String[] args) {
+	$0
+} // end method main
+endsnippet
+
+# Class function
+snippet fun "function declaration" b
+/**
+ * ${1:Function description}
+ */
+${2:public} ${3:void} ${4:function}($5) {
+	$0
+} // end method $4
+endsnippet
+
+# Static function
+snippet funs "static function" b
+/**
+ * ${1:Function description}
+ */
+${2:public} static ${3:void} ${4:function}($5) {
+	$0
+} // end method $4
+endsnippet
+
+# Print Functions
+snippet print "print" b
+System.out.print($1);$0
+endsnippet
+
+snippet println "println"  b
+System.out.println($1);$0
+endsnippet
+
+snippet printf "printf" b
+System.out.printf("${1:Message}", ${2:args});$0
+endsnippet
+
+# Conditionals
+snippet if "if ()" b
+if (${1:true})
+	${VISUAL}${0}
+endsnippet
+
+snippet iff "if () {}" b
+if (${1:true}) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet elif "else if ()" w
+else if (${1:true})
+	${VISUAL}${0}
+endsnippet
+
+snippet eliff "else if () {}" w
+else if (${1:true}) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet el "else" w
+else
+	${VISUAL}${0}
+endsnippet
+
+snippet ell "else {}" w
+else {
+	${VISUAL}${0}
+}
+endsnippet
+
+# Loops
+snippet for "for ()" b
+for (${1:int} ${2:i} = ${3:0}; $2 ${4:< count}; ${5:++}$2)
+	${VISUAL}${0}
+endsnippet
+
+snippet forr "for () {}" b
+for (${1:int} ${2:i} = ${3:0}; $2 ${4:< count}; ${5:++}$2) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet fr "for (n : n)" b
+for (${1:int} ${2:number} : ${3:array})
+	$0
+endsnippet
+
+snippet frr "for (n : n) {}" b
+for (${1:int} ${2:number} : ${3:array}) {
+	$0
+}
+endsnippet
+
+# try...catch
+snippet try "try...catch" b
+try {
+	$1
+} catch (${2:exception} ${3:e}) {
+	${4:e.printStackTrace()}
+}$0
+endsnippet
+
+# HELPER FUNCTIONS
+snippet reqin "requestInput()" bt
+${0}/**
+ * Gets and returns input from the user.
+ * @param s message to user
+ * @param sc input stream
+ * @return user input.
+*/
+public static ${1:type} requestInput(final String s, Scanner sc) {
+    System.out.print(s);
+    return sc.next`!p snip.rv = t[1].capitalize()`();
+} // end method requestInput
+endsnippet

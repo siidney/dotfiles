@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-        xdotool search --onlyvisible --classname scratchpad windowunmap || xdotool search --classname scratchpad windowmap || urxvt -name scratchpad
+        xdotool search --onlyvisible --classname scratchpad windowunmap || xdotool search --classname scratchpad windowmap || urxvtc -name scratchpad
 
 # program launcher
 super + space
@@ -148,10 +148,10 @@ super + F3
 
 # application launchers
 super + XF86HomePage
-        $HOME/Scripts/runorraise.sh chromium Chromium
+        $HOME/Scripts/runorraise.sh luakit Luakit
 
 XF86HomePage
-        $HOME/Scripts/runorraise.sh firefox Firefox
+        $HOME/Scripts/runorraise.sh brave brave
 
 super + shift + g
         $HOME/Scripts/runorraise.sh gsimplecal GsimpleCal
@@ -165,12 +165,12 @@ super + Print
 
 # urxvt
 super + control + u
-        urxvt
+        urxvtc
 
 # tmux
 super + control + t
-        urxvt -e tmux
+        urxvtc -e tmux
 
 # ncmpcpp
 super + control + c
-        urxvt -name scratchpad -geometry 100x50 -e ncmpcpp
+        urxvtc -name scratchpad -geometry 100x50 -e ncmpcpp

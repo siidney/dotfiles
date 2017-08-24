@@ -25,8 +25,7 @@ bspc config gapless_monocle      true
 bspc rule -a URxvt:sys_info desktop='^1'
 bspc rule -a URxvt:comm desktop='^3'
 
-bspc rule -a Chromium desktop='^2'
-bspc rule -a Firefox desktop='^2'
+bspc rule -a brave desktop='^2'
 
 bspc rule -a libreoffice-startcenter desktop='^5'
 

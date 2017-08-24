@@ -4,8 +4,8 @@ zstyle :compinstall filename '/home/siid/.zshrc'
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export BROWSER=/usr/bin/luakit
-export TERMCMD="urxvt"
-export TERMINAL="urxvt -e"
+export TERMCMD="urxvtc"
+export TERMINAL="urxvtc -e"
 export GPG_TTY=$(tty)
 export GPG_AGENT_INFO=""
 #export http_proxy="http://localhost:8118"
@@ -14,7 +14,7 @@ export PATH=$PATH:/home/siid/.config/bspwm/panel
 
 # WINE ALIASES
 # wine 32bit
-alias wine32="WINEPREFIX='/home/siid/.wine32'"
+alias wine32="WINEARCH=win32 WINEPREFIX='/home/siid/.wine32'"
 # Skyrim
 alias skyrim="WINEPREFIX='/home/siid/.TESV'"
 # Fallout New Vegas
@@ -29,7 +29,8 @@ alias tombraider="LD_PRELOAD=~/.local/share/Steam/ubuntu12_32/gameoverlayrendere
 alias borderlandsPreSeq="SSL_CERT_DIR='/etc/ssl/certs' LD_PRELOAD=~/.local/share/Steam/ubuntu12_32/gameoverlayrenderer.so"
 
 # Quick compile Alias
-alias quickComp="g++ -o main *.cpp -g -Wall -O3 --std=c++14"
+alias quickComp="g++ -o main *.cpp -g -Wall -pipe -O3 --std=c++14 -lm"
+alias gtkComp="g++ -o main *cpp -g -Wall -pipe -O3 --std=c++14 -lm `pkg-config gtkmm-3.0 --cflags --libs`"
 
 autoload -Uz compinit
 compinit

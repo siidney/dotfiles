@@ -20,7 +20,8 @@ alias skyrim="WINEPREFIX='/home/siid/.TESV'"
 # Fallout New Vegas
 alias fnv="WINEPREFIX='/home/siid/.FNV'"
 # Vampire The Masquerade Bloodlines
-alias vtmb="WINEARCH=win32 WINEPREFIX='/home/siid/.VTMB'"
+alias vtmbprefix="WINEARCH=win32 WINEPREFIX='/home/siid/.VTMB'"
+alias vtmb="/home/siid/.VTMB/drive_c/GOG\ Games/VtMB/Patch_Extras/Player\ Mods/linux_loader.sh"
 
 # STEAM
 # TombRaider

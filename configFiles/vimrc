@@ -314,11 +314,19 @@ command! StripWhitespace call StripWhitespace()
 "  TEMPLATE FILES
 " ----------------------------
 function! Template()
+    let l:ext = expand('%:e')
+
+    if l:ext ==# 'hpp'
+        let l:ext = 'h'
+    endif
+
     " read in template files
-    let l:filepath = '$HOME/.vim/templates/skel.'.expand('%:e')
+    let l:filepath = '$HOME/.vim/templates/skel.' . l:ext
+
     " ensure file exists
     if filereadable(expand(l:filepath))
-        silent! execute '0r $HOME/.vim/templates/skel.'.expand('<afile>:e')
+        silent! execute '0r $HOME/.vim/templates/skel.'. l:ext
+
         " parse special text in templates after read
         %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 
@@ -326,9 +334,9 @@ function! Template()
         let l:desc = search('Description')
 
         if l:desc > 0
-            " JAVA
-            if(expand('%:e') ==# 'java')
-                execute 'normal! B d$'
+            " JAVA - Replace Description.
+            if l:ext ==# 'java'
+                execute 'normal! B d$A '
             endif
         else
             " no description go to EOF

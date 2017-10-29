@@ -27,6 +27,6 @@ urxvtd &
 numlockx &
 sxhkd &
 xsetroot -cursor_name left_ptr &
-feh --bg-scale ~/.backgrounds/i3-background.png &
+feh --bg-scale ~/.backgrounds/Floating-Tree-Abstract-Wallpaper.jpg &
 
 exec bspwm

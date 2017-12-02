@@ -46,9 +46,9 @@ comm=$(xdo id -n "comm")
 sys_info=$(xdo id -n "sys_info")
 
 if ! [ $comm ]; then
-    urxvt -name comm -e tmux attach -d -t Communication &
+    st -n comm -e tmux attach -d -t Communication &
 fi
 
 if ! [ $sys_info ]; then
-    urxvt -name sys_info -e tmux attach -d -t System &
+    st -n sys_info -e tmux attach -d -t System &
 fi

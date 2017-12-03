@@ -22,8 +22,8 @@ bspc config split_ratio          0.50
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a URxvt:sys_info desktop='^1'
-bspc rule -a URxvt:comm desktop='^3'
+bspc rule -a st-256color:sys_info desktop='^1'
+bspc rule -a st-256color:comm desktop='^3'
 
 bspc rule -a brave desktop='^2'
 
@@ -38,7 +38,7 @@ bspc rule -a Qalculate-gtk state=floating
 bspc rule -a Gsimplecal state=floating
 bspc rule -a Zathura state=tiled
 
-bspc rule -a URxvt:scratchpad sticky=on state=floating border=off
+bspc rule -a st-256color:scratchpad sticky=on state=floating border=off
 
 bspc rule -a "OPENGL test" state=floating
 

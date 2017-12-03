@@ -31,6 +31,12 @@ Plug 'w0rp/ale'
 Plug 'beyondmarc/glsl.vim'
 " OpenGL highlighting
 Plug 'beyondmarc/opengl.vim', {'for': ['c', 'cpp']}
+" deoplete
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/neco-vim'
+Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 
 call plug#end()
 
@@ -274,6 +280,9 @@ let g:ale_java_checkstyle_options = '-c ~/.google_checks.xml'
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" DEOPLETE
+let g:deoplete#enable_at_startup = 1
 
 " ----------------------------
 "  FILETYPE SETS

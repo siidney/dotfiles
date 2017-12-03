@@ -6,7 +6,7 @@ snippet scr "XHTML <script>" w
 endsnippet
 
 snippet div "<div>" w
-<div>${0:${VISUAL}}</div>
+<div>${1}</div>${0:${VISUAL}}
 endsnippet
 
 snippet div. "<div> with class" w
@@ -15,4 +15,16 @@ endsnippet
 
 snippet div# "<div> with ID & class" w
 <div`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""``!p snip.rv=' class="' if t[2] else ""`${2:name}`!p snip.rv = '"' if t[2] else ""`>${0:${VISUAL}}</div>
+endsnippet
+
+snippet br "<br />"
+<br />${0:${VISUAL}}
+endsnippet
+
+snippet hr "<hr />"
+<hr />${0:${VISUAL}}
+endsnippet
+
+snippet option "<option>"
+<option value="${1:value}">${2}</option>${0:${VISUAL}}
 endsnippet

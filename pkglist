@@ -59,6 +59,7 @@ gstreamer
 gtkmm3
 gzip
 htop
+hwinfo
 inetutils
 intel-ucode
 iotop
@@ -77,6 +78,7 @@ lib32-libidn
 lib32-libstdc++5
 lib32-libvorbis
 lib32-libxv
+lib32-mpg123
 lib32-sdl2
 lib32-sdl2_image
 libnotify
@@ -108,7 +110,8 @@ nano
 ncmpcpp
 ncurses5-compat-libs
 netctl
-newsbeuter
+newsboat
+npm
 ntp
 numlockx
 nvidia
@@ -128,6 +131,7 @@ pkgbuilder
 polkit
 procps-ng
 psmisc
+pulseaudio
 pyalpm
 python
 python-pip

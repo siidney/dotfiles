@@ -1,0 +1,144 @@
+#! /bin/sh
+
+PANEL_FIFO=/tmp/panel-fifo
+PANEL_HEIGHT=30
+PANEL_FONT_FAMILY="Dejavu Sans:size=12"
+ICON_FONT1="FontAwesome:size=16"
+PANEL_WM_NAME="panel"
+SEPERATOR="|"
+
+if xdo id -a "$PANEL_WM_NAME" > /dev/null ; then
+    printf "%s\n" "The panel is already running." >&2
+    exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+bspc config top_padding $PANEL_HEIGHT
+#bspc control --subscribe > "$PANEL_FIFO" &
+bspc subscribe report > "$PANEL_FIFO" &
+
+#############
+# LEFT SIDE #
+#############
+
+############################################
+# Volume
+# Reads from alsactl monitor. Only updates on change
+###
+volume(){
+    mute=$(amixer get Master | awk '$0~/%/{print $6}' | tr -d '[]')
+
+    if [ $mute = "off" ] ; then
+        status="\uf026 MM"
+    else
+        vol=$(amixer get Master | awk '$0~/%/{print $4}' | tr -d '[]%')
+
+        if [ $vol -gt 50 ] ; then
+            status="\uf028 ${vol}"
+        else
+            status="\uf027 ${vol}"
+        fi
+    fi
+
+    printf "%b%s\n" "V  ${status} ${SEPERATOR} "
+}
+
+# pipe initial volume state
+volume > "$PANEL_FIFO" &
+
+# call on updated volume
+stdbuf -oL alsactl monitor |
+while read; do
+    volume
+done > "$PANEL_FIFO" &
+
+############################################
+# MPD
+# Show state and currently playing song
+# MPD needs to be running before the bar for this to work
+####
+mpc_status(){
+    for i in $( mpc --format "" ); do
+        a=$i
+        break
+    done
+
+    echo "$a"
+}
+
+mpd_information(){
+    status=$(mpc_status)
+
+    if [ $status = "[playing]" ]
+    then
+        status="\uf04b  $(mpc current)"
+    elif [ $status = "[paused]" ]
+    then
+        status="\uf04c $(mpc current)"
+    else
+        status="\uf04d No Media"
+    fi
+
+    printf "%b%s\n" "P ${status}"
+}
+
+# pipe initial mpd state
+mpd_information > "$PANEL_FIFO" &
+
+# call on player updates
+stdbuf -oL mpc idleloop player |
+while read; do
+    mpd_information
+done > "$PANEL_FIFO" &
+
+##############
+# RIGHT SIDE #
+##############
+
+############################################
+# Network Up/Down Speed
+####
+network(){
+    printf "%b%s\n" "N $($HOME/Scripts/updownspeed) ${SEPERATOR} "
+}
+
+############################################
+# Disk Space
+####
+printf "%b%s\n" "Z\uf0a0 ${SEPERATOR}" > "$PANEL_FIFO" &
+
+############################################
+# Date/Time
+####
+datetime(){
+    dt=$(date +"%A, %b %e")
+    tm=$(date +"%H:%M:%S")
+
+    printf "%b%s\n" "D \uf073 ${dt}  \uf017 ${tm}  "
+}
+
+while :; do
+    datetime
+    network
+
+    sleep 0.5
+done > "$PANEL_FIFO" &
+
+. panel_colors
+
+panel_bar < "$PANEL_FIFO" | lemonbar -a 32 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f $ICON_FONT1 -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
+
+wid=$(xdo id -a "$PANEL_WM_NAME")
+tries_left=20
+while [ -z "$wid" -a "$tries_left" -gt 0 ] ; do
+    sleep 0.05
+    wid=$(xdo id -a "$PANEL_WM_NAME")
+    tries_left=$((tries_left - 1))
+done
+[ -n "$wid" ] && xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+wait

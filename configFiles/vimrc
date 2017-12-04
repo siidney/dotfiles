@@ -1,7 +1,24 @@
-" -----------------------------
-"  PLUGINS
-" -----------------------------
 "
+" Minimal test vimrc for lag reduction.
+"
+" 1.  PLUGIN LOADING
+" 2.  GENERAL SETTINGS
+"   2a. INDENTATION
+"   2b. FILE BROWSING
+" 3.  KEY BINDINGS
+" 4.  COLOURS
+" 5.  PLUGIN SETTINGS
+" 6.  SEARCHING
+" 7.  STATUS LINE
+" 8.  WINDOW SPLITS
+" 9.  STRIP WHITESPACE
+" 10. TEMPLATE FILES
+"
+
+" -----------------------------
+"  1. PLUGIN LOADING
+" -----------------------------
+
 " install plug if not already
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -17,20 +34,12 @@ call plug#begin('~/.vim/plugged')
 
 " snippets
 Plug 'sirVer/ultisnips' | Plug 'honza/vim-snippets'
-" auto close brackets
-Plug 'jiangmiao/auto-pairs'
-" better c++ highlighting
-Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
-" php html indent fix
-Plug 'siidney/vim-php-html-indent', {'for': ['php', 'html']}
 " color scheme
 Plug 'sickill/vim-sunburst'
-" linting
-Plug 'w0rp/ale'
 " glsl highlighting
 Plug 'beyondmarc/glsl.vim'
-" OpenGL highlighting
-Plug 'beyondmarc/opengl.vim', {'for': ['c', 'cpp']}
+" linting
+Plug 'w0rp/ale'
 " deoplete
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
@@ -40,78 +49,67 @@ Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 
 call plug#end()
 
+" -----------------------------
+"  2. GENERAL SETTINGS
+" -----------------------------
 if has('autocmd')
-    filetype plugin indent on
+    filetype plugin on
 endif
 
 if has('syntax') && !exists('g:syntax:on')
-    syntax enable
+    syntax on
 endif
 
-" -----------------------------
-"  GENERAL SETTINGS
-" -----------------------------
-set exrc                        " use .vimrc files from current dir if present
-set showcmd			" visual autocomplete for cmd menu
-set secure			" restrict usage for non default .vimrc
-set shell=/bin/zsh		" set shell
+set shell=/bin/zsh              " set shell
+" encoding
 set encoding=utf-8
-scriptencoding utf-8
 set fileencoding=utf-8
-set fileformat=unix		" set unix line endings
-set fileformats=unix,dos	" line ending order for existing and new buffers
-set autoread			" reload files edited outside of vim
-set autoindent 			" set indent based on line above
-set backspace=indent,eol,start 	" make backspace work
-set complete-=1			" enable Ctrl-P Ctrl-N autocomplete
-set smarttab
-set nrformats-=octal		" Ctrl-A increments Ctrl-X decrements numbers
-set ttimeout			" allows key timeouts in command mode
-set ttimeoutlen=100		" set timeout length
-set ruler			" show line and col number of cursor position
-set number			" show line numbers
-set undofile			" create <filename>.un~ for undo after file close
-set visualbell t_vb=            " turn off system beeps
+scriptencoding utf-8
+" line endings
+set fileformat=unix             " unix line endings
+set fileformats=unix,dos        " line ending order for existing and new buffers
+
+set autochdir                   " automatically changes working dir to current file
+set autoread                    " reload files edited outside of vim
+set backspace=indent,eol,start  " make backspace work
+set display+=lastline           " display as much as possible of last line
+
+" save last 1000 changes
+if &history < 1000
+    set history=1000
+endif
+
+set lazyredraw                  " prevent redraw during macro execution
+
+set number                      " show line numbers
+" specifies function used for C-x C-o omni completion
 set omnifunc=syntaxcomplete#Complete
-set autochdir                   " auto change working dir to current file (for linters)
-set relativenumber
-set lazyredraw                  " prevents redraw during macro execution etc
 
-" INDENTATION
-set expandtab			" use spaces instead of tabs
-set autoindent			" indent based on indentation of line above
-set smartindent			" smarter indent for c-like languages
-set shiftwidth=4		" when reading, tabs are 4 spaces
-set softtabstop=4		" insert mode tabs are 4 spaces
-set wrap                        " wrap long lines
+set ttimeout                    " allow key timeouts
+set ttimeoutlen=100             " set key timeout length
 
-" limit line width to 80 and hightlight col 80
+set undofile                    " create <filename>.un~ on file close
+
+" 2a. INDENTATION
+set autoindent                  " set indent based on line above
+set smartindent                 " smarter indent for c-like languages
+set shiftwidth=4                " when reading, tabs are 4 spaces
+set softtabstop=4               " insert mode tabs are 4 spaces
+set smarttab
+set wrap
+
+" limit line width to 80 and highlight column 80
 if !&textwidth
     set textwidth=80
-    if(exists('+colorcolumn'))
+
+    if exists('+colorcolumn')
         set colorcolumn=81
         highlight ColorColumn ctermbg=8
     endif
 endif
 
-if !&scrolloff
-    set scrolloff=1		" disables set number of lines around cursor
-endif
-
-if !&sidescrolloff
-    set sidescrolloff=1		" disables set number of lines around cursor
-endif
-
-if &history < 1000
-    set history=1000		" save last 1000 changes
-endif
-
-set display+=lastline		" show as much as possible of last line
-
-let g:mapleader=','		" remap leader key
-
-" File Browsing
-if !exists('g:newtw_banner')
+" 2b. FILE BROWSING
+if !exists('g:netrw_banner')
     let g:netrw_banner=0        " disable banner
 endif
 
@@ -120,15 +118,125 @@ if !exists('g:netrw_liststyle')
 endif
 
 " -----------------------------
-"  COLOURS
+"  3. KEY BINDINGS
 " -----------------------------
+
+let g:mapleader=','             " remap leader key
+
+" <F2> open location list
+nnoremap <silent><F2> <Esc>:lopen<CR>
+
+" <F5> list open buffers and prompt to switch
+nnoremap <F5> :ls<CR>:b<space>
+" open new empty buffer
+nnoremap <leader>B :enew<CR>
+" move to next buffer
+nnoremap <leader>l :bnext<CR>
+" move to previous buffer
+nnoremap <leader>h :bprevious<CR>
+
+" <F6> netrw
+nnoremap <silent><F6> :Lexplore<CR>
+
+" <F8> View rendered markdown with grip
+nnoremap <F8> <Esc>:!grip -b %<CR><CR>
+
+" <F9> insert timestamp (normal and insert mode)
+nnoremap <F9> "=strftime("%d/%m/%y %H:%M:%S")<CR>P
+inoremap <F9> <C-R>=strftime("%d/%m/%y %H:%M:%S")<CR>
+
+" disable arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" jk to exit insert mode
+imap jk <Esc>
+
+" reload vimrc
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" save file
+nnoremap <leader>s :w<CR>
+inoremap <leader>s <C-c>:w<CR>
+
+" enter command line mode
+nnoremap <Space>  :
+
+" xclip
+" pipe contents of paste buffer to xclip
+nnoremap <silent><leader>xo :call system('xclip', @0)<CR>
+
+" add contents of xclip to x register
+" paste contents of x register inline
+function! XclipO()
+    let @x=system('xclip -o')
+    normal! "xp
+endfunction
+
+nnoremap <silent><leader>xi :call XclipO()<CR>
+inoremap <silent><leader>xi <esc>:call XclipO()<CR>i
+" -----------------------------
+"  4. COLOURS
+" -----------------------------
+
 set t_Co=256
 set background=dark
 colorscheme Sunburst
 
 " -----------------------------
-"  STATUS LINE
+"  5. PLUGIN SETTINGS
 " -----------------------------
+
+" ULTISNIPS
+let g:UltiSnipsExpandTrigger='<TAB>'
+let g:UltiSnipsJumpForwardTrigger='<TAB>'
+let g:UltiSnipsJumpBackwardTrigger='<S-TAB>'
+let g:UltiSnipsEditSplit='vertical'
+
+" ALE
+let g:ale_linters = {
+            \    'javascript': ['eslint'],
+            \    'cpp': ['clang-tidy', 'cppcheck', 'cpplint', 'g++']
+            \}
+
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_statusline_format = ['X %d','⚠ %d', '⬥ ok']
+let g:ale_java_checkstyle_options = '-c ~/.google_checks.xml'
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" DEOPLETE
+let g:deoplete#enable_at_startup = 1
+
+" -----------------------------
+"  6. SEARCHING
+" -----------------------------
+set path+=**                    " tab-completion for all file-related tasks
+set wildmenu			" visual autocomplete for cmd menu
+set showmatch			" highlight matching [{()}]
+set incsearch			" highlight matches as characters entered
+set hlsearch			" highlight matches
+
+" clear search
+if maparg('<silent><leader><space>', 'n') ==# ''
+    nnoremap <silent> <leader><space> :noh<CR>
+endif
+
+" -----------------------------
+"  7. STATUS LINE
+" -----------------------------
+set ruler                       " show line and col numbers of cursor position
+
 let g:modes = {'n':'NORMAL', 'i':'INSERT', 'R':'REPLACE', 'v':'VISUAL', 'V':'V-LINE', '':'V-BLOCK'}
 
 function! ModifiedColour()
@@ -174,127 +282,14 @@ set statusline+=\ (%P)\ \|                              " percentage through fil
 set statusline+=\ COL%4c\                               " column number
 
 " -----------------------------
-"  SEARCHING
+"  8. WINDOW SPLITS
 " -----------------------------
-set path+=**                    " tab-completion for all file-related tasks
-set wildmenu			" visual autocomplete for cmd menu
-set showmatch			" highlight matching [{()}]
-set incsearch			" highlight matches as characters entered
-set hlsearch			" highlight matches
-
-" clear search
-if maparg('<silent><leader><space>', 'n') ==# ''
-    nnoremap <silent> <leader><space> :noh<CR>
-endif
-
-" -------------------------------
-"  KEY BINDINGS
-" -------------------------------
-" buffers
-" list open buffers and prompt to switch
-nnoremap <F5> :ls<CR>:b<space>
-" open new empty buffer
-nnoremap <leader>B :enew<CR>
-" move to next buffer
-nnoremap <leader>l :bnext<CR>
-" move to previous buffer
-nnoremap <leader>h :bprevious<CR>
-
-" netrw
-nnoremap <silent> <F6> :Lexplore<CR>    " <F6> explorer
-
-" disable arrow keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-" <F2> Opens the location list
-nnoremap <silent><F2> <Esc>:lopen<CR>
-
-" <F8> View rendered markdown with grip
-nnoremap <F8> <Esc>:!grip -b %<CR><CR>
-
-" <F9> insert timestamp (normal and insert mode)
-nnoremap <F9> "=strftime("%d/%m/%y %H:%M:%S")<CR>P
-inoremap <F9> <C-R>=strftime("%d/%m/%y %H:%M:%S")<CR>
-
-" jk to exit insert mode
-imap jk <Esc>
-
-" reload vimrc
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-" save file
-nnoremap <leader>s :w<CR>
-inoremap <leader>s <C-c>:w<CR>
-
-" enter command line mode
-nnoremap <Space>  :
-
-" xclip
-" pipe contents of paste buffer to xclip
-nnoremap <silent><leader>xo :call system('xclip', @0)<CR>
-
-" add contents of xclip to x register
-" paste contents of x register inline
-function! XclipO()
-    let @x=system('xclip -o')
-    normal! "xp
-endfunction
-
-nnoremap <silent><leader>xi :call XclipO()<CR>
-inoremap <silent><leader>xi <esc>:call XclipO()<CR>i
+set splitbelow                  " :split sets new window below current
+set splitright                  " :vsplit sets new window to right of current
 
 " -----------------------------
-"  WINDOW SPLITS
+"  9. STRIP WHITESPACE
 " -----------------------------
-set splitbelow      " :split sets new window below current
-set splitright      " :vsplit sets new window to right of current
-
-" -----------------------------
-"  PLUGINS
-" -----------------------------
-" ULTISNIPS
-let g:UltiSnipsExpandTrigger='<TAB>'
-let g:UltiSnipsJumpForwardTrigger='<TAB>'
-let g:UltiSnipsJumpBackwardTrigger='<S-TAB>'
-let g:UltiSnipsEditSplit='vertical'
-
-" ALE
-let g:ale_linters = {
-            \    'javascript': ['eslint'],
-            \    'cpp': ['clang-tidy', 'cppcheck', 'cpplint', 'g++']
-            \}
-
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_statusline_format = ['X %d','⚠ %d', '⬥ ok']
-let g:ale_java_checkstyle_options = '-c ~/.google_checks.xml'
-
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" DEOPLETE
-let g:deoplete#enable_at_startup = 1
-
-" ----------------------------
-"  FILETYPE SETS
-" ----------------------------
-augroup filetype_set
-    autocmd!
-    autocmd BufNewFile,BufRead *.endfile set filetype=endfile
-augroup END
-
-" ----------------------------
-"  STRIP WHITESPACE
-" ----------------------------
 highlight default ExtraWhitespace ctermbg=darkred
 
 augroup whiteSpace_highlight
@@ -319,15 +314,11 @@ endfunction
 
 command! StripWhitespace call StripWhitespace()
 
-" ----------------------------
-"  TEMPLATE FILES
-" ----------------------------
+" -----------------------------
+"  10. TEMPLATE FILES
+" -----------------------------
 function! Template()
     let l:ext = expand('%:e')
-
-    if l:ext ==# 'hpp'
-        let l:ext = 'h'
-    endif
 
     " read in template files
     let l:filepath = '$HOME/.vim/templates/skel.' . l:ext
@@ -339,14 +330,11 @@ function! Template()
         " parse special text in templates after read
         %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 
-        " go to end of description line
-        let l:desc = search('Description')
+        " find description placeholder
+        let l:desc = search('%%%%')
 
         if l:desc > 0
-            " JAVA - Replace Description.
-            if l:ext ==# 'java'
-                execute 'normal! B d$A '
-            endif
+            execute 'normal! c$'
         else
             " no description go to EOF
             execute 'normal! G'
@@ -355,6 +343,7 @@ function! Template()
         execute ':startinsert!'
     endif
 endfunction
+
 augroup templates
     autocmd!
     autocmd BufNewfile * call Template()

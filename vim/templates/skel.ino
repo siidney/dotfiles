@@ -1,7 +1,7 @@
 /*
         Filename:  [:VIM_EVAL:]expand('%:t')[:END_EVAL:]
 
-     Description:  
+     Description:  %%%%
 
      The Circuit:  input:
                    output:

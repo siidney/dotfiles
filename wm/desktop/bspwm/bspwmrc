@@ -38,7 +38,7 @@ bspc rule -a Qalculate-gtk state=floating
 bspc rule -a Gsimplecal state=floating
 bspc rule -a Zathura state=tiled
 
-bspc rule -a st-256color:scratchpad sticky=on state=floating border=off
+bspc rule -a st-256color:scratchpad sticky=on state=floating
 
 bspc rule -a "OPENGL test" state=floating
 

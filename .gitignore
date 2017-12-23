@@ -6,7 +6,10 @@
 vim/plugged
 
 # vim netrwhist
-vim/.netrwhist
+.netrwhist
 
 # pkglist file
 pkglist.txt
+
+# vim temporary files
+*~

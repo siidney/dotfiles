@@ -40,12 +40,9 @@ Plug 'sickill/vim-sunburst'
 Plug 'beyondmarc/glsl.vim'
 " linting
 Plug 'w0rp/ale'
-" deoplete
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'Shougo/neco-vim'
-Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
+
+" autocomplete
+Plug 'maralla/completor.vim'
 
 call plug#end()
 
@@ -92,20 +89,16 @@ set undofile                    " create <filename>.un~ on file close
 
 " 2a. INDENTATION
 set autoindent                  " set indent based on line above
-set smartindent                 " smarter indent for c-like languages
+set expandtab			" insert spaces whenever tab is pressed
 set shiftwidth=4                " when reading, tabs are 4 spaces
 set softtabstop=4               " insert mode tabs are 4 spaces
 set smarttab
 set wrap
 
 " limit line width to 80 and highlight column 80
-if !&textwidth
-    set textwidth=80
-
-    if exists('+colorcolumn')
-        set colorcolumn=81
-        highlight ColorColumn ctermbg=8
-    endif
+if exists('+colorcolumn')
+    set colorcolumn=81
+    highlight ColorColumn ctermbg=8
 endif
 
 " 2b. FILE BROWSING
@@ -175,7 +168,7 @@ nnoremap <silent><leader>xo :call system('xclip', @0)<CR>
 
 " add contents of xclip to x register
 " paste contents of x register inline
-function! XclipO()
+function! XclipO() abort
     let @x=system('xclip -o')
     normal! "xp
 endfunction
@@ -203,20 +196,25 @@ let g:UltiSnipsEditSplit='vertical'
 " ALE
 let g:ale_linters = {
             \    'javascript': ['eslint'],
-            \    'cpp': ['clang-tidy', 'cppcheck', 'cpplint', 'g++']
             \}
 
+" statusline
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_statusline_format = ['X %d','⚠ %d', '⬥ ok']
+
+" java options
 let g:ale_java_checkstyle_options = '-c ~/.google_checks.xml'
+
+" clang
+let g:ale_cpp_clangtidy_options = '-- -std=c++14 -Wall'
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" DEOPLETE
-let g:deoplete#enable_at_startup = 1
+" COMPLETOR
+let g:completor_clang_binary = '/usr/bin/clang'
 
 " -----------------------------
 "  6. SEARCHING
@@ -239,7 +237,7 @@ set ruler                       " show line and col numbers of cursor position
 
 let g:modes = {'n':'NORMAL', 'i':'INSERT', 'R':'REPLACE', 'v':'VISUAL', 'V':'V-LINE', '':'V-BLOCK'}
 
-function! ModifiedColour()
+function! ModifiedColour() abort
     if mode() ==# 'i'
         hi statusline ctermfg=0 ctermbg=3
     else
@@ -306,9 +304,9 @@ augroup whiteSpace
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 augroup END
 
-function! g:StripWhitespace()
+function! g:StripWhitespace() abort
     let l:save_cursor = winsaveview()
-    %s/\s\+$//e
+    keeppatterns %s/\v\s+$//e
     call winrestview(l:save_cursor)
 endfunction
 
@@ -317,7 +315,7 @@ command! StripWhitespace call StripWhitespace()
 " -----------------------------
 "  10. TEMPLATE FILES
 " -----------------------------
-function! Template()
+function! Template() abort
     let l:ext = expand('%:e')
 
     " read in template files
@@ -328,7 +326,7 @@ function! Template()
         silent! execute '0r $HOME/.vim/templates/skel.'. l:ext
 
         " parse special text in templates after read
-        %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+        keeppatterns %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 
         " find description placeholder
         let l:desc = search('%%%%')

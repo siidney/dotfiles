@@ -3,7 +3,7 @@
 /rTorrent/.rtorrent/watch
 
 # vim plugins
-vim/plugged
+plugged
 
 # vim netrwhist
 .netrwhist

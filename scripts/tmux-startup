@@ -32,6 +32,7 @@ if [ $? != 0 ]; then
 
     # 3rd window splits
     tmux split-window -d -v -t 'System':'Torrent'.0 -c '/home/siid/Ktorrent/Aria2'
+    tmux split-window -d -h -t 'System':'Torrent'.0 -c $HOME'/Ktorrent'
 
     # send keys so pane doesn't close on program exit
     tmux send-keys -t 'System':0 'htop' C-m

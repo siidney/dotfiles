@@ -9,7 +9,6 @@ ws4= #f121
 ws5= #f016
 ws6= #f115
 ws7= #f144
-
 #bspc monitor -d I II III IV V VI VII VIII IX X
 #bspc monitor -d Sys WWW Email Work Office Files Multimedia
 bspc monitor -d $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7

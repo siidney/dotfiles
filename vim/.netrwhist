@@ -1,4 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/siid/Work/Java/Java-How-To-Program-Early-Objects-10e/Chapter07/exercises'
-let g:netrw_dirhist_2='/home/siid/Work/Cpp/Cpp-How-To-Program/Chapter20/exercises/20.19'

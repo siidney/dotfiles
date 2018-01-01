@@ -3,7 +3,7 @@
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_HEIGHT=30
 PANEL_FONT_FAMILY="Dejavu Sans:size=12"
-ICON_FONT1="FontAwesome:size=16"
+ICON_FONT="FontAwesome:size=16"
 PANEL_WM_NAME="panel"
 SEPERATOR="|"
 
@@ -130,7 +130,7 @@ done > "$PANEL_FIFO" &
 
 . panel_colors
 
-panel_bar < "$PANEL_FIFO" | lemonbar -a 32 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f $ICON_FONT1 -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
+panel_bar < "$PANEL_FIFO" | lemonbar -a 32 -n "$PANEL_WM_NAME" -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -f "$ICON_FONT" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
 
 wid=$(xdo id -a "$PANEL_WM_NAME")
 tries_left=20

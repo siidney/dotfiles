@@ -1,0 +1,7 @@
+# screencast no audio
+ffmpeg -f x11grab -s 1920x1080 -i $DISPLAY output.mp4
+
+# cut video
+# ss - start time
+# t  - finish duration
+ffmpeg -i input.mp4 -ss 00:00:06 -t 00:00:40 -async 1 out.mp4

@@ -1,0 +1,10 @@
+# Encrypt
+gpg --recipient <user-id> --encrypt <file>
+
+# Encrypt and sign
+gpg --recipient <user-id> --sign --armor --encrypt <file>
+
+# Use -R <user-id> or --hidden-recipient <user-id> to not put recipient key IDs in the encrypted message. Hides the receivers of the message.
+
+# Decrypt
+gpg --output <output file> --decrypt <file>.gpg

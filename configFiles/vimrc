@@ -40,7 +40,6 @@ Plug 'sickill/vim-sunburst'
 Plug 'beyondmarc/glsl.vim'
 " linting
 Plug 'w0rp/ale'
-
 " autocomplete
 Plug 'maralla/completor.vim'
 

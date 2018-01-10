@@ -1,0 +1,15 @@
+# Compress Archive
+tar -czf <destination.tar.gz> <source>
+tar -cjf <destination.tar.bz2> <source>
+tar -cJf <destination.tar.xz> <source>
+
+# List Contents
+tar -tf <archive>
+
+# Extract Files
+tar -xf <archive>
+tar -xzvf <archive.gz>
+tar -vxjf <archive.bz2>
+
+# Can view the file contents of tar archives in vim
+vim <archive>

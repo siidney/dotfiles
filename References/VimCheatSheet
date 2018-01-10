@@ -1,0 +1,263 @@
+Vim Cheat Sheet
+
+###################
+# CURSOR MOVEMENT #
+###################
+
+    h - move cursor left
+    j - move cursor down
+    k - move cursor up
+    l - move cursor right
+    w - jump forwards to the start of a word
+    W - jump forwards to the start of a word (words can contain punctuation)
+    e - jump forwards to the end of a word
+    E - jump forwards to the end of a word (words can contain punctuation)
+    b - jump backwards to the start of a word
+    B - jump backwards to the start of a word (words can contain punctuation)
+    0 - jump to the start of the line
+    ^ - jump to the first non-blank character of the line
+    $ - jump to the end of the line
+
+    z.  scroll the line with the cursor to the center of the screen
+    zt  scroll the line with the cursor to the top
+    zb  scroll the line with the cursor to the bottom
+
+    _  -  move to first non-blank character of the line
+    g_ -  move to last non-blank character of the line
+    gg  move to first line
+    G   move to last line
+    nG  move to n'th line of file (n is a number; 12G moves to line 12)
+
+    } - jump to next blank line
+    { - jump to previous blank line
+
+    H   move to top of screen
+    M   move to middle of screen
+    L   move to bottom of screen
+
+    Ctrl-D  move half-page down
+    Ctrl-U  move half-page up
+    Ctrl-B  page up
+    Ctrl-F  page down
+    Ctrl-O  jump to last (older) cursor position
+    Ctrl-I  jump to next cursor position (after Ctrl-O)
+    Ctrl-Y  move view pane up
+    Ctrl-E  move view pane down
+
+Tip Prefix a cursor movement command with a number to repeat it. For example, 4j moves down 4 lines.
+Insert mode - inserting/appending text
+
+    i - insert before the cursor
+    I - insert at the beginning of the line
+    a - insert (append) after the cursor
+    A - insert (append) at the end of the line
+    o - append (open) a new line below the current line
+    O - append (open) a new line above the current line
+    ea - insert (append) at the end of the word
+    Esc - exit insert mode
+
+###########
+# EDITING #
+###########
+
+    r - replace a single character
+    J - join line below to the current one
+    cc - change (replace) entire line
+    cw - change (replace) to the end of the word
+    c$ - change (replace) to the end of the line
+    s - delete character and substitute text
+    S - delete line and substitute text (same as cc)
+    d$ - delete until end of line
+    D - same as above
+    xp - transpose two letters (delete and paste)
+    u - undo
+    Ctrl + r - redo
+    . - repeat last command
+
+    ~ - single char toggle case
+    g~ + dir - toggle case (dir is w $ 0 not hjkl)
+    gU + dir - to upper case
+    gu + dir - to lower case
+    Vu - lowercase line
+    VU - uppercase line
+
+    Ctrl + A - increment number
+    Ctrl + X - decrement number
+
+###############
+# VISUAL MODE #
+###############
+
+    v - start visual mode, mark lines, then do a command (like y-yank)
+    V - start linewise visual mode
+    o - move to other end of marked area
+    Ctrl + v - start visual block mode
+    O - move to other corner of block
+    aw - mark a word
+    ab - a block with ()
+    aB - a block with {}
+    ib - inner block with ()
+    iB - inner block with {}
+    Esc - exit visual mode
+
+Select and copy blocks surrounded by brackets
+
+    f(: Move to the next ( on the current line
+    v: Start a visual selection
+    %: Select the text up to and including the next bracket
+    y: Yank the text
+
+Visual commands
+
+    > - shift text right
+    < - shift text left
+    y - yank (copy) marked text
+    d - delete marked text
+    ~ - switch case
+
+Cut and paste
+
+    yy - yank (copy) a line
+    2yy - yank (copy) 2 lines
+    yw - yank (copy) word
+    y$ - yank (copy) to end of line
+    yap - yank (copy) entire paragraph
+    p - put (paste) the clipboard after cursor
+    P - put (paste) before cursor
+    dd - delete (cut) a line
+    2dd - delete (cut) 2 lines
+    dw - delete (cut) word
+    dap - delete (cut) entire paragraph
+    D - delete (cut) to the end of the line
+    d$ - delete (cut) to the end of the line
+    d0  - delete to beginning of line
+    x - delete (cut) character
+
+    :1,.d
+    delete to beginning of file
+
+    :.,$d
+    delete to end of file
+
+    di) - delete inner brackets
+    dib - as above
+
+###########
+# EXITING #
+###########
+
+    :w - write (save) the file, but don't exit
+    :wq or :x or ZZ - write (save) and quit
+    :q - quit (fails if there are unsaved changes)
+    :q! or ZQ - quit and throw away unsaved changes
+
+######################
+# SEARCH AND REPLACE #
+######################
+
+    /pattern - search for pattern
+    ?pattern - search backward for pattern
+    n - repeat search in same direction
+    N - repeat search in opposite direction
+    :%s/old/new/g - replace all old with new throughout file
+    :%s/old/new/gc - replace all old with new throughout file with confirmations
+    :x,ns/search/replace/g - search and replace within range x-n
+
+###########
+# BUFFERS #
+###########
+
+    :e filename - edit a file in a new buffer
+    :bnext or :bn - go to the next buffer
+    :bprev or :bp - go to the previous buffer
+    :bd - delete a buffer (close a file)
+
+    :sp filename - open a file in a new buffer and split window
+    :vsp filename - open a file in a new buffer and vertically split window
+
+    :sb n - open buffer n in split
+    :vert sb n - open buffer n in vertical split
+
+###########
+# WINDOWS #
+###########
+
+    Ctrl + ws - split window
+    Ctrl + ww - switch windows
+    Ctrl + wq - quit a window
+    Ctrl + wv - split window vertically
+    Ctrl + wh - move cursor to the left window (vertical split)
+    Ctrl + wl - move cursor to the right window (vertical split)
+    Ctrl + wj - move cursor to the window below (horizontal split)
+    Ctrl + wk - move cursor to the window above (horizontal split)
+
+    Ctrl-w + Ctrl-r - Swap windows
+
+    :resize +/- n - resize split n columns
+    :vertical resize +/-n - vertical resize split n columns
+    Ctrl-w = - resize splits equally
+
+    :sp filename - open file in horizontal split
+    :vsp filename - open file in vertical split
+
+########
+# TABS #
+########
+
+    :tabnew filename or :tabn filename - open a file in a new tab
+    Ctrl + wT - move the current split window into its own tab
+    gt or :tabnext or :tabn - move to the next tab
+    gT or :tabprev or :tabp - move to the previous tab
+    #gt - move to tab number #
+    :tabmove # - move current tab to the #th position (indexed from 0)
+    :tabclose or :tabc - close the current tab and all its windows
+    :tabonly or :tabo - close all tabs except for the current one
+
+#########
+# MARKS #
+#########
+
+    ma - set mark a at current cursor location
+    'a - jump to line of mark a (first non-blank character in line)
+    `a - jump to position (line and column) of mark a
+    d'a - delete from current line to line of mark a
+    d`a - delete from current cursor position to position of mark a
+    c'a - change text from current line to line of mark a
+    y`a - yank text to unnamed buffer from cursor to position of mark a
+    :marks - list all current marks
+    :marks aB - list marks a,B
+
+    ]' - Jump to next line with a lowercase mark
+    [' - jump to previous line with a lowercase mark
+    ]` - jump to next lowercase mark
+    [` - jump to previous lowercase mark
+
+    `. - jump to position where last change occured in current buffer
+    `" - jump to position where last exited current buffer
+    `0 - jump to position in last file edited (when exited vim)
+    `1 - like `0 but the previous file (also `2 etc)
+    '' - jump back (to line in current buffer where jumped from)
+    `` - jump back (to position in current buffer where jumped from)
+    `[ or `] - jump to beginning/end of previously changed or yanked text
+    `< `> - jump to beginning/end of last visual selection
+
+    :delmarks a - delete mark a
+    :delmarks a-d - delete marks a,b,c,d
+    :delmarks abxy - delete marks a,b,x,y
+    :delmarks aA - delete marks a,A
+    :delmarks! - delete all lowercase marks from the current buffer (a-z)
+
+#######
+# FTP #
+#######
+
+    :e ftp://user@domain.com//
+
+#################
+# UNIX COMMANDS #
+#################
+
+     :%!column -t - format plaintext table
+     :%!sort -k# - sort plaintext table by column #
+
+     :w !sudo tee % - save as root

@@ -22,10 +22,6 @@ fi
 export GPG_AGENT_INFO # the env file does not contain the export statement
 export SSH_AUTH_SOCK # enable gpg-agent for ssh
 
-# Set XDG_CONFIG_HOME properly
-XDG_CONFIG_HOME=$HOME/.config
-export XDG_CONFIG_HOME
-
 sxhkd &
 xsetroot -cursor_name left_ptr &
 feh --bg-scale ~/.backgrounds/Floating-Tree-Abstract-Wallpaper.jpg &

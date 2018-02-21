@@ -2,9 +2,9 @@
 
 # show root and home diskspace in notify-send
 diskspace(){
-    head="Mount Use% Used/Size Avail"
-    rs=$(df -h | awk '$NF=="/"{printf "%s", $6 "       " $5 "   " $3"/"$2"     "$4}')
-    hs=$(df -h | awk '$NF=="/home"{printf "%s", $6 "   " $5 "   " $3"/"$2"    "$4}')
+    head="Mount Use Used/Size Avail"
+    rs=$(df -h | awk '$NF=="/"{printf "%s", $6 "       " $5 "  " $3"/"$2"     "$4}')
+    hs=$(df -h | awk '$NF=="/home"{printf "%s", $6 "   " $5 "  " $3"/"$2"    "$4}')
 
     notify-send "${head}" "${rs}\n${hs}"
 }

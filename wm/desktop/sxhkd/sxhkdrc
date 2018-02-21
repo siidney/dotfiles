@@ -130,27 +130,27 @@ super + {Left,Down,Up,Right}
 XF86Audio{Play,Stop}
         mpc {toggle,stop}
 
-super + F12
+XF86AudioNext
         mpc next
 
-super + F11
+XF86AudioPrev
         mpc prev
 
 # volume controls
-super + F1
+XF86AudioLowerVolume
         amixer -c 0 set Master 1dB-
 
-super + F2
+XF86AudioRaiseVolume
         amixer -c 0 set Master 1dB+
 
 super + F3
         amixer set Master toggle
 
 # application launchers
-super + XF86HomePage
+super + F2
         $HOME/Scripts/runorraise.sh luakit Luakit
 
-XF86HomePage
+super + F1
         $HOME/Scripts/runorraise.sh brave brave
 
 super + shift + g

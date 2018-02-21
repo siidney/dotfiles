@@ -9,8 +9,7 @@ ws4= #f121
 ws5= #f016
 ws6= #f115
 ws7= #f144
-#bspc monitor -d I II III IV V VI VII VIII IX X
-#bspc monitor -d Sys WWW Email Work Office Files Multimedia
+
 bspc monitor -d $ws1 $ws2 $ws3 $ws4 $ws5 $ws6 $ws7
 
 bspc config border_width         1
@@ -26,11 +25,14 @@ bspc rule -a st-256color:comm desktop='^3'
 
 bspc rule -a brave desktop='^2'
 
+bspc rule -a Godot desktop='^4'
+
 bspc rule -a libreoffice-startcenter desktop='^5'
 
 bspc rule -a Gimp desktop='^7' state=floating follow=on
 bspc rule -a Steam desktop='^7'
 bspc rule -a Kodi desktop='^7'
+bspc rule -a Lutris desktop='^7'
 
 bspc rule -a mpv state=floating
 bspc rule -a Qalculate-gtk state=floating

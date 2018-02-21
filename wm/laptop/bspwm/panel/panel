@@ -2,8 +2,8 @@
 
 PANEL_FIFO=/tmp/panel-fifo
 PANEL_HEIGHT=30
-PANEL_FONT_FAMILY="Dejavu Sans:size=12"
-ICON_FONT1="FontAwesome:size=16"
+PANEL_FONT_FAMILY="Dejavu Sans:size=10"
+ICON_FONT1="FontAwesome:size=14"
 PANEL_WM_NAME="panel"
 SEPERATOR="|"
 

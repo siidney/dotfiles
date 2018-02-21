@@ -13,3 +13,4 @@ pkglist.txt
 
 # vim temporary files
 *~
+*.sw*

@@ -42,6 +42,11 @@ Plug 'beyondmarc/glsl.vim'
 Plug 'w0rp/ale'
 " autocomplete
 Plug 'maralla/completor.vim'
+" auto close brackets
+Plug 'jiangmiao/auto-pairs'
+" LISP
+" vlime
+Plug 'l04m33/vlime', { 'rtp': 'vim/' }
 
 call plug#end()
 
@@ -195,8 +200,9 @@ let g:UltiSnipsEditSplit='vertical'
 " ALE
 let g:ale_linters = {
             \    'javascript': ['eslint'],
+            \    'cpp': ['clang', 'clangtidy', 'clang-format', 'cppcheck', 'cpplint', 'gcc'],
             \}
-
+"\    'cpp': ['clang', 'clangtidy', 'clang-format', 'cppcheck', 'cpplint', 'gcc'],
 " statusline
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
@@ -207,7 +213,8 @@ let g:ale_statusline_format = ['X %d','⚠ %d', '⬥ ok']
 let g:ale_java_checkstyle_options = '-c ~/.google_checks.xml'
 
 " clang
-let g:ale_cpp_clangtidy_options = '-- -std=c++14 -Wall'
+let g:ale_cpp_clangtidy_options = '-std=c++14 -Wall'
+let g:ale_cpp_clangtidy_checks = ['readability-braces-around-statements']
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)

@@ -18,7 +18,7 @@ download_rate = 0
 upload_rate = 190
 
 # Default directory to save the downloaded torrents.
-directory = ~/Ktorrent
+directory = ~/Torrent
 
 # Default session directory. Make sure you don't run multiple instance
 # of rtorrent using the same session directory. Perhaps using a
@@ -89,4 +89,4 @@ use_udp_trackers = yes
 
 # Notify of Torrent completion
 #
- system.method.set_key=event.download.finished,notify_me,"execute=~/.dotfiles/rTorrent/.rtorrent/rtorrent_notify.sh,finished,$d.get_name="
+ system.method.set_key=event.download.finished,notify_me,"execute=~/.dotfiles/rtorrent/.rtorrent/rtorrent_notify.sh,finished,$d.get_name="

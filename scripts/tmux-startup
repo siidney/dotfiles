@@ -13,7 +13,7 @@ if [ $? != 0 ]; then
     tmux new-window  -d -t   'Communication' -n   'Calcurse'
 
     # prevents window closing on process exit
-    tmux send-keys -t 'Communication':0 'mutt'      C-m
+    tmux send-keys -t 'Communication':0 'neomutt'   C-m
     tmux send-keys -t 'Communication':1 'irssi'     C-m
     tmux send-keys -t 'Communication':2 'calcurse'  C-m
 
@@ -42,7 +42,7 @@ if [ $? != 0 ]; then
     tmux select-pane 'System':0
 fi
 
-# check if urxvt instance is already running
+# check if st instance is already running
 comm=$(xdo id -n "comm")
 sys_info=$(xdo id -n "sys_info")
 

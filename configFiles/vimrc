@@ -39,9 +39,13 @@ Plug 'sickill/vim-sunburst'
 " glsl highlighting
 Plug 'beyondmarc/glsl.vim'
 " linting
-Plug 'w0rp/ale'
+Plug 'neomake/neomake'
 " autocomplete
-Plug 'maralla/completor.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
 " auto close brackets
 Plug 'jiangmiao/auto-pairs'
 " LISP
@@ -179,6 +183,16 @@ endfunction
 
 nnoremap <silent><leader>xi :call XclipO()<CR>
 inoremap <silent><leader>xi <esc>:call XclipO()<CR>i
+
+" PLUGINS
+"
+" Neomake
+nnoremap <C-j> :lnext<CR>
+nnoremap <C-k> :lprev<CR>
+
+" asyncomplete
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
 " -----------------------------
 "  4. COLOURS
 " -----------------------------
@@ -197,31 +211,45 @@ let g:UltiSnipsJumpForwardTrigger='<TAB>'
 let g:UltiSnipsJumpBackwardTrigger='<S-TAB>'
 let g:UltiSnipsEditSplit='vertical'
 
-" ALE
-let g:ale_linters = {
-            \    'javascript': ['eslint'],
-            \    'cpp': ['clang', 'clangtidy', 'clang-format', 'cppcheck', 'cpplint', 'gcc'],
-            \}
-"\    'cpp': ['clang', 'clangtidy', 'clang-format', 'cppcheck', 'cpplint', 'gcc'],
-" statusline
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_statusline_format = ['X %d','⚠ %d', '⬥ ok']
+" NEOMAKE
+call neomake#configure#automake({
+            \ 'TextChanged': {},
+            \ 'InsertLeave': {},
+            \ 'BufWritePost': {},
+            \ 'BufWinEnter': {},
+            \ }, 500)
 
-" java options
-let g:ale_java_checkstyle_options = '-c ~/.google_checks.xml'
+highlight NeomakeErrorMsg ctermfg=227 ctermbg=237
 
-" clang
-let g:ale_cpp_clangtidy_options = '-std=c++14 -Wall'
-let g:ale_cpp_clangtidy_checks = ['readability-braces-around-statements']
+let g:neomake_error_sign = {'text': '>>', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_warning_sign = {'text': '--', 'texthl': 'NeomakeWarningSign'}
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" Cpp
+let g:neomake_cpp_enabled_makers = ['clang', 'clangtidy', 'clangcheck', 'cpplint']
+let g:neomake_cpp_clangtidy_args = ['-extra-arg=-std=c++14', '-checks=\*,readability-*']
 
-" COMPLETOR
-let g:completor_clang_binary = '/usr/bin/clang'
+" ASYNCOMPLETE
+let g:asyncomplete_remove_duplicates = 1
 
+" buffer
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+            \ 'name': 'buffer',
+            \ 'whitelist': ['*'],
+            \ 'blacklist': ['go'],
+            \ 'completor': function('asyncomplete#sources#buffer#completor'),
+            \ }))
+
+" c/cpp
+if executable('clangd')
+    augroup clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'clangd',
+            \ 'cmd': {server_info->['clangd']},
+            \ 'whitelist': ['c', 'cpp', 'h', 'hpp', 'objc', 'objcpp'],
+            \ })
+    augroup END
+endif
 " -----------------------------
 "  6. SEARCHING
 " -----------------------------
@@ -256,6 +284,13 @@ function! ModifiedColour() abort
     return ''
 endfunction
 
+" Neomake Status
+function! NeomakeStatus()
+    let l:errors = get(neomake#statusline#LoclistCounts(), 'E', 0)
+    let l:warnings = get(neomake#statusline#LoclistCounts(), 'W', 0)
+    return 'E: ' .l:errors .' W: ' .l:warnings
+endfunction
+
 if v:version >= 700
     augroup statusline
         autocmd!
@@ -274,7 +309,7 @@ set statusline+=%{ModifiedColour()}
 set statusline+=\ [%{get(modes,mode())}]                " show modes
 set statusline+=\ %<%f                                  " filepath
 set statusline+=\ %([%R%M%H]%)\ \|                      " readonly modified helpfile
-set statusline+=\ %{ALEGetStatusLine()}\ \|             " ale statusline
+set statusline+=\ %{NeomakeStatus()}
 " right side
 set statusline+=%=
 set statusline+=\%{strlen(&ft)?&ft:'none'}\ \|          " file type

@@ -1,6 +1,6 @@
 # rtorrent session/watch folders
-/rTorrent/.rtorrent/session
-/rTorrent/.rtorrent/watch
+/rtorrent/session
+/rtorrent/watch
 
 # vim plugins
 plugged

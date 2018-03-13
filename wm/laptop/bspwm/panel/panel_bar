@@ -34,6 +34,10 @@ while read -r line ; do
             # freespace
             fs="%{A:${HOME}/Scripts/diskspace:}${line#?}%{A}"
             ;;
+        X*)
+            # battery percentage
+            bp="${line#?}"
+            ;;
         D*)
             # datetime
             dt="%{A:gsimplecal:}${line#?}%{A}"
@@ -107,5 +111,5 @@ while read -r line ; do
             done
             ;;
     esac
-    printf "%s\n" "%{l}${vol}${mpd}%{c}${wm}%{r}${nw}${fs}${dt}"
+    printf "%s\n" "%{l}${vol}${mpd}%{c}${wm}%{r}${nw}${fs}${bp}${dt}"
 done

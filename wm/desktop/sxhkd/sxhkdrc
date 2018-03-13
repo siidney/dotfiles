@@ -147,11 +147,11 @@ super + F3
         amixer set Master toggle
 
 # application launchers
-super + F2
-        $HOME/Scripts/runorraise.sh luakit Luakit
-
 super + F1
         $HOME/Scripts/runorraise.sh brave brave
+
+super + F2
+        $HOME/Scripts/runorraise.sh luakit Luakit
 
 super + shift + g
         $HOME/Scripts/runorraise.sh gsimplecal GsimpleCal

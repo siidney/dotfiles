@@ -51,6 +51,9 @@ Plug 'jiangmiao/auto-pairs'
 " LISP
 " vlime
 Plug 'l04m33/vlime', { 'rtp': 'vim/' }
+" arduino
+Plug 'sudar/vim-arduino-syntax'
+Plug 'sudar/vim-arduino-snippets'
 
 call plug#end()
 

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+base_dir="/sys/class/power_supply/BAT0/"
+status=$(cat $base_dir"status")
+capacity=$(cat $base_dir"charge_full")
+current=$(cat $base_dir"charge_now")
+percentage=$((100 * current / capacity))
+icon="\uf244" # empty by default
+
+if [[ $status = "Charging" ]]; then
+    icon="\uf1e6"
+else
+    if [[ $percentage -gt 90 ]]; then
+        icon="\uf240"
+    else if [[ $percentage -gt 75 ]]; then
+        icon="\uf241"
+    else if [[ $percentage -gt 50 ]]; then
+        icon="\uf242"
+    else if [[ $percentage -gt 25 ]]; then
+        icon="\uf243"
+    fi
+    fi
+    fi
+    fi
+fi
+
+# echo results
+echo -e "$icon  $percentage"

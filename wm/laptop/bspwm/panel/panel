@@ -112,14 +112,27 @@ network(){
 printf "%b%s\n" "Z\uf0a0 ${SEPERATOR}" > "$PANEL_FIFO" &
 
 ############################################
+# Battery Percentage
+###
+battery() {
+    printf "%b%s\n" "X $($HOME/Scripts/batteryperc) ${SEPERATOR} "
+}
+
+############################################
 # Date/Time
 ####
 datetime(){
-    dt=$(date +"%A, %b %e")
+    dt=$(date +"%d/%m/%y")
     tm=$(date +"%H:%M:%S")
 
     printf "%b%s\n" "D \uf073 ${dt}  \uf017 ${tm}  "
 }
+
+while :; do
+    battery
+
+    sleep 1
+done > "$PANEL_FIFO" &
 
 while :; do
     datetime

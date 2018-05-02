@@ -313,6 +313,7 @@ set statusline+=\ [%{get(modes,mode())}]                " show modes
 set statusline+=\ %<%f                                  " filepath
 set statusline+=\ %([%R%M%H]%)\ \|                      " readonly modified helpfile
 set statusline+=\ %{NeomakeStatus()}
+
 " right side
 set statusline+=%=
 set statusline+=\%{strlen(&ft)?&ft:'none'}\ \|          " file type

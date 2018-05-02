@@ -2,10 +2,31 @@
 priority 1
 
 # main
-snippet main "main() (main)"
-int main(int argc, char **argv){
+snippet main "int main(int argc, const char* argv[])" b
+/**
+ * ${1:This is the main method.}
+ * @param argc.
+ * @param argv[].
+ * @return int.
+ */
+int main(int argc, char* argv[]) {
 	${VISUAL}${0}
 
 	return 0;
-}
+}  // end method main
+endsnippet
+
+# function definition
+snippet fun "function" b
+/**
+ * ${1:Function description}
+ */
+${2:void} ${3:func}(${4}) ${5}{
+	${VISUAL}${0}
+}  // end method $3
+endsnippet
+
+# function declaration
+snippet fund "function declaration" b
+${1:void} ${2:func}(${3})${4};
 endsnippet

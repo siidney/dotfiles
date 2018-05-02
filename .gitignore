@@ -1,6 +1,6 @@
 # rtorrent session/watch folders
-rtorrent/session
-rtorrent/watch
+rtorrent/session/
+rtorrent/watch/
 
 # vim plugins
 plugged
@@ -12,5 +12,5 @@ plugged
 pkglist.txt
 
 # vim temporary files
-*~
+*.*~
 *.sw*

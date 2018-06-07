@@ -30,3 +30,45 @@ endsnippet
 snippet fund "function declaration" b
 ${1:void} ${2:func}(${3})${4};
 endsnippet
+
+# Loops
+snippet for "for ()" b
+for (${1:int} ${2:i} = ${3:0}; $2 ${4:< count}; ${5:++}$2) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet forr "for () {}" b
+for (${1:int} ${2:i} = ${3:0}; $2 ${4:< count}; ${5:++}$2) { ${VISUAL}${0} }
+endsnippet
+
+snippet foru "for ()" b
+for (${1:unsigned int} ${2:i} = ${3:0}; $2 ${4:< count}; ${5:++}$2) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet forru "for () {}" b
+for (${1:unsigned int} ${2:i} = ${3:0}; $2 ${4:< count}; ${5:++}$2) { ${VISUAL}${0} }
+endsnippet
+
+# Conditionals
+snippet if "if ()" b
+if (${1:true}) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet iff "if () {}" b
+if (${1:true}) { ${VISUAL}${0} }
+endsnippet
+
+snippet elif "else if ()" w
+else if (${1:true}) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet eliff "else if () {}" w
+else if (${1:true}) { ${VISUAL}${0} }
+endsnippet

@@ -148,7 +148,7 @@ super + F3
 
 # application launchers
 super + F1
-        $HOME/Scripts/runorraise.sh brave brave
+        $HOME/Scripts/runorraise.sh qutebrowser Qutebrowser
 
 super + F2
         $HOME/Scripts/runorraise.sh luakit Luakit

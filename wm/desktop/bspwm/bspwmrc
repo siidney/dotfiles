@@ -23,10 +23,6 @@ bspc config gapless_monocle      true
 bspc rule -a st-256color:sys_info desktop='^1'
 bspc rule -a st-256color:comm desktop='^3'
 
-bspc rule -a brave desktop='^2'
-
-bspc rule -a Godot desktop='^4'
-
 bspc rule -a libreoffice-startcenter desktop='^5'
 
 bspc rule -a Gimp desktop='^7' state=floating follow=on

@@ -1352,7 +1352,9 @@ c.url.open_base_url = True
 ## Type: Dict
 c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}',
                        'google': 'https://duckduckgo.com/?q={}%20!g',
-                       'reddit': 'https://www.reddit.com/search?q={}&include_over_18=on'}
+                       'youtube': 'https://www.youtube.com/results?search_query={}',
+                       'reddit': 'https://www.reddit.com/search?q={}&include_over_18=on',
+                       'rarbg': 'http://rarbgtorrents.org/torrents.php?search={}'}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
